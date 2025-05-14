@@ -1,0 +1,52 @@
+[
+  {
+    "id": "IG001",
+    "organization_zh_TW": "聯合國教科文組織 (UNESCO)",
+    "type_zh_TW": "倫理建議/報告",
+    "title_zh_TW": "關於神經技術倫理的建議書 (Recommendation on the Ethics of Neurotechnology)",
+    "description_zh_TW": "UNESCO 制定的關於神經技術倫理的全球標準，旨在指導各國在神經技術的研發和應用中，保護人權、基本自由和人類尊嚴。內容涵蓋心理隱私、認知自由、個人身份、公平獲取和平等以及治理等關鍵領域。",
+    "relevance_to_education_zh_TW": "為教育領域應用神經技術（如學習輔助工具、注意力監測）提供了重要的倫理框架，有助於政策制定者和教育工作者確保技術的負責任使用，保護學生的權利。",
+    "link_placeholder_zh_TW": "（未來可添加官方文件連結）",
+    "keywords_zh_TW": ["UNESCO", "神經技術倫理", "全球標準", "人權", "教育政策"]
+  },
+  {
+    "id": "IG002",
+    "organization_zh_TW": "經濟合作暨發展組織 (OECD)",
+    "type_zh_TW": "負責任創新建議",
+    "title_zh_TW": "關於負責任地創新神經技術的建議 (Recommendation on Responsible Innovation in Neurotechnology)",
+    "description_zh_TW": "OECD 提出的旨在促進神經技術負責任創新的指導原則和政策建議。強調在技術發展的早期階段就應考慮倫理、法律和社會影響 (ELSI)，並鼓勵透明度、安全性和公眾參與。",
+    "relevance_to_education_zh_TW": "對於教育科技 (EdTech) 開發者和採用神經技術的教育機構具有指導意義，幫助他們在創新過程中融入倫理考量，預防潛在風險，並確保技術的發展符合社會價值觀。",
+    "link_placeholder_zh_TW": "（未來可添加官方文件連結）",
+    "keywords_zh_TW": ["OECD", "神經技術", "負責任創新", "ELSI", "EdTech倫理"]
+  },
+  {
+    "id": "IG003",
+    "organization_zh_TW": "聯合國教科文組織 (UNESCO)",
+    "type_zh_TW": "教育資源",
+    "title_zh_TW": "生物倫理核心課程 (Bioethics Core Curriculum)",
+    "description_zh_TW": "UNESCO 開發的一套生物倫理教育資源，旨在向大學生和其他學習者介紹生物倫理學的基本原則和議題。課程內容可能涵蓋與神經倫理相關的主題。",
+    "relevance_to_education_zh_TW": "可作為高等教育中開設神經倫理相關課程的參考教材，幫助學生理解更廣泛的生物倫理背景以及神經科學帶來的特殊倫理挑戰。",
+    "link_placeholder_zh_TW": "（未來可添加官方文件連結）",
+    "keywords_zh_TW": ["UNESCO", "生物倫理", "課程資源", "高等教育", "倫理教育"]
+  },
+  {
+    "id": "IG004",
+    "organization_zh_TW": "國際神經倫理學會 (International Neuroethics Society - INS)",
+    "type_zh_TW": "專業學會資源",
+    "title_zh_TW": "INS 出版物、會議和指南",
+    "description_zh_TW": "INS 作為一個國際性的專業學術組織，定期舉辦會議、出版期刊和書籍，並可能發布與神經倫理研究和實踐相關的指南或聲明。",
+    "relevance_to_education_zh_TW": "教育工作者、研究者和政策制定者可以從INS的資源中獲取最新的神經倫理研究進展、專家觀點和學術討論，有助於提升專業素養和制定基於證據的策略。",
+    "link_placeholder_zh_TW": "（未來可添加學會官方網站或相關資源連結）",
+    "keywords_zh_TW": ["國際神經倫理學會", "INS", "學術資源", "神經倫理研究", "專業發展"]
+  },
+  {
+    "id": "IG005",
+    "organization_zh_TW": "各國/地區立法（例如：智利、美國部分州）",
+    "type_zh_TW": "法律/政策",
+    "title_zh_TW": "關於神經權利或神經數據保護的立法",
+    "description_zh_TW": "部分國家或地區已開始探索或制定旨在保護公民神經權利（如心理隱私、認知自由）和規範神經數據處理的法律法規。",
+    "relevance_to_education_zh_TW": "這些新興的法律框架對教育機構如何收集、使用和保護學生的神經數據具有直接影響，並可能為制定相關校本政策提供法律依據。",
+    "link_placeholder_zh_TW": "（未來可添加相關立法或政策分析資源連結）",
+    "keywords_zh_TW": ["神經權利", "立法", "數據保護", "法律框架", "教育政策"]
+  }
+] 

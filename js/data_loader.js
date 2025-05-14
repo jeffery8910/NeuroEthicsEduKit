@@ -3,7 +3,7 @@
 /**
  * 從指定的 URL 異步獲取 JSON 數據。
  * @param {string} url JSON 檔案的路徑。
- * @returns {Promise<Array<Object>|null>} 解析後的 JSON 數據或在出錯時返回 null。
+ * @returns {Promise<Array<Object>|Object|null>} 解析後的 JSON 數據或在出錯時返回 null。
  */
 async function fetchJsonData(url) {
     try {
@@ -12,10 +12,39 @@ async function fetchJsonData(url) {
             console.error(`無法獲取數據: ${response.status} ${response.statusText} 從 ${url}`);
             return null;
         }
-        return await response.json();
+        // 嘗試解析為 JSON。注意：某些端點可能直接返回對象，而另一些可能返回數組。
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error(`獲取數據時發生錯誤從 ${url}:`, error);
         return null;
+    }
+}
+
+// 全局的 loadJsonData 函數，供其他 page-specific JS 文件使用
+// 確保此函數在 data_loader.js 的頂部，並且在任何依賴它的 page-specific JS 之前載入
+/**
+ * (公用) 從指定的 URL 異步獲取 JSON 數據。
+ * 此版本設計為由其他特定頁面的 JS 文件導入和使用。
+ * @param {string} filePath JSON 檔案的路徑。
+ * @returns {Promise<Object|Array|null>} 解析後的 JSON 數據或在出錯時返回 null。
+ */
+async function loadJsonData(filePath) {
+    console.log(`Attempting to load JSON from: ${filePath}`);
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            console.error(`Error fetching ${filePath}: ${response.status} ${response.statusText}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(`Successfully loaded JSON from: ${filePath}`, data);
+        return data;
+    } catch (error) {
+        console.error(`Error loading JSON data from ${filePath}:`, error);
+        // 在 production 環境中，可能不希望 alert，而是更優雅地處理錯誤
+        // alert(`無法載入資源: ${filePath}。請檢查控制台獲取更多資訊。`);
+        return null; // 或拋出錯誤，讓調用者處理
     }
 }
 
@@ -383,3 +412,104 @@ document.addEventListener('DOMContentLoaded', () => {
         renderEducatorToolkitContent('../assets/data/module2_educator_toolkit/toolkit_content.json');
     }
 }); 
+
+// 教育者工具包內容渲染
+async function renderEducatorToolkitContent(containerId, jsonPath, sectionKey, renderer) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.warn(`Container with id ${containerId} not found for ${sectionKey}.`);
+        return;
+    }
+    container.innerHTML = '<p>正在載入內容...</p>';
+    try {
+        const data = await loadJsonData(jsonPath);
+        if (data && data[sectionKey]) {
+            renderer(data[sectionKey], container);
+        } else if (data && !data[sectionKey]) {
+            console.warn(`Section ${sectionKey} not found in ${jsonPath}`);
+            container.innerHTML = '<p>找不到指定的內容部分。</p>';
+        } else {
+            container.innerHTML = '<p>無法載入內容。數據為空或路徑錯誤。</p>';
+        }
+    } catch (error) {
+        console.error(`Error loading or rendering ${sectionKey}:`, error);
+        container.innerHTML = '<p>載入內容時發生錯誤。</p>';
+    }
+}
+
+// 隱私模擬頁面內容渲染
+async function renderPrivacySimulationContent(containerId, jsonPath, sectionKey, renderer) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.warn(`Container ${containerId} not found for ${sectionKey}.`);
+        return;
+    }
+    container.innerHTML = '<p>正在載入內容...</p>';
+    try {
+        const alldata = await loadJsonData(jsonPath);
+        if (alldata && sectionKey && alldata[sectionKey]) { // 如果提供了 sectionKey 且存在
+             renderer(alldata[sectionKey], container);
+        } else if (alldata && !sectionKey) { // 如果沒有提供 sectionKey，則假定整個數據對象就是要渲染的內容
+            renderer(alldata, container);
+        }
+        else {
+            console.warn(`Content for ${sectionKey || 'section'} not found or data is invalid in ${jsonPath}`);
+            container.innerHTML = '<p>無法載入指定的內容部分。</p>';
+        }
+    } catch (error) {
+        console.error(`Error loading/rendering ${sectionKey || 'content'} from ${jsonPath}:`, error);
+        container.innerHTML = '<p>載入內容時發生錯誤。</p>';
+    }
+}
+
+
+// EdTech 沙盒頁面內容渲染
+async function renderEdTechSandboxContent(containerId, jsonPath, sectionKey, renderer) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.warn(`Container ${containerId} not found for EdTech Sandbox content.`);
+        return;
+    }
+    container.innerHTML = '<p>正在載入內容...</p>';
+    try {
+        const data = await loadJsonData(jsonPath); // 假設 EdTech 沙盒的 JSON 結構可能是一個包含單個對象的數組
+        
+        // 如果數據是一個數組並且我們期望一個對象，取第一個元素
+        const contentToRender = Array.isArray(data) && data.length > 0 ? data[0] : data;
+
+        if (contentToRender) {
+            if (sectionKey && contentToRender[sectionKey]) {
+                renderer(contentToRender[sectionKey], container);
+            } else if (!sectionKey) { // 如果沒有 sectionKey，或者 sectionKey 不存在，但 contentToRender 本身是期望的數據
+                renderer(contentToRender, container);
+            } else {
+                 container.innerHTML = '<p>找不到指定的 EdTech 沙盒內容部分。</p>';
+            }
+        } else {
+            container.innerHTML = '<p>無法載入 EdTech 沙盒內容。</p>';
+        }
+    } catch (error) {
+        console.error('Error loading or rendering EdTech Sandbox content:', error);
+        container.innerHTML = '<p>載入 EdTech 沙盒內容時發生錯誤。</p>';
+    }
+}
+
+
+/**
+ * DOMContentLoaded 事件觸發後執行的初始化函數。
+ * 此函數現在主要負責設置那些不由特定頁面 JS 文件處理的通用內容加載器。
+ */
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('DOMContentLoaded in data_loader.js - Initializing general content loaders if any.');
+
+    // 移除或註解掉特定於 learning_hub.html 的 setupLearningHubContent() 調用
+    // setupLearningHubContent(); 
+
+    // 其他頁面的初始化邏輯可以保留，如果它們不由各自的 page.js 文件處理
+    // 例如，如果 educator_toolkit.html 等頁面沒有自己的 .js 文件來觸發內容加載
+    // setupEducatorToolkitContent(); // 假設有這樣的函數
+    // setupPrivacySimulationContent(); // 假設有這樣的函數
+    // setupEdTechSandboxContent(); // 假設有這樣的函數
+});
+
+console.log('data_loader.js executed.'); 

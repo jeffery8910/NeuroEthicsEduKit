@@ -76,28 +76,30 @@ NeuroEthicsEduKit 包含以下核心模組：
     ```
 
 2.  **開啟 HTML 檔案:**
-    由於本專案設計為可直接渲染的 HTML、CSS 和 JavaScript，您通常只需要在瀏覽器中直接開啟 `index.html` 或其他 `pages/*.html` 檔案即可。
-    *   在檔案總管中找到 `index.html`，然後雙擊用您的預設瀏覽器開啟。
-    *   或者，在瀏覽器的「開啟檔案」功能中選擇該檔案。
+    雖然您可以直接在瀏覽器中開啟 `index.html` 或其他 `pages/*.html` 檔案，但這可能會導致某些功能 (如載入外部 JSON 數據) 因瀏覽器安全限制而無法正常運作。請參閱下一步以了解如何透過本地伺服器正確運行。
 
-3.  **(可選) 使用本地伺服器:**
-    為了避免某些瀏覽器對於本地端檔案系統 (file:// 協議) 的限制 (例如 AJAX 請求本地 JSON 檔案可能受限)，建議使用一個簡單的本地 HTTP 伺服器。
+3.  **啟動本地伺服器 (重要):**
+    直接透過 `file:///` 協議在瀏覽器中開啟 HTML 檔案可能會遇到限制，特別是當使用 `fetch` API 載入本地資源 (如 JSON 檔案) 時，會導致 CORS 相關錯誤。為了確保所有功能正常運作，**強烈建議**使用本地 HTTP 伺服器來運行本專案。
+    以下是一些常用的方法：
+    *   **VS Code 使用者 (推薦):**
+        安裝 "Live Server" 擴充功能。安裝後，在 VS Code 的檔案總管中對著 `index.html` 或任何 `pages/*.html` 檔案按右鍵，選擇「Open with Live Server」。這會自動在您的預設瀏覽器中開啟專案，並支援熱重載。
     *   **如果您安裝了 Python:**
+        在專案的根目錄下執行以下命令：
         ```bash
-        # Python 3
+        # 適用於 Python 3
         python -m http.server
-        # Python 2
-        # python -m SimpleHTTPServer
         ```
-        然後在瀏覽器中訪問 `http://localhost:8000`。
+        然後在瀏覽器中訪問 `http://localhost:8000` (或終端機顯示的其他埠號)。
     *   **如果您安裝了 Node.js 和 `http-server` 套件:**
+        如果您尚未安裝 `http-server`，可以透過 npm 全域安裝：
         ```bash
-        # 首先安裝 http-server (如果尚未安裝)
-        # npm install -g http-server
+        npm install -g http-server
+        ```
+        然後，在專案的根目錄下執行：
+        ```bash
         http-server .
         ```
-        然後在瀏覽器中訪問 `http://localhost:8080` (或終端機顯示的埠號)。
-    *   **VS Code 使用者:** 可以安裝 "Live Server" 擴充功能，它提供了一鍵啟動本地伺服器的功能。
+        然後在瀏覽器中訪問 `http://localhost:8080` (或終端機顯示的其他埠號)。
 
 ## 🛠️ 技術架構
 

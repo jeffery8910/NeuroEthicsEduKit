@@ -213,4 +213,219 @@
 .neuromyth-card .reality-content p:first-of-type {
     font-weight: bold;
     color: #28a745;
+}
+
+/* General Card Styling */
+.card {
+    background-color: #ffffff; /* White background for cards */
+    border: 1px solid #e0e0e0; /* Light grey border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    margin-bottom: 20px; /* Space between cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    overflow: hidden; /* Ensures content respects border-radius */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    /* transform: translateY(-5px); Optional: lift effect on hover */
+}
+
+.card-title {
+    margin-top: 0;
+    color: #333; /* Darker color for titles */
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.card-content p,
+.card-content ul,
+.card-content ol {
+    color: #555; /* Slightly lighter text for content */
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.card-content ul,
+.card-content ol {
+    padding-left: 20px;
+}
+
+.card-content strong {
+    color: #222; /* Emphasize strong text */
+}
+
+.keywords,
+.related-principles,
+.related-terms {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 15px;
+}
+
+.keywords strong,
+.related-principles strong,
+.related-terms strong {
+    color: #555;
+}
+
+/* Interactive Card Specific Styling (for flip) */
+.interactive-card {
+    perspective: 1000px; /* Enables 3D space for children */
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Adjust height as needed or make it auto based on content */
+    min-height: 200px; /* Ensure a minimum height for flipping */
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.interactive-card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Match card padding, or adjust as needed */
+    box-sizing: border-box; /* Include padding in width/height */
+    border-radius: 8px; /* Match card border-radius */
+}
+
+.card-front {
+    background-color: #f8f9fa; /* Slightly different bg for front if desired */
+    color: #333;
+}
+
+.card-back {
+    background-color: #e9ecef; /* Slightly different bg for back */
+    color: #333;
+    transform: rotateY(180deg);
+    /* Ensure content in card-back is scrollable if it overflows */
+    overflow-y: auto;
+}
+
+.card-back .card-title {
+    font-size: 1.3em; /* Slightly smaller title on the back if needed */
+}
+
+.card-back .card-content {
+    text-align: left; /* Align text to left for readability */
+    width: 100%;
+}
+
+.instruction-text {
+    font-size: 0.85em;
+    color: #007bff; /* Instruction text color */
+    margin-top: 10px;
+}
+
+/* Styles for <details> and <summary> based content toggle cards */
+.content-toggle-card summary {
+    cursor: pointer;
+    list-style: none; /* Remove default marker on some browsers */
+    display: flex; /* Use flex to align title and icon */
+    justify-content: space-between; /* Push icon to the right */
+    align-items: center;
+    padding: 10px 0; /* Add some padding to summary for better click area */
+}
+
+.content-toggle-card summary::-webkit-details-marker {
+    display: none; /* Remove default marker on WebKit browsers */
+}
+
+.content-toggle-card .card-title {
+    margin-bottom: 0; /* summary is the title, remove bottom margin from .card-title if it's on summary */
+}
+
+.toggle-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: solid currentColor; /* Use current text color for icon */
+    border-width: 0 0.2em 0.2em 0;
+    margin-left: 10px;
+    transform: rotate(45deg); /* Downward pointing arrow */
+    transition: transform 0.3s ease-in-out;
+}
+
+.content-toggle-card[open] > summary .toggle-icon {
+    transform: rotate(-135deg); /* Upward pointing arrow when open */
+}
+
+.card-content-collapsible {
+    padding-top: 10px; /* Space between summary and content */
+    /* Optional: Add transition for smooth expand/collapse. 
+       This is tricky with height: auto. Can use max-height or grid transitions. 
+       For now, relying on browser default or simple fade if possible.
+    */
+}
+
+/* Grid layout for cards (re-confirming .modules-grid usage) */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between grid items */
+}
+
+/* Styling for specific card types if needed */
+.principle-card {
+    /* Custom styles for principle cards */
+}
+
+.neuromyth-card .card-front .card-title {
+    color: #c0392b; /* Example: Reddish color for myth titles */
+}
+
+.neuromyth-card .card-back .card-title {
+    color: #27ae60; /* Example: Greenish color for busted myth titles */
+}
+
+.case-study-card {
+    /* Custom styles for case study cards */
+}
+
+.resource-category-card,
+.glossary-term-card {
+    /* Styles for resource and glossary cards */
+}
+
+.resource-item-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.resource-item {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.resource-item:last-child {
+    border-bottom: none;
+}
+
+.resource-type {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.resource-author {
+    font-size: 0.9em;
+    color: #777;
+    font-style: italic;
 } 

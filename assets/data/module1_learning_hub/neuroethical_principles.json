@@ -1,0 +1,20 @@
+[
+  {
+    "id": "NEP001",
+    "title_zh_TW": "自主性 (Autonomy)",
+    "description_zh_TW": "尊重個人在神經科學相關事務中自我決策的權利，包括是否參與研究、使用技術以及控制個人數據。",
+    "keywords_zh_TW": ["知情同意", "個人選擇", "數據主權"]
+  },
+  {
+    "id": "NEP002",
+    "title_zh_TW": "行善與不傷害 (Beneficence and Non-maleficence)",
+    "description_zh_TW": "神經技術的發展與應用應以促進福祉為目標，同時最大限度地減少和預防潛在的生理、心理或社會傷害。",
+    "keywords_zh_TW": ["福祉", "風險評估", "安全保障"]
+  },
+  {
+    "id": "NEP003",
+    "title_zh_TW": "公正 (Justice)",
+    "description_zh_TW": "確保神經技術的惠益和負擔在社會中公平分配，避免加劇現有的不平等，並促進所有個體的平等機會。",
+    "keywords_zh_TW": ["公平", "可及性", "資源分配", "社會影響"]
+  }
+] 

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "SIM_SCN001",
+    "title_zh_TW": "場景一：AI 學習夥伴與你的數據足跡",
+    "description_zh_TW": "在這個模擬中，你將扮演一名使用新型 AI 學習夥伴應用程式的學生。這個應用程式聲稱可以根據你的學習模式、情緒狀態（通過鏡頭分析表情）和腦波活動（通過一個選配的簡易頭環）來優化學習內容。探索你的數據是如何被收集、分析和使用的，以及可能涉及的隱私問題。",
+    "simulation_stages_zh_TW": [
+      {
+        "stage_id": "SIM_SCN001_S01",
+        "stage_title_zh_TW": "初次設定與同意",
+        "description_zh_TW": "你下載了 AI 學習夥伴並開始設定。應用程式要求你同意其服務條款和隱私政策，並詢問你是否願意啟用情緒分析和腦波監測功能以獲得「更佳體驗」。",
+        "player_choices_zh_TW": [
+          {
+            "choice_id": "C01",
+            "text_zh_TW": "全部同意，啟用所有功能。",
+            "consequence_summary_zh_TW": "AI 夥伴開始收集你的面部表情數據和（如果佩戴頭環）腦波數據，以及你的學習互動數據。"
+          },
+          {
+            "choice_id": "C02",
+            "text_zh_TW": "僅同意基本服務條款，不啟用額外的情緒和腦波監測。",
+            "consequence_summary_zh_TW": "AI 夥伴主要收集你的學習互動數據，但無法獲得你的即時情緒或腦波資訊。"
+          },
+          {
+            "choice_id": "C03",
+            "text_zh_TW": "仔細閱讀隱私政策，並詢問關於數據用途的更多資訊。",
+            "consequence_summary_zh_TW": "你花時間了解了更多細節，這有助於你做出更明智的決定。"
+          }
+        ],
+        "learning_points_zh_TW": ["知情同意的重要性", "數據最小化原則", "理解隱私政策"]
+      },
+      {
+        "stage_id": "SIM_SCN001_S02",
+        "stage_title_zh_TW": "日常使用與數據生成",
+        "description_zh_TW": "你開始使用 AI 學習夥伴。它根據你的表現調整難度，並在你分心或疲倦時給出提示（如果啟用了相關監測）。所有這些互動都生成了數據點。",
+        "data_points_collected_zh_TW": ["學習進度", "答題正確率", "學習時長", "（若啟用）情緒標籤", "（若啟用）專注度評分"],
+        "potential_inferences_zh_TW": ["學習風格偏好", "知識薄弱點", "最佳學習時間", "（若啟用）情緒波動模式", "（若啟用）認知負荷水平"],
+        "learning_points_zh_TW": ["無處不在的數據收集", "從數據到推斷的過程", "演算法決策的基礎"]
+      },
+      {
+        "stage_id": "SIM_SCN001_S03",
+        "stage_title_zh_TW": "數據共享與第三方",
+        "description_zh_TW": "該 AI 學習夥伴的開發公司與一家教育研究機構合作，希望使用匿名化的匯總數據來改進教學方法。此外，應用程式內嵌了第三方廣告 SDK。",
+        "player_choices_zh_TW": [
+          {
+            "choice_id": "C04",
+            "text_zh_TW": "假設「匿名化」數據是安全的，不特別關注。",
+            "consequence_summary_zh_TW": "你的部分數據（即使匿名化）被用於研究，同時廣告 SDK 可能收集你的設備和使用資訊。"
+          },
+          {
+            "choice_id": "C05",
+            "text_zh_TW": "查詢數據匿名化的具體方法以及與第三方共享的詳細資訊。",
+            "consequence_summary_zh_TW": "你更深入地了解了數據共享的風險和益處，以及「匿名化」的局限性。"
+          }
+        ],
+        "learning_points_zh_TW": ["數據共享的倫理", "匿名化的挑戰", "第三方數據追蹤"]
+      },
+      {
+        "stage_id": "SIM_SCN001_S04",
+        "stage_title_zh_TW": "數據安全事件（假設）",
+        "description_zh_TW": "假設該 AI 學習夥伴公司遭遇了一次數據洩露事件。部分用戶的學習記錄和（如果收集的）情緒/腦波相關數據可能已被未授權方存取。",
+        "potential_impacts_zh_TW": ["個人隱私暴露", "數據被濫用於身份盜竊或定向操縱", "對學生的心理壓力"],
+        "company_response_options_zh_TW": ["及時通知用戶並提供補救措施", "試圖隱瞞事件", "最小化事件影響的公開聲明"],
+        "learning_points_zh_TW": ["數據安全的責任", "數據洩露的後果", "企業透明度的重要性"]
+      }
+    ],
+    "keywords_zh_TW": ["AI學習夥伴", "數據隱私", "腦波數據", "情緒分析", "知情同意", "數據足跡"]
+  }
+] 
