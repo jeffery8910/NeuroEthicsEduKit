@@ -299,9 +299,9 @@
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; /* Match card padding, or adjust as needed */
+    justify-content: space-between; /* Changed from center to space-between */
+    align-items: center; /* Center content horizontally */
+    padding: 20px; /* Add padding inside front and back */
     box-sizing: border-box; /* Include padding in width/height */
     border-radius: 8px; /* Match card border-radius */
 }

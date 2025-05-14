@@ -1,65 +1,81 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    if (!window.loadJsonData) {
-        console.error('Error: loadJsonData function is not available. Ensure data_loader.js is loaded correctly.');
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof educatorToolkitData === 'undefined' || educatorToolkitData === null) {
+        console.error('Educator toolkit data is not loaded.');
+        // Display a user-friendly message on the page
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+            mainContent.innerHTML = '<div class="container"><p class="error-message">教育者工具包資料載入失敗，請檢查控制台以獲取更多資訊或稍後再試。</p></div>';
+        }
         return;
     }
 
-    const assessmentGuidesContainer = document.getElementById('ethical-assessment-guides-container');
-    const neurodiversityContainer = document.getElementById('neurodiversity-resources-container');
-    const rubricsContainer = document.getElementById('edtech-evaluation-rubrics-container');
-    const guidelinesContainer = document.getElementById('international-guidelines-container');
-
-    // --- 1. Load and Render Ethical Assessment Guides ---
-    try {
-        const assessmentData = await window.loadJsonData('../assets/data/module2_educator_toolkit/ethical_assessment_guides.json');
-        if (assessmentData && assessmentGuidesContainer) {
-            renderEthicalAssessmentGuides(assessmentData, assessmentGuidesContainer);
-        } else if (!assessmentGuidesContainer) {
-            console.warn('Ethical assessment guides container not found.');
+    const createSectionHTML = (section) => {
+        let sectionHtml = `<h5>${section.heading}</h5>`;
+        if (section.points) {
+            const listItems = section.points.map(point => `<li>${point}</li>`).join('');
+            sectionHtml += `<ul>${listItems}</ul>`;
         }
-    } catch (error) {
-        console.error('Error loading or rendering ethical assessment guides:', error);
-        if (assessmentGuidesContainer) assessmentGuidesContainer.innerHTML = '<p class="error-message">無法載入倫理評估指南內容。</p>';
-    }
-
-    // --- 2. Load and Render Neurodiversity Resources ---
-    try {
-        const neurodiversityData = await window.loadJsonData('../assets/data/module2_educator_toolkit/neurodiversity_resources.json');
-        if (neurodiversityData && neurodiversityContainer) {
-            renderNeurodiversityResources(neurodiversityData, neurodiversityContainer);
-        } else if (!neurodiversityContainer) {
-            console.warn('Neurodiversity resources container not found.');
+        if (section.list_type === 'checklist' && section.items) {
+            const checklistItems = section.items.map(item => `<li><label><input type="checkbox" disabled readonly> ${item}</label></li>`).join('');
+            sectionHtml += `<ul class="checklist">${checklistItems}</ul>`;
         }
-    } catch (error) {
-        console.error('Error loading or rendering neurodiversity resources:', error);
-        if (neurodiversityContainer) neurodiversityContainer.innerHTML = '<p class="error-message">無法載入神經多樣性資源內容。</p>';
-    }
-
-    // --- 3. Load and Render EdTech Evaluation Rubrics ---
-    try {
-        const rubricsData = await window.loadJsonData('../assets/data/module2_educator_toolkit/edtech_evaluation_rubrics.json');
-        if (rubricsData && rubricsContainer) {
-            renderEdTechEvaluationRubrics(rubricsData, rubricsContainer);
-        } else if (!rubricsContainer) {
-            console.warn('EdTech evaluation rubrics container not found.');
+        if (section.content_type === 'text_with_link' && section.text) {
+            sectionHtml += `<p>${section.text}`;
+            if (section.link_text && section.url) {
+                sectionHtml += ` <a href="${section.url}" target="_blank" rel="noopener noreferrer">${section.link_text}</a>`;
+            }
+            sectionHtml += `</p>`;
         }
-    } catch (error) {
-        console.error('Error loading or rendering EdTech evaluation rubrics:', error);
-        if (rubricsContainer) rubricsContainer.innerHTML = '<p class="error-message">無法載入 EdTech 評估指標內容。</p>';
-    }
-
-    // --- 4. Load and Render International Guidelines ---
-    try {
-        const guidelinesData = await window.loadJsonData('../assets/data/module2_educator_toolkit/international_guidelines.json');
-        if (guidelinesData && guidelinesContainer) {
-            renderInternationalGuidelines(guidelinesData, guidelinesContainer);
-        } else if (!guidelinesContainer) {
-            console.warn('International guidelines container not found.');
+        if (section.content_type === 'resource_list' && section.items) {
+            const resourceItems = section.items.map(item => `<li><strong>${item.title}</strong>: ${item.description}</li>`).join('');
+            sectionHtml += `<ul class="resource-list">${resourceItems}</ul>`;
         }
-    } catch (error) {
-        console.error('Error loading or rendering international guidelines:', error);
-        if (guidelinesContainer) guidelinesContainer.innerHTML = '<p class="error-message">無法載入國際指南內容。</p>';
-    }
+        if (section.content_type === 'resource_list_linked' && section.items) {
+            const resourceItems = section.items.map(item => 
+                `<li>
+                    <strong>${item.title}</strong>: ${item.description}
+                    ${item.url ? `<br><a href="${item.url}" target="_blank" rel="noopener noreferrer">閱讀更多</a>` : ''}
+                 </li>`
+            ).join('');
+            sectionHtml += `<ul class="resource-list">${resourceItems}</ul>`;
+        }
+        return sectionHtml;
+    };
+
+    const renderSection = (dataKey, containerId) => {
+        const data = educatorToolkitData[dataKey];
+        const container = document.getElementById(containerId);
+
+        if (!data) {
+            console.warn(`Data for ${dataKey} not found in educatorToolkitData.`);
+            if (container) container.innerHTML = `<p><em>此區塊內容 (${dataKey}) 暫時無法載入。</em></p>`;
+            return;
+        }
+        if (!container) {
+            console.error(`Container with ID ${containerId} not found.`);
+            return;
+        }
+
+        let content = `<h4>${data.title}</h4>`;
+        if (data.introduction) {
+            content += `<p>${data.introduction}</p>`;
+        }
+        
+        if (data.sections && Array.isArray(data.sections)) {
+            data.sections.forEach(section => {
+                content += createSectionHTML(section);
+            });
+        } else {
+            console.warn(`No sections found or sections is not an array for ${dataKey}.`);
+        }
+        container.innerHTML = content;
+    };
+
+    // Render all sections
+    renderSection('assessment_guides', 'ethical-assessment-guides-container');
+    renderSection('neurodiversity_resources', 'neurodiversity-resources-container');
+    renderSection('edtech_checklists', 'edtech-evaluation-rubrics-container');
+    renderSection('international_guidelines', 'international-guidelines-container');
 });
 
 function renderEthicalAssessmentGuides(data, container) {
@@ -124,30 +140,4 @@ function renderEdTechEvaluationRubrics(data, container) {
                     </div>
                     <p class="card-content"><strong>提示性問題：</strong> ${area.prompting_questions_zh_TW.join(', ')}</p>
                 </div>
-            `;
-        });
-        html += '</div>';
-    }
-    container.innerHTML = html;
-}
-
-function renderInternationalGuidelines(data, container) {
-    let html = `<h2>${data.title_zh_TW || '相關國際倫理指南與框架'}</h2>`;
-    if (data.introduction_zh_TW) {
-        html += `<p>${data.introduction_zh_TW}</p>`;
-    }
-    if (data.guidelines_zh_TW && data.guidelines_zh_TW.length > 0) {
-        html += '<ul class="resource-list">';
-        data.guidelines_zh_TW.forEach(guideline => {
-            html += `
-                <li class="resource-item">
-                    <h3>${guideline.organization_zh_TW} - ${guideline.document_title_zh_TW}</h3>
-                    <p>${guideline.summary_zh_TW}</p>
-                    <a href="${guideline.link_zh_TW}" target="_blank" rel="noopener noreferrer" class="btn">閱讀更多</a>
-                </li>
-            `;
-        });
-        html += '</ul>';
-    }
-    container.innerHTML = html;
-}
+            `
