@@ -1,0 +1,158 @@
+# 檔案或目錄的註解以 '#' 開頭
+
+# 相依套件 (Dependencies)
+# ----------------------------------------------------------------------
+# 套件管理器 (npm, yarn, pnpm 等) 下載的相依套件目錄
+*.md
+!/readme.md
+/node_modules/
+/bower_components/
+
+# 建置輸出 (Build Output)
+# ----------------------------------------------------------------------
+# 編譯或建置過程中產生的檔案與目錄
+/dist/
+/build/
+/out/
+# /public/ # 如果 public 目錄包含建置產物而非原始碼，則取消註解
+*.min.css
+*.min.js
+*.css.map
+*.js.map # Source maps，可選擇性忽略
+
+# 日誌檔案 (Log Files)
+# ----------------------------------------------------------------------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 執行時期資料 (Runtime Data)
+# ----------------------------------------------------------------------
+*.pid
+*.seed
+*.pid.lock
+
+# IDE / 編輯器設定 (IDE / Editor Configuration)
+# ----------------------------------------------------------------------
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs (IntelliJ, WebStorm, PhpStorm, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Atom
+.atom/
+
+# Eclipse
+.project
+.classpath
+.cproject
+.settings/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+# /dist/ # 已在上方建置輸出區定義
+/nbdist/
+.nb-gradle/
+
+# 作業系統產生檔案 (Operating System Generated Files)
+# ----------------------------------------------------------------------
+.DS_Store
+._* # macOS resource forks (e.g. ._icon.png)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 環境變數檔案 (Environment Variables)
+# ----------------------------------------------------------------------
+# 儲存敏感設定或環境特定設定的檔案
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local # 涵蓋其他可能的 .local 環境檔案
+
+# 排除所有 .env 檔案，除了範例檔
+.env.*
+!.env.example
+!.env.sample
+
+# 暫存檔案 (Temporary Files)
+# ----------------------------------------------------------------------
+*~
+*.tmp
+*.swp # Vim swap files
+*.bak
+*.old
+*.patch
+*.diff
+
+# 測試與覆蓋率報告 (Test & Coverage Reports)
+# ----------------------------------------------------------------------
+/coverage/
+/lcov-report/
+/.nyc_output/
+/mochawesome-report/
+/jest-stare/
+junit.xml
+test-results/
+test-results.xml
+playwright-report/
+.playwright-cache/
+
+# 特定工具設定檔或快取 (Tool-specific Configuration or Cache)
+# ----------------------------------------------------------------------
+.eslintcache
+.prettiercache
+.stylelintcache
+.cache/
+.parcel-cache/ # Parcel bundler cache
+/.sass-cache/ # Sass cache
+/webpack.cache/ # Webpack cache
+
+# 特定框架/工具建置輸出 (Framework/Tool Specific Build Outputs)
+# ----------------------------------------------------------------------
+.next/ # Next.js
+.nuxt/ # Nuxt.js
+.svelte-kit/ # SvelteKit
+.turbo/ # Turborepo
+.vercel/ # Vercel deployment output
+.serverless/ # Serverless Framework
+
+# 壓縮檔案 (Archives)
+# ----------------------------------------------------------------------
+# 如果在本機產生且不打算提交
+# *.zip
+# *.tar
+# *.tar.gz
+# *.rar
+# *.7z
+
+# 其他 (Miscellaneous)
+# ----------------------------------------------------------------------
+# 依專案需求自行增加
+# 例如：
+# /uploads/
+# /temp_files/
+# *.sqlite
+# *.db
+.cursor/rules/*
+.cursor

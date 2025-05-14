@@ -1,0 +1,66 @@
+[
+  {
+    "category": "學術論文與期刊",
+    "items": [
+      {
+        "title": "教育神經科學的倫理挑戰",
+        "url": "https://www.example.com/article-educational-neuroethics",
+        "description": "探討將神經科學發現應用於教育領域時所引發的倫理問題，如公平性、自主性和潛在濫用。",
+        "type": "期刊文章"
+      },
+      {
+        "title": "腦機介面在學習增強中的應用與倫理",
+        "url": "https://www.example.com/article-bci-learning",
+        "description": "分析腦機介面技術在提升學習效果方面的潛力及其伴隨的倫理、社會和法律影響。",
+        "type": "會議論文"
+      }
+    ]
+  },
+  {
+    "category": "推薦書籍",
+    "items": [
+      {
+        "title": "神經倫理學導論 (An Introduction to Neuroethics)",
+        "author": "Hildt, E., & Franke, A. G.",
+        "year": "2013",
+        "description": "全面介紹神經倫理學的核心概念、爭議和未來方向。",
+        "type": "書籍"
+      },
+      {
+        "title": "教學的腦科學 (Brain Science for Teaching and Learning)",
+        "author": "Dr. Spencer Kagan",
+        "year": "2018",
+        "description": "提供基於腦科學研究的實用教學策略 (注意：需批判性評估，避免神經迷思)。",
+        "type": "書籍"
+      }
+    ]
+  },
+  {
+    "category": "相關組織與計畫",
+    "items": [
+      {
+        "title": "國際神經倫理學會 (International Neuroethics Society)",
+        "url": "https://www.neuroethicssociety.org/",
+        "description": "推動神經倫理學研究和討論的全球性專業組織。",
+        "type": "組織網站"
+      },
+      {
+        "title": "OECD - 教育神經科學計畫",
+        "url": "https://www.oecd.org/education/ceri/understandingthebrainproject.htm",
+        "description": "經濟合作暨發展組織關於「理解大腦」及其在教育中應用的研究計畫。",
+        "type": "計畫網站"
+      }
+    ]
+  },
+  {
+    "category": "實用工具與指南",
+    "items": [
+      {
+        "title": "教育科技倫理決策框架",
+        "url": "https://www.example.com/edtech-ethics-framework",
+        "description": "一個幫助教育工作者和管理者評估教育科技倫理影響的框架範例。",
+        "type": "指南"
+      }
+    ]
+  }
+] 

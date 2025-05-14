@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeuroEthicsEduKit 隱私模擬 - 學生神經數據與認知隱私">
+    <title>隱私模擬 - NeuroEthicsEduKit</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/cards.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <h1><a href="../index.html">NeuroEthicsEduKit</a></h1>
+                <p class="tagline">神經倫理教育工具包</p>
+            </div>
+            <nav class="main-navigation" id="mainNav">
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="sr-only">開啟/關閉導航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="learning_hub.html">學習中心</a></li>
+                    <li><a href="educator_toolkit.html">教育者工具包</a></li>
+                    <li><a href="privacy_simulation.html" class="active">隱私模擬</a></li>
+                    <li><a href="edtech_sandbox.html">EdTech 沙盒</a></li>
+                    <li><a href="https://github.com/YOUR_USERNAME/NeuroEthicsEduKit" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="main-content">
+        <div class="container">
+            <section class="page-title-section">
+                <h2>隱私模擬：學生神經數據與認知隱私</h2>
+                <p>提升對學生神經數據獨特敏感性和風險的認識與理解，並推廣保護認知隱私的做法。</p>
+            </section>
+
+            <section id="data-path-simulation-section" class="content-section">
+                <h3>互動式神經數據路徑模擬</h3>
+                <div id="data-path-simulation-container" class="dynamic-content-container">
+                    <div id="privacy-scenario-card" class="content-card scenario-simulation-card" style="display: none;"> <!-- Initially hidden -->
+                        <h4 id="scenario-title"></h4>
+                        <p id="scenario-role"><strong>您的角色：</strong><span id="role-text"></span></p>
+                        <p id="scenario-description"></p>
+                        <div id="scenario-choices-container" class="choices-container vertical-choices">
+                            <!-- Choices will be populated by JavaScript -->
+                        </div>
+                        <div id="scenario-feedback-container" class="outcome-container" style="display: none;">
+                            <h5>決策結果：</h5>
+                            <p id="feedback-text"></p>
+                            <p><strong>隱私影響評分：</strong><span id="privacy-score"></span></p>
+                            <button id="next-scenario-button" class="cta-button" style="display: none;">繼續下一個情境</button>
+                            <button id="restart-simulation-button" class="cta-button secondary">重新開始模擬</button>
+                        </div>
+                    </div>
+                    <div id="simulation-initial-message">
+                        <p>正在載入隱私模擬情境...</p>
+                        <button id="start-simulation-button" class="cta-button" style="display: none;">開始模擬</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="neurorights-education-section" class="content-section">
+                <h3>「神經權利」與認知自由教育</h3>
+                <div id="neurorights-education-container" class="dynamic-content-container">
+                    <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
+                    <p>提供對新興「神經權利」概念（如心理隱私、個人身份、自由意志等）和認知自由的易懂解釋，討論其在教育環境中對學生的具體影響。詳細內容即將推出。</p>
+                </div>
+            </section>
+
+            <section id="consent-templates-section" class="content-section">
+                <h3>知情同意書與 DPIA 可客製化模板</h3>
+                <div id="consent-templates-container" class="dynamic-content-container">
+                    <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
+                    <p>提供可下載和調整的知情同意書模板（專為收集學生神經數據設計）和數據保護影響評估 (DPIA) 模板（專為教育機構採用神經技術或 AI 系統而設）。詳細內容即將推出。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="../CODE_OF_CONDUCT.md">行為準則</a> |
+                    <a href="../LICENSE">授權條款</a> |
+                    <a href="https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/issues" target="_blank" rel="noopener noreferrer">問題回報</a>
+                </div>
+                <p>© <span id="currentYear"></span> NeuroEthicsEduKit 專案貢獻者。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/data_loader.js"></script>
+    <script src="../js/interactive_simulations.js"></script>
+    <!-- <script src="../js/privacy_simulation_page.js"></script> -->
+</body>
+</html> 

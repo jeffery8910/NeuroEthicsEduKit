@@ -1,0 +1,1 @@
+// 無障礙功能 JavaScript 

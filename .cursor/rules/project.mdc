@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+1.當有建議時，問後直接採用最合宜的建議，盡力完成
+
+
+2.如果對程式語言不確定，請調用 Context7 MCP 工具查找最新文檔

@@ -1,4 +1,4 @@
-# NeuroEthicsEduKit (神經倫理教育工具包)
+# NeuroEthicsEduKit - 神經倫理教育工具包
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/issues)
@@ -6,7 +6,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/stargazers)
 <!-- 請將 YOUR_USERNAME 替換為您的 GitHub 使用者名稱或組織名稱 -->
 
-**一個旨在促進神經科學與教育交叉領域中符合倫理責任的創新與應用的開源工具包。**
+**NeuroEthicsEduKit** 是一個開源計畫，旨在開發、策劃和傳播一系列多語言、易於獲取、文化敏感且基於證據的教育資源，以促進在 K-12 教育、高等教育、非正規學習環境以及個人終身學習中，對神經科學與教育交叉領域的倫理考量進行負責任的創新和知情應用。
+
+**專案願景：** 賦予教育工作者、學生、開發者和政策制定者所需的知識和工具，以應對神經技術和神經科學教育應用的倫理複雜性，確保它們以尊重人類尊嚴、促進公平並增強學習體驗的方式被使用。
 
 [繁體中文](./README.md) | [English](./README_EN.md) <!-- 如果您有英文版 README，可以這樣連結 -->
 

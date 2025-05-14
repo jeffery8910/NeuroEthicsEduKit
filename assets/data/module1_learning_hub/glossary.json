@@ -1,0 +1,32 @@
+[
+  {
+    "term": "神經倫理學 (Neuroethics)",
+    "definition": "研究神經科學進展及其應用的倫理、法律和社會影響的學科。它包含兩個主要分支：『神經科學的倫理學』（neuroscience of ethics）和『倫理學的神經科學』（ethics of neuroscience）。",
+    "related_terms": ["腦科學", "生物倫理學", "教育倫理"]
+  },
+  {
+    "term": "教育神經科學 (Educational Neuroscience)",
+    "definition": "一個跨學科領域，旨在將神經科學、認知科學和教育學的知識結合起來，以改進教學方法和學習成果。也常被稱為「心智、大腦與教育科學」(Mind, Brain, and Education Science)。",
+    "related_terms": ["神經迷思", "學習科學", "認知心理學"]
+  },
+  {
+    "term": "腦機介面 (Brain-Computer Interface, BCI)",
+    "definition": "在人腦或動物腦與外部設備之間建立的直接通訊路徑。BCI通常用於研究、輔助、增強或修復人類的認知或感知運動功能。",
+    "related_terms": ["神經輔助技術", "認知增強", "腦電圖 (EEG)"]
+  },
+  {
+    "term": "神經多樣性 (Neurodiversity)",
+    "definition": "主張人類大腦功能差異（如自閉症、注意力不足過動症(ADHD)、閱讀障礙等）是正常的人類變異，而非病理缺陷。強調接納和支持個體差異。",
+    "related_terms": ["包容性教育", "學習差異", "通用設計學習 (UDL)"]
+  },
+  {
+    "term": "認知自由 (Cognitive Liberty)",
+    "definition": "指個人對於自身心智過程、認知和意識擁有自主決定權的權利。這包括思想自由以及保護個體免受未經同意的腦部干預的權利。",
+    "related_terms": ["思想自由", "精神隱私", "神經權利"]
+  },
+  {
+    "term": "演算法偏見 (Algorithmic Bias)",
+    "definition": "指電腦系統由於錯誤的假設、有偏見的訓練數據或有缺陷的設計而產生系統性且可重複的錯誤，導致對特定群體產生不公平的結果。",
+    "related_terms": ["人工智能倫理", "數據隱私", "教育公平"]
+  }
+] 

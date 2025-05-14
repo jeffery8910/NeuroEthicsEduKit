@@ -1,0 +1,42 @@
+[
+    {
+        "id": "autonomy",
+        "title": "自主性 (Autonomy)",
+        "definition_general": "個體自我決定、控制自身思想和行為、免受不當干預的權利。",
+        "implication_education": "尊重學生選擇權（如學習方式、評估形式）；避免強制性神經干預；確保對教育技術使用的知情同意。",
+        "implication_lifelong_learning": "對學習目標和方法擁有主導權；對是否使用神經技術工具做出知情選擇；抵制外部強加的學習或增強壓力。",
+        "details_md_source": "research.md - 表1"
+    },
+    {
+        "id": "privacy",
+        "title": "隱私 (Mental/Cognitive/Neural Privacy)",
+        "definition_general": "保護個體心理狀態、思想、情緒和神經數據不被未經授權存取、收集或濫用的權利。",
+        "implication_education": "嚴格保護學生（尤其是神經）數據；透明化數據收集和使用政策；防止基於數據的歧視或標籤化；確保數據安全。",
+        "implication_lifelong_learning": "警惕收集個人神經數據的應用或設備；了解數據隱私政策；主張對自身神經數據的控制權；保護思想和心理空間不被侵擾。",
+        "details_md_source": "research.md - 表1"
+    },
+    {
+        "id": "identity",
+        "title": "身份認同 (Identity)",
+        "definition_general": "個體關於「我是誰」的持續性感覺，包括記憶、人格、價值觀等，以及神經干預對其可能產生的影響。",
+        "implication_education": "避免可能深刻改變學生人格或核心記憶的干預；關注標籤化對自我認知的影響；支持學生建立積極和真實的自我概念。",
+        "implication_lifelong_learning": "反思學習和潛在的神經干預如何影響自我認知；在追求改變（如習慣養成、技能學習）時，維護核心價值觀和身份的連續性。",
+        "details_md_source": "research.md - 表1"
+    },
+    {
+        "id": "enhancement",
+        "title": "增強 (Cognitive and Moral Enhancement)",
+        "definition_general": "使用神經技術提升超越典型水平的認知或道德能力，及其引發的關於公平、安全、真實性和人性的倫理問題。",
+        "implication_education": "審慎對待校園內的認知增強藥物或技術；促進公平競爭環境；關注增強可能帶來的壓力、風險和不平等；討論增強背後的價值觀。",
+        "implication_lifelong_learning": "批判性評估認知增強產品或方法的宣稱；權衡潛在益處與風險（健康、依賴性、真實性）；關注過程而非僅僅是結果；探索符合倫理的自我提升途徑（如學習策略、正念）。",
+        "details_md_source": "research.md - 表1"
+    },
+    {
+        "id": "justice_equity",
+        "title": "正義與公平 (Justice and Equity)",
+        "definition_general": "確保神經科學在教育中的惠益公平分配，防止加劇不平等，保障所有學習者（包括神經多樣性群體）的權利。",
+        "implication_education": "提供公平的教育資源和機會；採用包容性教學法（如 UDL）；避免基於神經特徵的歧視；確保神經技術的可及性，防止數位鴻溝擴大。",
+        "implication_lifelong_learning": "倡導教育資源和神經技術的公平可及；認識到社會結構對學習機會的影響；支持旨在促進教育公平的政策和實踐。",
+        "details_md_source": "research.md - 表1"
+    }
+] 

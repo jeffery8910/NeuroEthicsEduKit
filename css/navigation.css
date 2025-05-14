@@ -1,0 +1,110 @@
+/* 導航樣式 */
+.main-navigation {
+    position: relative; /* For positioning the toggle button if needed */
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Vertically align items */
+}
+
+.nav-menu li {
+    margin-left: 20px;
+}
+
+.nav-menu li:first-child {
+    margin-left: 0;
+}
+
+.nav-menu a {
+    color: #ecf0f1; /* Light color for dark header */
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: #4e667f; /* Slightly lighter background for hover/active */
+    color: #fff;
+}
+
+/* 導航切換按鈕 (漢堡選單) */
+.nav-toggle {
+    display: none; /* Hidden by default on larger screens */
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    font-size: 1.8em; /* Make icon larger */
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-toggle .icon-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #ecf0f1;
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 響應式導航 */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block; /* Show toggle on smaller screens */
+        position: absolute; /* Or flex order to position */
+        top: -45px; /* Adjust as needed */
+        right: 15px;
+    }
+
+    .nav-menu {
+        display: none; /* Hide menu by default on small screens */
+        flex-direction: column;
+        width: 100%;
+        background-color: #34495e; /* Same as header or slightly different */
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+        padding: 1em 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 1000;
+    }
+
+    .nav-menu.is-active {
+        display: flex; /* Show menu when active */
+    }
+
+    .nav-menu li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 0.8em 1em;
+        border-bottom: 1px solid #4e667f; /* Separator for items */
+    }
+
+    .nav-menu li:last-child a {
+        border-bottom: none;
+    }
+}
+
+/* 針對螢幕閱讀器的文字 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+} 

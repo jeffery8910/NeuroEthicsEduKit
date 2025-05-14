@@ -1,0 +1,216 @@
+/* 卡片樣式 */
+.module-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5em;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.module-card .module-icon {
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    margin-bottom: 1em;
+    /* background-color: #eee; /* Placeholder background */
+    /* border-radius: 50%; /* If icons are circular */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* font-size: 2em; /* For icon fonts or SVGs */
+    /* color: #3498db; */
+}
+
+.module-card h4 {
+    color: #3498db; /* Card title color */
+    margin-bottom: 0.5em;
+    font-size: 1.3em;
+}
+
+.module-card h4 a {
+    color: inherit; /* Inherit color from h4 */
+    text-decoration: none;
+}
+
+.module-card h4 a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+.module-card p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1; /* Allows p to take available space if cards have different text length */
+}
+
+/* 如果您在其他頁面也有類似的卡片結構，可以考慮更通用的卡片樣式 */
+.content-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+}
+
+.content-card h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* learning_hub.html specific card styles */
+.principle-card h4,
+.case-study-card h4,
+.neuromyth-card h4 {
+    color: #2980b9; /* A slightly different blue for these titles */
+}
+
+.case-study-card .scenario,
+.neuromyth-card p {
+    text-align: left;
+    margin-bottom: 0.8em;
+}
+
+.case-study-card h5 {
+    text-align: left;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    color: #34495e;
+}
+
+.case-study-card ul {
+    list-style-position: inside;
+    text-align: left;
+    padding-left: 0; /* Reset default padding */
+    margin-bottom: 0.8em;
+}
+
+.case-study-card ul li {
+    margin-bottom: 0.3em;
+}
+
+.tags {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    text-align: left;
+    margin-top: 1em;
+}
+
+/* Grid layout for principles, case studies, and neuromyths if not already handled by modules-grid */
+.principles-grid,
+.case-studies-container, /* Assuming this is the ID used for case studies */
+.neuromyths-container   /* Assuming this is the ID used for neuromyths */
+{
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 1.5em;
+}
+
+/* For wider screens, you might want 2 columns for these sections */
+@media (min-width: 768px) {
+    .principles-grid,
+    .case-studies-container,
+    .neuromyths-container {
+        /* grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); */ /* Alternative */
+        grid-template-columns: 1fr; /* Keeping single column for now, can be adjusted */
+    }
+}
+
+.scenario-card p {
+    margin-bottom: 10px;
+}
+
+/* Styles for interactive scenario elements */
+.scenario-interactive-content {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9; /* Light background for the interactive area */
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.scenario-interactive-content p strong {
+    color: #333;
+}
+
+.choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between choice buttons */
+    margin-bottom: 15px;
+}
+
+.choice-button,
+.reset-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.choice-button:hover,
+.reset-button:hover {
+    background-color: #0056b3;
+}
+
+.choice-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.reset-button {
+    background-color: #6c757d; /* A different color for reset button */
+    display: inline-block; /* Allow it to sit nicely with outcome text */
+    margin-top:10px;
+}
+
+.reset-button:hover {
+    background-color: #545b62;
+}
+
+.outcome-container {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.outcome-container h5 {
+    margin-top: 0;
+    color: #17a2b8;
+}
+
+/* Neuromyth card specific styles */
+.neuromyth-card {
+    background-color: #fef7e0; /* Light yellow background */
+    border-left: 5px solid #ffc107; /* Yellow accent */
+}
+
+.neuromyth-card h4 {
+    color: #c79100;
+}
+
+.neuromyth-card .myth-content p:first-of-type {
+    font-style: italic;
+    color: #555;
+}
+
+.neuromyth-card .reality-content p:first-of-type {
+    font-weight: bold;
+    color: #28a745;
+} 

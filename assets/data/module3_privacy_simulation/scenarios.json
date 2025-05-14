@@ -1,0 +1,38 @@
+[
+  {
+    "id": "scenario_001",
+    "title": "新學習 App 引入決策",
+    "description": "您所在的學校正在考慮引入一款名為 'LearnSmart' 的新型學習輔助 App。該 App 宣稱能透過分析學生的詳細互動數據（包括反應時間、點擊模式，未來版本可能加入眼動追蹤和情緒分析功能）來提供高度個性化的學習路徑和內容推薦，以提升學習效率。供應商保證數據將被安全儲存和匿名化處理。您需要決定是否批准在全校推廣使用此 App。",
+    "role": "校長/IT管理員",
+    "choices": [
+      {
+        "id": "approve_full_rollout",
+        "text": "批准立即在全校推廣 LearnSmart App。",
+        "feedback_positive": "App 快速部署，部分師生對其個性化功能表示歡迎。",
+        "feedback_negative": "隨後出現數據匿名化不徹底的報告，部分家長對潛在的學生監控和數據濫用表示強烈擔憂，學校聲譽受損。",
+        "privacy_impact_score": -3 
+      },
+      {
+        "id": "approve_pilot_strict_review",
+        "text": "批准進行小規模試點，並成立獨立審查小組對數據隱私和倫理影響進行嚴格評估。",
+        "feedback_positive": "試點計畫順利進行，審查小組發現了幾處隱私風險並向供應商提出改進建議。學校基於評估結果，決定在修補漏洞後才擴大使用。",
+        "feedback_negative": "部分期望快速看到成效的教師和家長對緩慢的進程略感不耐。",
+        "privacy_impact_score": 1
+      },
+      {
+        "id": "reject_app",
+        "text": "由於對數據隱私和潛在風險的擔憂，現階段拒絕引入 LearnSmart App。",
+        "feedback_positive": "學校避免了潛在的隱私危機，並贏得了注重數據安全的家長和教職員的信任。",
+        "feedback_negative": "學校錯失了可能提升教學效率的機會，部分師生對未能嘗試新技術感到失望。",
+        "privacy_impact_score": 2 
+      },
+      {
+        "id": "request_more_transparency",
+        "text": "要求供應商提供更詳細的數據處理流程、匿名化技術細節及第三方數據共享政策的透明報告，並延後決策。",
+        "feedback_positive": "供應商在壓力下提供了更多資訊，揭露了一些之前未明確的數據實踐。學校因此能做出更明智的決定。",
+        "feedback_negative": "決策過程延長，App 的引入時程推遲。",
+        "privacy_impact_score": 0 
+      }
+    ]
+  }
+] 
