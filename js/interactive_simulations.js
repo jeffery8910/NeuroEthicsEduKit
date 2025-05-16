@@ -413,3 +413,118 @@ function moveToNextStage() {
 if (typeof window !== 'undefined') {
   window.initializeSimulation = initializeSimulation;
 } 
+
+/**
+ * interactive_simulations.js
+ * 處理專案中的互動式模擬，例如隱私模擬或 EdTech 沙盒組件。
+ */
+
+const InteractiveSimulations = {
+    /**
+     * 初始化特定模擬。
+     * @param {string} simulationId - 模擬的唯一標識符。
+     * @param {HTMLElement} containerElement - 用於承載模擬介面的 HTML 元素。
+     * @param {Object} params - 模擬所需的參數 (可選，從 DataLoader 加載)。
+     */
+    initSimulation(simulationId, containerElement, params = {}) {
+        if (!containerElement) {
+            console.error(`模擬 '${simulationId}' 的容器元素未提供。`);
+            return;
+        }
+
+        console.log(`初始化模擬: ${simulationId}`);
+        containerElement.innerHTML = `<p class="simulation-placeholder">模擬 '${simulationId}' 正在準備中...</p>`;
+
+        switch (simulationId) {
+            case 'privacy_scenario_1':
+                this.setupPrivacyScenario1(containerElement, params);
+                break;
+            case 'edtech_sandbox_tool_A':
+                this.setupEdTechSandboxToolA(containerElement, params);
+                break;
+            // 添加更多模擬案例
+            default:
+                console.warn(`未找到 ID 為 '${simulationId}' 的模擬設置。`);
+                containerElement.innerHTML = `<p class="simulation-placeholder error-message">錯誤：無法識別的模擬 '${simulationId}'。</p>`;
+        }
+    },
+
+    /**
+     * 設置隱私模擬場景1。
+     * @param {HTMLElement} container - 模擬容器。
+     * @param {Object} params - 參數。
+     */
+    setupPrivacyScenario1(container, params) {
+        // 示例：params 可能包含場景描述、選項、後果等
+        container.innerHTML = `
+            <div class="simulation privacy-simulation">
+                <h3>隱私決策模擬</h3>
+                <p>場景：${params.scenarioDescription || '一個常見的線上互動情境。'}</p>
+                <p>你的選擇將如何影響你的數位足跡和個人隱私？</p>
+                <div class="choices">
+                    <button data-choice="A">選擇 A</button>
+                    <button data-choice="B">選擇 B</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        `;
+        // 此處應添加事件監聽器和處理邏輯
+        this.addChoiceListeners(container, params.outcomes || {});
+        console.log('隱私模擬場景1已設置。', params);
+    },
+
+    /**
+     * 設置 EdTech 沙盒工具 A。
+     * @param {HTMLElement} container - 模擬容器。
+     * @param {Object} params - 參數。
+     */
+    setupEdTechSandboxToolA(container, params) {
+        container.innerHTML = `
+            <div class="simulation edtech-sandbox">
+                <h3>EdTech 工具分析沙盒</h3>
+                <p>工具名稱：${params.toolName || '示例工具'}</p>
+                <p>探索此工具如何收集和使用數據，以及潛在的倫理影響。</p>
+                <textarea placeholder="輸入你的分析和顧慮..."></textarea>
+                <button>提交分析</button>
+            </div>
+        `;
+        // 此處應添加事件監聽器和處理邏輯
+        console.log('EdTech 沙盒工具A已設置。', params);
+    },
+
+    /**
+     * 為模擬中的選項按鈕添加事件監聽器。
+     * @param {HTMLElement} container - 包含選項按鈕的容器。
+     * @param {Object} outcomes - 選項對應的結果描述。
+     */
+    addChoiceListeners(container, outcomes) {
+        const choiceButtons = container.querySelectorAll('.choices button');
+        const feedbackArea = container.querySelector('.feedback');
+
+        choiceButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const choice = event.target.dataset.choice;
+                if (feedbackArea) {
+                    feedbackArea.innerHTML = `<p>你選擇了 ${choice}。<br>${outcomes[choice] || '處理中...'}</p>`;
+                }
+                console.log(`用戶選擇: ${choice}, 結果: ${outcomes[choice]}`);
+                // 可以在此處觸發更複雜的邏輯，例如更新狀態、顯示下一步等
+            });
+        });
+    }
+
+    // 更多模擬相關的輔助函數...
+};
+
+// 使 InteractiveSimulations 可在其他腳本中使用
+window.InteractiveSimulations = InteractiveSimulations;
+
+// 示例：在特定頁面加載後初始化模擬
+// document.addEventListener('DOMContentLoaded', () => {
+//     const simulationContainer = document.getElementById('privacy-simulation-area');
+//     if (simulationContainer) {
+//         // 假設參數已通過 DataLoader 或其他方式獲取
+//         const simParams = { scenarioDescription: "你收到一封要求提供個人信息的郵件。", outcomes: { A: "提供信息可能導致隱私洩露。", B: "忽略郵件是謹慎的選擇。" } };
+//         InteractiveSimulations.initSimulation('privacy_scenario_1', simulationContainer, simParams);
+//     }
+// }); 

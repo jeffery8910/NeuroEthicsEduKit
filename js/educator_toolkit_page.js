@@ -1,81 +1,93 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof educatorToolkitData === 'undefined' || educatorToolkitData === null) {
-        console.error('Educator toolkit data is not loaded.');
-        // Display a user-friendly message on the page
-        const mainContent = document.getElementById('main-content');
-        if (mainContent) {
-            mainContent.innerHTML = '<div class="container"><p class="error-message">教育者工具包資料載入失敗，請檢查控制台以獲取更多資訊或稍後再試。</p></div>';
-        }
+    if (typeof educatorToolkitData === 'undefined') {
+        console.error('educator_toolkit_data.js 未載入或 educatorToolkitData 未定義');
         return;
     }
 
-    const createSectionHTML = (section) => {
-        let sectionHtml = `<h5>${section.heading}</h5>`;
-        if (section.points) {
-            const listItems = section.points.map(point => `<li>${point}</li>`).join('');
-            sectionHtml += `<ul>${listItems}</ul>`;
+    function createContentElement(item) {
+        let element;
+        switch (item.type) {
+            case 'paragraph':
+                element = document.createElement('p');
+                element.textContent = item.text;
+                break;
+            case 'list':
+                element = document.createElement('ul');
+                item.items.forEach(liText => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = liText;
+                    element.appendChild(listItem);
+                });
+                break;
+            case 'note':
+                element = document.createElement('p');
+                element.className = 'notice-text'; // 可以為備註添加特定樣式
+                element.textContent = item.text;
+                break;
+            case 'resourceLink':
+            case 'downloadLink':
+            case 'externalLink':
+                element = document.createElement('p');
+                const anchor = document.createElement('a');
+                anchor.href = item.url;
+                anchor.textContent = item.text;
+                if (item.type === 'externalLink' || item.type === 'downloadLink') {
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                }
+                if (item.type === 'downloadLink') {
+                    anchor.setAttribute('download', ''); // 提示瀏覽器下載
+                }
+                element.appendChild(anchor);
+                break;
+            default:
+                console.warn('未知的內容類型:', item.type);
+                element = document.createElement('p');
+                element.textContent = item.text || JSON.stringify(item);
         }
-        if (section.list_type === 'checklist' && section.items) {
-            const checklistItems = section.items.map(item => `<li><label><input type="checkbox" disabled readonly> ${item}</label></li>`).join('');
-            sectionHtml += `<ul class="checklist">${checklistItems}</ul>`;
-        }
-        if (section.content_type === 'text_with_link' && section.text) {
-            sectionHtml += `<p>${section.text}`;
-            if (section.link_text && section.url) {
-                sectionHtml += ` <a href="${section.url}" target="_blank" rel="noopener noreferrer">${section.link_text}</a>`;
-            }
-            sectionHtml += `</p>`;
-        }
-        if (section.content_type === 'resource_list' && section.items) {
-            const resourceItems = section.items.map(item => `<li><strong>${item.title}</strong>: ${item.description}</li>`).join('');
-            sectionHtml += `<ul class="resource-list">${resourceItems}</ul>`;
-        }
-        if (section.content_type === 'resource_list_linked' && section.items) {
-            const resourceItems = section.items.map(item => 
-                `<li>
-                    <strong>${item.title}</strong>: ${item.description}
-                    ${item.url ? `<br><a href="${item.url}" target="_blank" rel="noopener noreferrer">閱讀更多</a>` : ''}
-                 </li>`
-            ).join('');
-            sectionHtml += `<ul class="resource-list">${resourceItems}</ul>`;
-        }
-        return sectionHtml;
-    };
+        return element;
+    }
 
-    const renderSection = (dataKey, containerId) => {
-        const data = educatorToolkitData[dataKey];
-        const container = document.getElementById(containerId);
-
-        if (!data) {
-            console.warn(`Data for ${dataKey} not found in educatorToolkitData.`);
-            if (container) container.innerHTML = `<p><em>此區塊內容 (${dataKey}) 暫時無法載入。</em></p>`;
-            return;
-        }
+    function populateSection(sectionId, data) {
+        const container = document.getElementById(sectionId);
         if (!container) {
-            console.error(`Container with ID ${containerId} not found.`);
+            console.error(`找不到 ID 為 ${sectionId} 的容器`);
             return;
         }
 
-        let content = `<h4>${data.title}</h4>`;
-        if (data.introduction) {
-            content += `<p>${data.introduction}</p>`;
+        // 清空現有佔位內容 (如果有的話)
+        const placeholder = container.querySelector('p');
+        if (placeholder && placeholder.textContent.includes('即將推出')) {
+             placeholder.remove();
         }
-        
-        if (data.sections && Array.isArray(data.sections)) {
-            data.sections.forEach(section => {
-                content += createSectionHTML(section);
-            });
-        } else {
-            console.warn(`No sections found or sections is not an array for ${dataKey}.`);
-        }
-        container.innerHTML = content;
-    };
 
-    // Render all sections
-    renderSection('assessment_guides', 'ethical-assessment-guides-container');
-    renderSection('neurodiversity_resources', 'neurodiversity-resources-container');
-    renderSection('edtech_checklists', 'edtech-evaluation-rubrics-container');
-    renderSection('international_guidelines', 'international-guidelines-container');
+        if (data.content && Array.isArray(data.content)) {
+            data.content.forEach(item => {
+                const contentElement = createContentElement(item);
+                if (contentElement) {
+                    container.appendChild(contentElement);
+                }
+            });
+        } else if (data.description && !data.content) {
+            // 如果只有 description 且沒有 content，則顯示 description
+            // HTML 結構中已經有 <p> 顯示 description，這裡不再重複添加
+            // 但可以根據需要調整，例如如果想用 JS 控制 description 的顯示
+        }
+    }
+
+    // 填充各個部分
+    if (educatorToolkitData.ethicalAssessmentGuides) {
+        populateSection('ethical-assessment-guides-container', educatorToolkitData.ethicalAssessmentGuides);
+    }
+    if (educatorToolkitData.neurodiversityResources) {
+        populateSection('neurodiversity-resources-container', educatorToolkitData.neurodiversityResources);
+    }
+    if (educatorToolkitData.edtechEvaluationRubrics) {
+        populateSection('edtech-evaluation-rubrics-container', educatorToolkitData.edtechEvaluationRubrics);
+    }
+    if (educatorToolkitData.internationalGuidelines) {
+        populateSection('international-guidelines-container', educatorToolkitData.internationalGuidelines);
+    }
 });
 
 function renderEthicalAssessmentGuides(data, container) {

@@ -513,3 +513,66 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 console.log('data_loader.js executed.'); 
+
+/**
+ * data_loader.js
+ * 負責異步加載和解析專案所需的各種數據，例如模組內容、模擬參數等。
+ */
+
+const DataLoader = {
+    /**
+     * 從指定的 URL 加載 JSON 數據。
+     * @param {string} dataUrl - 數據文件的 URL。
+     * @returns {Promise<Object|null>} 解析後的 JSON 物件，若出錯則為 null。
+     */
+    async loadJsonData(dataUrl) {
+        try {
+            const response = await fetch(dataUrl);
+            if (!response.ok) {
+                console.error(`無法加載數據: ${response.status} ${response.statusText} (URL: ${dataUrl})`);
+                return null;
+            }
+            const jsonData = await response.json();
+            return jsonData;
+        } catch (error) {
+            console.error(`加載或解析數據時發生錯誤 (URL: ${dataUrl}):`, error);
+            return null;
+        }
+    },
+
+    /**
+     * 為特定模組加載內容數據。
+     * 假設每個模組的數據都存放在 'assets/data/moduleX_slug/content.json'
+     * @param {string} moduleId - 模組的 ID (例如 'module1', 'module2')。
+     * @param {string} moduleSlug - 模組的 slug (例如 'learning_hub', 'educator_toolkit')。
+     * @returns {Promise<Object|null>} 模組的內容數據。
+     */
+    async loadModuleContent(moduleId, moduleSlug) {
+        const dataUrl = `../assets/data/${moduleId}_${moduleSlug}/content.json`;
+        console.log(`嘗試從 ${dataUrl} 加載模組內容...`);
+        return await this.loadJsonData(dataUrl);
+    },
+
+    /**
+     * 加載特定模擬的參數。
+     * 假設模擬參數存放路徑類似 'assets/data/moduleX_slug/simulation_params.json'
+     * @param {string} moduleId - 模組的 ID。
+     * @param {string} moduleSlug - 模組的 slug。
+     * @param {string} simulationName - 模擬的名稱。
+     * @returns {Promise<Object|null>} 模擬的參數。
+     */
+    async loadSimulationParameters(moduleId, moduleSlug, simulationName) {
+        // 實際路徑可能需要根據 simulationName 進一步調整
+        const dataUrl = `../assets/data/${moduleId}_${moduleSlug}/${simulationName}_params.json`;
+        console.log(`嘗試從 ${dataUrl} 加載模擬參數 '${simulationName}'...`);
+        return await this.loadJsonData(dataUrl);
+    }
+
+    // 可根據需要添加更多特定的數據加載函數
+    // 例如：加載用戶進度、設定等
+};
+
+// 使 DataLoader 可在其他腳本中使用 (如果使用模塊系統)
+// export default DataLoader; // ES6 模塊語法
+// 或者 window.DataLoader = DataLoader; // 全局變量 (簡單項目中)
+window.DataLoader = DataLoader; 
