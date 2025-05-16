@@ -51,10 +51,10 @@
             </section>
 
             <section id="neurodiversity-resources-section" class="content-section">
-                <h3>肯定神經多樣性環境資源庫</h3>
+                <h3>肯定神經多樣性：創建包容性學習環境資源庫</h3>
                 <div id="neurodiversity-resources-container" class="dynamic-content-container">
                     <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
-                    <p>彙集基於證據的策略、資源和最佳實踐，用於創建肯定神經多樣性的包容性學習環境。包括通用學習設計 (UDL) 原則的實際應用、創建感官友善空間的指南等。詳細內容即將推出。</p>
+                    <p>本資源庫旨在提供實用的策略、工具和最佳實踐，幫助教育工作者創建肯定並支持所有學生（包括神經多樣性學生）的包容性學習環境。</p>
                 </div>
             </section>
 
@@ -70,7 +70,7 @@
                 <h3>國際指南與資源中心</h3>
                 <div id="international-guidelines-container" class="dynamic-content-container">
                     <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
-                    <p>策劃和總結來自聯合國教科文組織、經濟合作暨發展組織（OECD）等相關機構的關鍵國際指南、報告和教育資源。詳細內容即將推出。</p>
+                    <p>本中心匯總了主要國際組織發布的關於教育領域中神經倫理、人工智能（AI）倫理以及負責任地使用教育科技（EdTech）的關鍵指南、報告和框架。這些資源有助於理解全球視野下的倫理考量和最佳實踐。</p>
                 </div>
             </section>
         </div>
@@ -96,86 +96,260 @@
         // Content from js/data_modules/educator_toolkit_data.js
         const educatorToolkitData = {
           ethicalAssessmentGuides: {
-            title: "倫理學生評估指南",
-            description: "本區塊將提供學生評估中倫理考量的實用指南，特別關注新興的神經技術應用，討論其有效性、可靠性、公平性、潛在偏見、學生焦慮、數據隱私等問題。強調神經科學工具應補充而非取代整體的評估方法。",
+            title: "倫理學生評估指南：神經技術的考量",
+            description: "本指南旨在協助教育工作者理解在學生評估中使用神經技術時的關鍵倫理考量，確保技術的應用以學生福祉為核心，並促進公平、有效的學習。",
             content: [
               {
                 type: "paragraph",
-                text: "隨著教育領域神經技術的興起，教育工作者必須具備評估這些工具倫理影響的能力。本指南旨在提供一個框架，幫助教育者做出明智的決策。"
+                text: "隨著神經技術在教育領域的逐步應用，例如用於監測注意力、認知負荷或輔助學習困難的學生，教育者必須審慎評估其倫理意涵。這些技術可能為個性化學習和早期干預帶來契機，但也伴隨著潛在風險。"
+              },
+              {
+                type: "heading",
+                level: 4, // Assuming h4 for sub-sections
+                text: "核心倫理原則與考量點"
               },
               {
                 type: "list",
                 items: [
-                  "評估工具的科學有效性和可靠性。",
-                  "識別和減輕潛在的演算法偏見。",
-                  "確保學生數據的隱私和安全。",
-                  "考慮對學生焦慮和福祉的影響。",
-                  "將神經技術作為輔助工具，而非唯一評估手段。"
+                  "<strong>認知自由 (Cognitive Liberty):</strong> 學生的思想和心智過程應受到尊重。評估工具是否會不當影響或揭露學生的內心狀態？如何確保學生在評估過程中的心理完整性？ (參考 IEEE Neuroethics Framework, OECD)",
+                  "<strong>安全性與有效性 (Safety and Efficacy):</strong> 所使用的神經技術是否經過充分的科學驗證，證明其對特定年齡和群體的學生是安全且有效的？短期和長期影響為何？ (參考 IEEE Neuroethics Framework)",
+                  "<strong>公平性與近用性 (Equity and Access):</strong> 技術的引入是否會加劇現有的教育不平等？所有學生是否有平等的機會從中受益，或者它僅適用於特定資源充足的環境？如何避免因技術差異導致的標籤化或歧視？",
+                  "<strong>數據隱私與安全 (Data Privacy and Security):</strong> 收集的腦波數據或其他神經數據如何被儲存、保護、使用和共享？誰有權限存取這些高度敏感的資訊？數據的匿名化和去識別化程度如何？學生和家長對數據是否有控制權？",
+                  "<strong>知情同意 (Informed Consent):</strong> 學生（尤其是未成年人）和其家長是否充分理解技術的運作方式、目的、潛在風險和益處，並在此基礎上做出自願的同意？同意的過程是否持續且可撤回？",
+                  "<strong>透明度與可解釋性 (Transparency and Explainability):</strong> 神經技術評估工具的演算法和決策過程是否透明且可被理解？教育者和學生能否理解評估結果是如何產生的？",
+                  "<strong>避免偏見與污名化 (Bias and Stigmatization):</strong> 評估工具是否可能帶有潛在的文化、性別、社經或神經多樣性偏見？其結果是否可能導致對學生的不當標籤化或污名化？ (參考 IEEE Neuroethics Framework)",
+                  "<strong>人類監督與專業判斷 (Human Oversight and Professional Judgement):</strong> 技術應作為輔助工具，而非取代教育者的專業判斷和全面評估。如何確保評估結果的解釋和應用始終在合格專業人士的指導下進行？",
+                  "<strong>發展適宜性 (Developmental Appropriateness):</strong> 所選用的神經技術是否適合特定年齡段學生的認知和情感發展階段？對兒童和青少年發展中的大腦可能產生哪些獨特影響？"
+                ]
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "教育者實踐反思問題"
+              },
+              {
+                type: "list",
+                items: [
+                  "引入這項神經技術評估工具的目的是什麼？它要解決什麼教育問題？是否有其他侵入性較小的方法可以達到相似目的？",
+                  "我們是否有足夠的資源和專業知識來合乎倫理地實施和管理這項技術？",
+                  "我們如何對學生、家長和教職員工進行關於此技術的倫理培訓和溝通？",
+                  "如果評估結果顯示潛在問題或差異，我們有哪些支持和干預措施？",
+                  "我們將如何定期審查和評估這項技術的倫理影響和教育成效？"
                 ]
               },
               {
                 type: "note",
-                text: "詳細的案例研究和評估清單將在後續版本中提供。"
+                text: "本指南參考了 IEEE Neuroethics Framework 等國際資源，旨在提供初步的倫理思考框架。教育機構在採納任何神經技術評估工具前，應進行全面的倫理審查和風險評估。"
+              },
+              {
+                type: "resourceLink",
+                text: "IEEE Neuroethics Framework: Education (外部連結)",
+                url: "https://brain.ieee.org/publications/ieee-neuroethics-framework/ieee-neuroethics-framework-education/"
               }
             ]
           },
           neurodiversityResources: {
-            title: "肯定神經多樣性環境資源庫",
-            description: "彙集基於證據的策略、資源和最佳實踐，用於創建肯定神經多樣性的包容性學習環境。包括通用學習設計 (UDL) 原則的實際應用、創建感官友善空間的指南等。",
+            title: "肯定神經多樣性：創建包容性學習環境資源庫",
+            description: "本資源庫旨在提供實用的策略、工具和最佳實踐，幫助教育工作者創建肯定並支持所有學生（包括神經多樣性學生）的包容性學習環境。",
             content: [
               {
                 type: "paragraph",
-                text: "創建一個肯定神經多樣性的學習環境對於所有學生的成功至關重要。本資源庫提供實用工具和策略，以支持教育者實現這一目標。"
+                text: "神經多樣性承認人類大腦在學習、社交、注意力和情緒調節等方面的自然變異。肯定神經多樣性的方法旨在從理解和接納差異出發，發掘每個學生的潛能，而非僅僅關注『補救缺陷』。"
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "核心概念：通用學習設計 (Universal Design for Learning - UDL)"
+              },
+              {
+                type: "paragraph",
+                text: "通用學習設計 (UDL) 是一個核心框架，旨在通過靈活的教學方法和材料，從一開始就為所有學習者（包括神經多樣性學生）設計無障礙的學習體驗。UDL 的三個主要原則是："
+              },
+              {
+                type: "list",
+                items: [
+                  "<strong>提供多種參與方式 (Multiple Means of Engagement):</strong> 激發學生的興趣和動機，提供選擇，促進自主性和自我調節。",
+                  "<strong>提供多種呈現方式 (Multiple Means of Representation):</strong> 以多種格式呈現資訊和內容，滿足不同的感知和理解需求。",
+                  "<strong>提供多種行動與表達方式 (Multiple Means of Action & Expression):</strong> 允許學生以不同方式展示所學，提供多樣化的評估和互動選項。"
+                ]
               },
               {
                 type: "resourceLink",
-                text: "通用學習設計 (UDL) 指南",
-                url: "#" // 替換為實際連結
+                text: "了解更多：CAST UDL 指南 (外部連結)",
+                url: "https://udlguidelines.cast.org/"
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "實用策略與考量"
+              },
+              {
+                type: "list",
+                items: [
+                  "<strong>提供選擇與彈性：</strong>在作業、活動和評估中給予學生合理的選擇，允許他們以最適合自己的方式學習和表達。 (參考 Edutopia)",
+                  "<strong>清晰的指令與預期：</strong>提供明確、簡潔、分步驟的任務說明。使用視覺提示、教學大綱和時間表，幫助學生理解預期。",
+                  "<strong>多樣化的教學材料：</strong>結合文本、圖像、音訊、影片等多種媒介呈現教學內容。提供可調整字體大小、對比度的數位材料。",
+                  "<strong>考慮感官環境：</strong>注意教室的燈光、聲音、氣味和視覺佈置，盡可能減少不必要的感官刺激。允許學生使用降噪耳機、fidgets 等輔助工具。 (參考 MSU Library Guides)",
+                  "<strong>結構化的日程與過渡：</strong>提供可預測的日常安排，並在活動轉換前給予清晰的提示和準備時間。",
+                  "<strong>支持執行功能：</strong>協助學生分解任務、制定計劃、時間管理和組織材料。使用清單、提醒工具和視覺化輔助。",
+                  "<strong>鼓勵自我倡導與元認知：</strong>教導學生了解自己的學習風格和需求，並鼓勵他們為自己發聲，尋求必要的支持。 (參考 Edutopia)",
+                  "<strong>建立支持性的社群：</strong>營造一個尊重差異、鼓勵互助、慶祝個體優勢的班級氛圍。",
+                  "<strong>彈性的評估方式：</strong>允許學生透過口頭報告、項目製作、演示、書面等多種方式展示其學習成果。",
+                  "<strong>與家長/監護人合作：</strong>建立開放的溝通渠道，共同了解並支持學生的需求。"
+                ]
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "推薦閱讀與資源"
               },
               {
                 type: "resourceLink",
-                text: "創建感官友善教室的技巧",
-                url: "#" // 替換為實際連結
+                text: "Edutopia: 創建包容性教室支持神經多樣性學習者 (外部連結)",
+                url: "https://www.edutopia.org/article/supporting-neurodivergent-students-school/"
+              },
+              {
+                type: "resourceLink",
+                text: "Montana State University: Neurodiversity Teaching Strategies (外部連結)",
+                url: "https://guides.lib.montana.edu/neurodiversity/TeachingStrategies"
+              },
+              {
+                type: "resourceLink",
+                text: "Learning Forward: 您的學校是否歡迎神經多樣性的學生？ (外部連結)",
+                url: "https://learningforward.org/journal/reaching-all-learners/is-your-school-welcoming-to-neurodiverse-students/"
+              },
+              {
+                type: "note",
+                text: "創建一個真正包容和肯認神經多樣性的環境是一個持續的過程，需要不斷學習、反思和調整。"
               }
             ]
           },
           edtechEvaluationRubrics: {
-            title: "EdTech 評估指標與檢查清單",
-            description: "提供可客製化的指標和檢查清單，供教育工作者、管理者和開發者評估 EdTech 工具是否符合倫理規範。涵蓋數據隱私與安全、演算法公平性、學生自主性、教學合理性及包容性等。",
+            title: "EdTech 與 AI 工具評估指標與檢查清單",
+            description: "本節提供教育工作者、學校管理者和 EdTech 開發者一套全面的評估指標、檢查清單和指導原則，旨在系統性地評估教育科技（EdTech）和人工智能（AI）工具的教學效益、倫理影響、安全性及實用性，確保技術的選擇與實施能真正促進所有學生的福祉和學習成效。",
             content: [
               {
                 type: "paragraph",
-                text: "在選擇和實施教育技術時，倫理考量是首要的。這些評估指標和檢查清單旨在協助您系統地評估 EdTech 工具的各個方面。"
+                text: "在數位化浪潮下，教育領域湧現出大量的 EdTech 和 AI 工具，它們承諾革新教學方法、提升學習效率。然而，如何明智地選擇和部署這些工具，以確保它們不僅有效，而且合乎倫理、保障隱私、促進公平，是每位教育工作者面臨的重要課題。一個結構化的評估框架能幫助我們做出更明智的決策。"
               },
               {
-                type: "downloadLink",
-                text: "EdTech 倫理評估指標 (PDF)",
-                url: "#" // 替換為實際下載連結
+                type: "heading",
+                level: 4,
+                text: "核心評估維度"
               },
               {
-                type: "downloadLink",
-                text: "EdTech 採購檢查清單 (Word)",
-                url: "#" // 替換為實際下載連結
+                type: "list",
+                items: [
+                  "<strong>教學相關性與有效性 (Pedagogical Relevance & Efficacy):</strong> 工具是否符合課程目標和學生年齡發展階段？是否能有效提升學生的參與度、動機和學習成果？其教學方法是否基於可靠的教育理論？ (參考 ISTE Teacher Ready, DOMS Rubric)",
+                  "<strong>數據隱私與安全 (Data Privacy & Security):</strong> 工具如何收集、使用、儲存和保護學生數據？是否符合相關法規（如 GDPR, FERPA, COPPA）？數據政策是否透明？學生和家長對其數據有何控制權？ (參考 1EdTech AI Rubric, TCEA Checklist, DOMS Rubric)",
+                  "<strong>倫理考量與公平性 (Ethical Considerations & Equity):</strong> 工具是否存在演算法偏見（例如基於性別、種族或社經背景）？其決策過程是否透明可解釋？是否提供人類監督機制？能否確保所有學生（包括不同需求和背景的學生）都能公平地使用並從中受益？ (參考 1EdTech AI Rubric, DOMS Rubric, IEEE Neuroethics Framework)",
+                  "<strong>易用性與可及性 (Usability & Accessibility):</strong> 工具對於教師和學生而言是否易於學習和使用？界面是否直觀友好？是否符合無障礙標準（如 WCAG），確保所有學生（包括身心障礙學生）都能順暢使用？ (參考 ISTE Teacher Ready, TCEA Checklist, DOMS Rubric)",
+                  "<strong>技術穩健性與整合性 (Technical Robustness & Integration):</strong> 工具是否技術成熟、運行穩定可靠？能否與學校現有的技術設施（如LMS、SIS）順利整合？供應商是否提供良好的技術支持和更新？ (參考 DOMS Rubric)",
+                  "<strong>供應商信譽與透明度 (Vendor Reputation & Transparency):</strong> 供應商在教育領域的聲譽如何？其商業模式和數據使用實踐是否透明？是否有獨立的第三方認證或評估？ (參考 ISTE Seal)",
+                  "<strong>成本效益與可持續性 (Cost-Effectiveness & Sustainability):</strong> 工具的總體擁有成本（包括採購、培訓、維護）是否合理？其帶來的教育價值是否與成本相稱？學校是否有能力長期支持該工具的運作？ (參考 DOMS Rubric)"
+                ]
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "實用評估工具與資源範例"
+              },
+              {
+                type: "paragraph",
+                text: "以下是一些國際組織和專家提供的評估框架和工具，可供參考（請注意，部分資源可能需要註冊或付費）："
+              },
+              {
+                type: "list",
+                items: [
+                  "<strong>ISTE Teacher Ready Evaluation Tool & EdTech Index:</strong> ISTE 提供免費的評估工具和 EdTech 產品索引，幫助教育者判斷產品的教室可用性和質量。 (外部連結：<a href=\"https://iste.org/edtech-product-selection\" target=\"_blank\" rel=\"noopener noreferrer\">ISTE Edtech Selection</a>)",
+                  "<strong>1EdTech TrustEd Apps Generative AI Data Rubric:</strong> 專注於生成式 AI 工具的數據隱私和倫理使用的評估框架。 (外部連結：<a href=\"https://www.1edtech.org/standards/ai-rubric\" target=\"_blank\" rel=\"noopener noreferrer\">1EdTech AI Rubric</a>)",
+                  "<strong>TCEA EdTech/AI評估標準與檢查清單:</strong> TCEA 部落格提供實用的評估標準和檢查清單，涵蓋相關性、隱私、易用性等。 (資源參考：TCEA Blog - <a href=\"https://blog.tcea.org/rubric-checklist-assessing-ai-tools/\" target=\"_blank\" rel=\"noopener noreferrer\">Assessing AI Tools</a>)",
+                  "<strong>The DOMS™️ AI-Ed Tools Evaluation Rubric (Dr. Philippa Hardman):</strong> 一個包含七個維度的綜合評估框架，用於評估 AI 教育工具的功效和安全性。 (資源參考：Dr. Hardman's Substack - <a href=\"https://drphilippahardman.substack.com/p/the-doms-ai-ed-tools-evaluation-rubric\" target=\"_blank\" rel=\"noopener noreferrer\">DOMS AI-Ed Rubric</a>)",
+                  "<strong>The Curious Educator's Guide to AI (eCampusOntario):</strong> 提供不同深度的 AI 工具評估標準。 (資源參考：eCampusOntario Pressbooks - <a href=\"https://ecampusontario.pressbooks.pub/mcmasterpracticalaiguide/chapter/evaluating-ai-tools/\" target=\"_blank\" rel=\"noopener noreferrer\">Evaluating AI Tools</a>)"
+                ]
+              },
+               {
+                type: "heading",
+                level: 4,
+                text: "給教育者的評估建議"
+              },
+              {
+                type: "list",
+                items: [
+                    "<strong>明確需求與目標：</strong>在評估前，首先明確您希望透過該工具解決的教育問題或達成的教學目標。",
+                    "<strong>小範圍試用：</strong>如果可能，先在小範圍內試用工具，收集教師和學生的實際回饋。",
+                    "<strong>參考多方評價：</strong>查閱其他教育者對該工具的評價和使用經驗，但也要批判性看待。",
+                    "<strong>與同事共同評估：</strong>邀請其他教師或技術專家一同參與評估過程，聽取不同角度的意見。",
+                    "<strong>持續監控與反思：</strong>即使選擇了某個工具，也應持續監控其使用效果和潛在問題，並定期重新評估。"
+                ]
+              },
+              {
+                type: "note",
+                text: "請注意，許多 EdTech 公司可能會提供其產品的倫理框架或自我評估報告。這些可以作為參考，但教育機構仍應進行獨立的、批判性的評估。本工具包旨在提供通用指導，具體決策需結合實際情境。"
               }
             ]
           },
           internationalGuidelines: {
             title: "國際指南與資源中心",
-            description: "策劃和總結來自聯合國教科文組織、經濟合作暨發展組織（OECD）等相關機構的關鍵國際指南、報告和教育資源。",
+            description: "本中心匯總了主要國際組織發布的關於教育領域中神經倫理、人工智能（AI）倫理以及負責任地使用教育科技（EdTech）的關鍵指南、報告和框架。這些資源有助於理解全球視野下的倫理考量和最佳實踐。",
             content: [
               {
                 type: "paragraph",
-                text: "了解國際上關於教育神經倫理的最新發展和指導方針，對於制定本地化策略至關重要。本中心匯總了來自權威機構的關鍵文件。"
+                text: "參考國際組織的指導方針，有助於教育機構在本地實踐中更好地應對新興技術帶來的倫理挑戰，並發展符合全球共識的策略。"
               },
               {
-                type: "externalLink",
-                text: "聯合國教科文組織 (UNESCO) - 教育中的人工智能與倫理",
-                url: "https://www.unesco.org/en/artificial-intelligence/ethics-education" // 示例連結
+                type: "heading",
+                level: 4,
+                text: "聯合國教科文組織 (UNESCO)"
               },
               {
-                type: "externalLink",
-                text: "經濟合作暨發展組織 (OECD) - AI 原則",
-                url: "https://oecd.ai/en/ai-principles" // 示例連結
+                type: "paragraph",
+                text: "UNESCO 在推動 AI 倫理的全球對話和標準制定方面扮演領導角色，特別關注 AI 在教育領域的應用及其對人權的影響。"
+              },
+              {
+                type: "list",
+                items: [
+                  "<strong>《人工智能倫理問題建議書》(Recommendation on the Ethics of Artificial Intelligence):</strong> 這是首個關於 AI 倫理的全球性標準制定文件，為 AI 的發展和應用提供了以價值觀為基礎的原則和政策行動建議，涵蓋教育、研究等多個領域。 (外部連結：<a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000380455\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO Recommendation</a>)",
+                  "<strong>《人工智能與教育：決策者指南》(AI and Education: Guidance for Policy-makers):</strong> 該指南旨在協助教育決策者理解 AI 的潛力與挑戰，並制定相關政策以促進 AI 在教育中的公平和包容性應用。 (外部連結：<a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000376709\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO AI & Education Guidance</a>)",
+                  "<strong>教育中的人工智能 (Artificial intelligence in education) 總覽頁面:</strong> 提供 UNESCO 在此領域的各項倡議、出版物和活動資訊。 (外部連結：<a href=\"https://www.unesco.org/en/digital-education/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO AI in Education Overview</a>)"
+                ]
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "經濟合作暨發展組織 (OECD)"
+              },
+              {
+                type: "paragraph",
+                text: "OECD 致力於推動創新且值得信賴的 AI，其制定的 AI 原則為各國政府和組織提供了重要的政策指導。"
+              },
+              {
+                type: "list",
+                items: [
+                  "<strong>《OECD 人工智能原則》(OECD AI Principles):</strong> 這些原則是首個關於 AI 的政府間標準，旨在促進尊重人權和民主價值觀的 AI 系統。原則強調包容性增長、以人為本的價值觀、透明度、穩健性、安全性以及問責制。 (外部連結：<a href=\"https://oecd.ai/en/ai-principles\" target=\"_blank\" rel=\"noopener noreferrer\">OECD AI Principles</a>)",
+                  "<strong>OECD.AI 政策觀察站 (OECD.AI Policy Observatory):</strong> 提供各國 AI 策略、政策和數據的綜合資訊平台。 (外部連結：<a href=\"https://oecd.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">OECD.AI Observatory</a>)"
+                ]
+              },
+              {
+                type: "heading",
+                level: 4,
+                text: "電機電子工程師學會 (IEEE)"
+              },
+              {
+                type: "paragraph",
+                text: "IEEE 透過其全球倡議，推動自主和智能系統的倫理考量，並開發相關標準和教育資源。"
+              },
+              {
+                type: "list",
+                items: [
+                  "<strong>《合乎倫理的設計》(Ethically Aligned Design - EAD):</strong> 一系列報告，匯集全球思想領袖的見解，為優先考慮人類福祉的自主和智能系統設計提供框架和建議。 (外部連結：<a href=\"https://ethicsinaction.ieee.org/\" target=\"_blank\" rel=\"noopener noreferrer\">IEEE Ethically Aligned Design</a>)",
+                  "<strong>IEEE P7000® 系列標準:</strong> 針對自主和智能系統與倫理交叉點的具體問題（如演算法偏見、數據隱私、兒童 AI 倫理）制定的標準。 (外部連結：<a href=\"https://standards.ieee.org/featured/ieee-7000/\" target=\"_blank\" rel=\"noopener noreferrer\">IEEE P7000 Series</a>)",
+                  "<strong>《IEEE 神經倫理框架》(IEEE Neuroethics Framework):</strong> 特別關注神經技術倫理的框架，其中包含教育領域的應用考量。 (外部連結：<a href=\"https://brain.ieee.org/publications/ieee-neuroethics-framework/ieee-neuroethics-framework-education/\" target=\"_blank\" rel=\"noopener noreferrer\">IEEE Neuroethics Framework - Education</a>)"
+                ]
+              },
+              {
+                type: "note",
+                text: "建議定期查閱這些組織的官方網站，以獲取最新的指南、報告和工具。"
               }
             ]
           }
@@ -195,11 +369,15 @@
                         element = document.createElement('p');
                         element.textContent = item.text;
                         break;
+                    case 'heading':
+                        element = document.createElement('h' + (item.level || 4));
+                        element.textContent = item.text;
+                        break;
                     case 'list':
                         element = document.createElement('ul');
                         item.items.forEach(liText => {
                             const listItem = document.createElement('li');
-                            listItem.textContent = liText;
+                            listItem.innerHTML = liText;
                             element.appendChild(listItem);
                         });
                         break;

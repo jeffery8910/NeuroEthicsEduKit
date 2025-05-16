@@ -1,235 +1,325 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    if (!window.loadJsonData) {
-        console.error('Error: loadJsonData function is not available. Ensure data_loader.js is loaded correctly.');
-        return;
-    }
-    if (!window.initializeSimulation) {
-        console.error('Error: initializeSimulation function is not available. Ensure interactive_simulations.js is loaded correctly.');
-        return;
-    }
+    // Removed checks for window.loadJsonData and window.initializeSimulation as we are moving away from them for some parts.
 
     const neuroRightsContainer = document.getElementById('neuro-rights-container');
     const templatesInfoContainer = document.getElementById('consent-templates-info-container');
     const aiDataPathwaySimulationContainer = document.getElementById('ai-data-pathway-simulation-container');
 
-    // --- 1. Load and Render Neuro Rights Education ---
-    try {
-        const neuroRightsData = await window.loadJsonData('../assets/data/module3_privacy_simulation/neuro_rights_education.json');
-        if (neuroRightsData && neuroRightsContainer) {
-            renderNeuroRights(neuroRightsData, neuroRightsContainer);
-        } else if (!neuroRightsContainer) {
-            console.warn('Neuro rights container not found.');
-        }
-    } catch (error) {
-        console.error('Error loading or rendering neuro rights education:', error);
-        if (neuroRightsContainer) neuroRightsContainer.innerHTML = '<p class="error-message">無法載入神經權利教育內容。</p>';
+    // --- 1. Static Content for Neuro Rights Education (Placeholder) ---
+    if (neuroRightsContainer) {
+        neuroRightsContainer.innerHTML = `
+            <h2>神經權利教育 (內容加載說明)</h2>
+            <p>此區塊旨在提供神經權利的相關教育資訊。在完整的伺服器環境中，詳細內容將從外部數據源動態載入。</p>
+            <p><em>目前為靜態佔位內容。</em></p>
+        `;
     }
 
-    // --- 2. Load and Render Consent and DPIA Templates Info ---
-    try {
-        const templatesData = await window.loadJsonData('../assets/data/module3_privacy_simulation/consent_and_dpia_templates_info.json');
-        if (templatesData && templatesInfoContainer) {
-            renderTemplatesInfo(templatesData, templatesInfoContainer);
-        } else if (!templatesInfoContainer) {
-            console.warn('Consent and DPIA templates info container not found.');
-        }
-    } catch (error) {
-        console.error('Error loading or rendering templates info:', error);
-        if (templatesInfoContainer) templatesInfoContainer.innerHTML = '<p class="error-message">無法載入模板資訊內容。</p>';
+    // --- 2. Static Content for Consent and DPIA Templates Info (Placeholder) ---
+    if (templatesInfoContainer) {
+        templatesInfoContainer.innerHTML = `
+            <h2>資源模板 (內容加載說明)</h2>
+            <p>此區塊旨在提供同意書和數據保護影響評估 (DPIA) 的相關模板資訊。在完整的伺服器環境中，詳細內容將從外部數據源動態載入。</p>
+            <p><em>目前為靜態佔位內容。</em></p>
+        `;
     }
 
-    // --- 3. Load and Initialize "AI Learning Partner & Your Data Footprint" Simulation ---
-    try {
-        const aiDataPathwayScenario = await window.loadJsonData('../assets/data/module3_privacy_simulation/interactive_data_simulation_scenarios.json');
-        // Assuming interactive_data_simulation_scenarios.json contains a single scenario object directly
-        // If it's an array of scenarios, you might need to select one, e.g., aiDataPathwayScenario[0]
-        if (aiDataPathwayScenario && aiDataPathwaySimulationContainer) {
-            // The initializeSimulation function is expected to be globally available from interactive_simulations.js
-            window.initializeSimulation(aiDataPathwayScenario, aiDataPathwaySimulationContainer);
-        } else if (!aiDataPathwaySimulationContainer) {
-            console.warn('AI Data Pathway simulation container not found.');
-        } else if (!aiDataPathwayScenario) {
-            console.warn('AI Data Pathway scenario data not found or empty.');
-            if (aiDataPathwaySimulationContainer) aiDataPathwaySimulationContainer.innerHTML = '<p class="error-message">無法載入 AI 學習夥伴模擬情境數據。</p>';
-        }
-    } catch (error) {
-        console.error('Error loading or initializing AI Data Pathway simulation:', error);
-        if (aiDataPathwaySimulationContainer) aiDataPathwaySimulationContainer.innerHTML = '<p class="error-message">初始化 AI 學習夥伴模擬失敗。</p>';
+    // --- 3. Static Content/Placeholder for "AI Learning Partner & Your Data Footprint" Simulation ---
+    // OR, if interactive_simulations.js and its data are self-contained and don't use fetch for *this specific one*,
+    // it might still be callable. For now, let's assume it also relied on fetched data or is too complex to integrate directly.
+    if (aiDataPathwaySimulationContainer) {
+        // Check if a global initializeSimulation function for *this specific container* is available from interactive_simulations.js
+        // and if its data is also directly available or embedded, not fetched.
+        // For now, providing a placeholder as direct invocation might be complex without full context of interactive_simulations.js
+        aiDataPathwaySimulationContainer.innerHTML = `
+            <h3>AI 學習夥伴與您的數據足跡 (模擬說明)</h3>
+            <p>此處將有一個互動模擬，探索 AI 學習夥伴如何收集和使用您的數據。在完整的伺服器環境中，模擬情境將動態載入。</p>
+            <p><em>目前為靜態佔位內容。您下方的「互動模擬區」將使用另一組直接嵌入的數據。</em></p>
+        `;
+        // If window.initializeSimulation FOR THIS SPECIFIC SIMULATION was meant to be called and its data is NOT fetched,
+        // you might try to call it here, e.g.:
+        // if (typeof someSpecificAIData !== 'undefined' && window.initializeSimulation) {
+        //     window.initializeSimulation(someSpecificAIData, aiDataPathwaySimulationContainer);
+        // } else {
+        //     aiDataPathwaySimulationContainer.innerHTML = '<p>AI 學習夥伴模擬的動態內容準備中。</p>';
+        // }
     }
-});
 
-function renderNeuroRights(data, container) {
-    let html = `<h2>${data.title_zh_TW || '神經權利教育'}</h2>`;
-    if (data.introduction_zh_TW) {
-        html += `<p>${data.introduction_zh_TW}</p>`;
-    }
-    if (data.neuro_rights_zh_TW && data.neuro_rights_zh_TW.length > 0) {
-        html += '<div class="cards-container">';
-        data.neuro_rights_zh_TW.forEach(right => {
-            html += `
-                <div class="card neuro-right-card">
-                    <h3 class="card-title">${right.name_zh_TW}</h3>
-                    <p class="card-content"><strong>定義：</strong> ${right.definition_zh_TW}</p>
-                    <p class="card-content"><strong>教育相關性：</strong> ${right.educational_relevance_zh_TW}</p>
-                    <div class="discussion-points">
-                        <strong>討論點：</strong>
-                        <ul>
-                            ${right.discussion_points_zh_TW.map(point => `<li>${point}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `;
+    // --- Flip Cards Logic (for "討論問題") ---
+    const flipCards = document.querySelectorAll('.flip-card');
+    if (flipCards.length > 0) {
+        console.log('翻牌卡片數量:', flipCards.length);
+        flipCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('is-flipped');
+            });
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
         });
-        html += '</div>';
-    } else {
-        html += '<p>目前沒有可顯示的神經權利資訊。</p>';
-    }
-    container.innerHTML = html;
-}
 
-function renderTemplatesInfo(data, container) {
-    let html = `<h2>${data.title_zh_TW || '資源模板'}</h2>`;
-    if (data.introduction_zh_TW) {
-        html += `<p>${data.introduction_zh_TW}</p>`;
-    }
-    if (data.templates_zh_TW && data.templates_zh_TW.length > 0) {
-        html += '<ul class="resource-list">';
-        data.templates_zh_TW.forEach(template => {
-            html += `
-                <li class="resource-item">
-                    <h3>${template.name_zh_TW}</h3>
-                    <p>${template.description_zh_TW}</p>
-                    <p><em>${template.note_zh_TW}</em></p>
-                    ${template.placeholder_link_zh_TW ? `<a href="${template.placeholder_link_zh_TW}" class="btn" target="_blank" rel="noopener noreferrer">查看範例 (占位符)</a>` : ''}
-                </li>
-            `;
-        });
-        html += '</ul>';
-    } else {
-        html += '<p>目前沒有可顯示的模板資訊。</p>';
-    }
-    container.innerHTML = html;
-}
+        const revealAllAnswersButton = document.getElementById('revealAllAnswers');
+        const hideAllAnswersButton = document.getElementById('hideAllAnswers');
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof privacySimulationScenarios === 'undefined' || !privacySimulationScenarios || privacySimulationScenarios.length === 0) {
-        console.error('privacy_simulation_data.js 未載入或 privacySimulationScenarios 未定義或為空');
-        const simulationContainer = document.getElementById('simulation-content-container');
-        if (simulationContainer) {
-            simulationContainer.innerHTML = '<p class="error-message">隱私模擬數據載入失敗，請檢查控制台或稍後再試。</p>';
+        if (revealAllAnswersButton) {
+            revealAllAnswersButton.addEventListener('click', () => {
+                flipCards.forEach(card => card.classList.add('is-flipped'));
+            });
         }
-        return;
+        if (hideAllAnswersButton) {
+            hideAllAnswersButton.addEventListener('click', () => {
+                flipCards.forEach(card => card.classList.remove('is-flipped'));
+            });
+        }
+    } else {
+        console.warn('未找到翻牌卡片 (flip-card)。');
     }
 
-    const scenarioTitleElement = document.createElement('h4'); // 用於顯示情境標題
-    const scenarioRoleElement = document.createElement('p');  // 用於顯示角色
-    const scenarioDescriptionElement = document.createElement('p'); // 用於顯示情境描述
-    const choicesContainerElement = document.createElement('div'); // 用於放置選項按鈕
-    choicesContainerElement.className = 'choices-container';
-    const feedbackContainerElement = document.createElement('div'); // 用於顯示回饋
-    feedbackContainerElement.className = 'feedback-container';
+    // --- Reflection Cards Logic (for expandable cards like "相關資源") ---
+    const reflectionCards = document.querySelectorAll('.reflection-card');
+    if (reflectionCards.length > 0) {
+        console.log('可展開式反思卡片數量:', reflectionCards.length);
+        reflectionCards.forEach(card => {
+            const header = card.querySelector('.reflection-card-header');
+            const toggle = card.querySelector('.reflection-card-toggle');
+            if (header) {
+                header.addEventListener('click', () => {
+                    card.classList.toggle('active');
+                    if (toggle) toggle.textContent = card.classList.contains('active') ? '−' : '+';
+                });
+                header.setAttribute('role', 'button');
+                header.setAttribute('tabindex', '0');
+                header.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+        });
+
+        const expandAllResourcesButton = document.getElementById('expandAllResources');
+        const collapseAllResourcesButton = document.getElementById('collapseAllResources');
+
+        if (expandAllResourcesButton) {
+            expandAllResourcesButton.addEventListener('click', () => {
+                reflectionCards.forEach(card => {
+                    card.classList.add('active');
+                    const toggle = card.querySelector('.reflection-card-toggle');
+                    if (toggle) toggle.textContent = '−';
+                });
+            });
+        }
+        if (collapseAllResourcesButton) {
+            collapseAllResourcesButton.addEventListener('click', () => {
+                reflectionCards.forEach(card => {
+                    card.classList.remove('active');
+                    const toggle = card.querySelector('.reflection-card-toggle');
+                    if (toggle) toggle.textContent = '+';
+                });
+            });
+        }
+    } else {
+        console.warn('未找到可展開式反思卡片 (reflection-card)。');
+    }
+
+    // --- Case Study Cards Logic (for expandable cards like "案例分析") ---
+    const caseStudyCards = document.querySelectorAll('.case-study-card');
+    if (caseStudyCards.length > 0) {
+        console.log('案例分析卡片數量:', caseStudyCards.length);
+        caseStudyCards.forEach(card => {
+            const header = card.querySelector('.case-study-card-header');
+            const toggle = card.querySelector('.case-study-card-toggle');
+            const body = card.querySelector('.case-study-card-body');
+
+            if (header && body) { // Make sure body exists as well
+                // Initially collapse all case study cards
+                // card.classList.remove('active'); // Active class will be added on click
+                // if (toggle) toggle.textContent = '+';
+                // body.style.display = 'none'; // Collapse body
+
+                header.addEventListener('click', () => {
+                    card.classList.toggle('active');
+                    if (toggle) toggle.textContent = card.classList.contains('active') ? '−' : '+';
+                    // body.style.display = card.classList.contains('active') ? '' : 'none'; // Toggle body display
+                });
+                header.setAttribute('role', 'button');
+                header.setAttribute('tabindex', '0');
+                header.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+        });
+
+        const expandAllCasesButton = document.getElementById('expandAllCases');
+        const collapseAllCasesButton = document.getElementById('collapseAllCases');
+
+        if (expandAllCasesButton) {
+            expandAllCasesButton.addEventListener('click', () => {
+                caseStudyCards.forEach(card => {
+                    card.classList.add('active');
+                    const toggle = card.querySelector('.case-study-card-toggle');
+                    if (toggle) toggle.textContent = '−';
+                    // const body = card.querySelector('.case-study-card-body');
+                    // if (body) body.style.display = '';
+                });
+            });
+        }
+        if (collapseAllCasesButton) {
+            collapseAllCasesButton.addEventListener('click', () => {
+                caseStudyCards.forEach(card => {
+                    card.classList.remove('active');
+                    const toggle = card.querySelector('.case-study-card-toggle');
+                    if (toggle) toggle.textContent = '+';
+                    // const body = card.querySelector('.case-study-card-body');
+                    // if (body) body.style.display = 'none';
+                });
+            });
+        }
+    } else {
+        console.warn('未找到案例分析卡片 (case-study-card)。');
+    }
+
+    // --- Main Interactive Simulation Area Logic (using privacySimulationScenarios from global scope) ---
     const simulationContentContainer = document.getElementById('simulation-content-container');
-
     let currentScenario;
 
     function displayScenario(scenarioId) {
+        if (typeof privacySimulationScenarios === 'undefined' || !privacySimulationScenarios) {
+            console.error('privacySimulationScenarios is not defined. Cannot display scenario.');
+            if (simulationContentContainer) simulationContentContainer.innerHTML = '<p class="error-message">主要模擬數據遺失，無法顯示情境。</p>';
+            return;
+        }
         currentScenario = privacySimulationScenarios.find(s => s.id === scenarioId);
         if (!currentScenario) {
-            console.error(`找不到 ID 為 ${scenarioId} 的情境。`);
-            simulationContentContainer.innerHTML = `<p class="error-message">載入情境 ${scenarioId} 失敗。</p>`;
+            console.error(`找不到 ID 為 ${scenarioId} 的主要模擬情境。`);
+            if (simulationContentContainer) simulationContentContainer.innerHTML = `<p class="error-message">載入主要模擬情境 ${scenarioId} 失敗。</p>`;
             return;
         }
 
-        scenarioTitleElement.textContent = currentScenario.title;
-        scenarioRoleElement.innerHTML = `<strong>您的角色：</strong> ${currentScenario.role}`;
-        scenarioDescriptionElement.textContent = currentScenario.description;
+        if (simulationContentContainer) {
+            simulationContentContainer.innerHTML = ''; 
+            const scenarioTitleElement = document.createElement('h4');
+            const scenarioRoleElement = document.createElement('p');
+            const scenarioDescriptionElement = document.createElement('p');
+            const choicesContainerElement = document.createElement('div');
+            choicesContainerElement.className = 'choices-container';
+            const feedbackContainerElement = document.createElement('div');
+            feedbackContainerElement.className = 'feedback-container';
 
-        choicesContainerElement.innerHTML = ''; // 清空之前的選項
-        feedbackContainerElement.innerHTML = ''; // 清空之前的回饋
-        feedbackContainerElement.style.display = 'none';
-
-        currentScenario.choices.forEach(choice => {
-            const choiceButton = document.createElement('button');
-            choiceButton.className = 'choice-button'; // 可以為按鈕添加樣式
-            choiceButton.textContent = choice.text;
-            choiceButton.addEventListener('click', () => handleChoice(choice));
-            choicesContainerElement.appendChild(choiceButton);
-        });
-
-        // 將元素添加到容器中 (如果它們還沒被添加的話)
-        if (!simulationContentContainer.contains(scenarioTitleElement)) {
-            simulationContentContainer.innerHTML = ''; // 清空初始的"載入中"訊息
+            scenarioTitleElement.textContent = currentScenario.title;
+            scenarioRoleElement.innerHTML = `<strong>您的角色：</strong> ${currentScenario.role}`;
+            scenarioDescriptionElement.textContent = currentScenario.description;
+            
             simulationContentContainer.appendChild(scenarioTitleElement);
             simulationContentContainer.appendChild(scenarioRoleElement);
             simulationContentContainer.appendChild(scenarioDescriptionElement);
             simulationContentContainer.appendChild(choicesContainerElement);
             simulationContentContainer.appendChild(feedbackContainerElement);
+            feedbackContainerElement.style.display = 'none';
+
+            currentScenario.choices.forEach(choice => {
+                const choiceButton = document.createElement('button');
+                choiceButton.className = 'choice-button';
+                choiceButton.textContent = choice.text;
+                choiceButton.addEventListener('click', () => handleChoice(choice, choicesContainerElement, feedbackContainerElement));
+                choicesContainerElement.appendChild(choiceButton);
+            });
+        } else {
+            console.error('Main simulation content container not found for displaying scenario.');
         }
     }
 
-    function handleChoice(choice) {
-        feedbackContainerElement.innerHTML = ''; // 清空舊回饋
-
-        const feedbackText = document.createElement('p');
-        feedbackText.innerHTML = `<strong>結果：</strong> ${choice.feedback}`;
-        feedbackContainerElement.appendChild(feedbackText);
-
-        if (choice.privacyImpact) {
-            const privacyImpactText = document.createElement('p');
-            privacyImpactText.innerHTML = `<strong>隱私影響：</strong> ${choice.privacyImpact}`;
-            feedbackContainerElement.appendChild(privacyImpactText);
+    function handleChoice(choice, choicesContainer, feedbackContainer) {
+        if (!currentScenario) {
+            console.error("currentScenario is not defined in handleChoice for main simulation");
+            return;
         }
-        feedbackContainerElement.style.display = 'block';
-
-        // 禁用選項按鈕
-        const buttons = choicesContainerElement.querySelectorAll('.choice-button');
-        buttons.forEach(button => button.disabled = true);
-
+        if (feedbackContainer) {
+            feedbackContainer.innerHTML = '';
+            const feedbackText = document.createElement('p');
+            feedbackText.innerHTML = `<strong>結果：</strong> ${choice.feedback}`;
+            feedbackContainer.appendChild(feedbackText);
+            if (choice.privacyImpact) {
+                const privacyImpactText = document.createElement('p');
+                privacyImpactText.innerHTML = `<strong>隱私影響：</strong> ${choice.privacyImpact}`;
+                feedbackContainer.appendChild(privacyImpactText);
+            }
+            feedbackContainer.style.display = 'block';
+        } else {
+            console.error('Main simulation feedback container not found for handling choice.');
+        }
+        if (choicesContainer) {
+            const buttons = choicesContainer.querySelectorAll('.choice-button');
+            buttons.forEach(button => button.disabled = true);
+        } else {
+            console.error('Main simulation choices container not found for disabling buttons.');
+        }
         if (choice.nextScenarioId) {
             const nextButton = document.createElement('button');
             nextButton.textContent = '繼續下一個情境';
-            nextButton.className = 'cta-button'; // 使用現有的按鈕樣式
+            nextButton.className = 'cta-button';
             nextButton.addEventListener('click', () => displayScenario(choice.nextScenarioId));
-            feedbackContainerElement.appendChild(nextButton);
+            if (feedbackContainer) feedbackContainer.appendChild(nextButton);
         } else if (currentScenario.defaultNextScenarioId) {
-            // 如果選項沒有指定 nextScenarioId，但情境本身有 defaultNextScenarioId
             const nextButton = document.createElement('button');
             nextButton.textContent = '繼續';
-            nextButton.className = 'cta-button'; 
+            nextButton.className = 'cta-button';
             nextButton.addEventListener('click', () => displayScenario(currentScenario.defaultNextScenarioId));
-            feedbackContainerElement.appendChild(nextButton);
+            if (feedbackContainer) feedbackContainer.appendChild(nextButton);
         } else {
-            // 模擬結束
             const endMessage = document.createElement('p');
             endMessage.textContent = "模擬結束。感謝您的參與！";
-            feedbackContainerElement.appendChild(endMessage);
-            // 可以添加一個重置按鈕
-            addRestartButton();
+            if (feedbackContainer) {
+                feedbackContainer.appendChild(endMessage);
+                addRestartButton(feedbackContainer, simulationContentContainer, initializeMainSimulation);
+            }
         }
     }
-    
-    function addRestartButton() {
+
+    function addRestartButton(feedbackContainer, simContainer, initializerFunc) {
         const restartButton = document.createElement('button');
         restartButton.textContent = '重新開始模擬';
-        restartButton.className = 'cta-button secondary'; // 使用次要按鈕樣式
+        restartButton.className = 'cta-button secondary';
         restartButton.addEventListener('click', () => {
-            // 清理並重新開始
-            simulationContentContainer.innerHTML = '<p><em>模擬內容載入中...</em></p>'; 
-            // 延遲一點以確保innerHTML更新後再加載，避免競爭條件
-            setTimeout(() => initializeSimulation(), 50); 
+            if (simContainer) simContainer.innerHTML = '<p><em>模擬內容載入中...</em></p>';
+            setTimeout(initializerFunc, 50);
         });
-        feedbackContainerElement.appendChild(restartButton);
+        if (feedbackContainer) feedbackContainer.appendChild(restartButton);
     }
 
-    function initializeSimulation() {
-        if (privacySimulationScenarios.length > 0) {
-            displayScenario(privacySimulationScenarios[0].id); // 載入第一個情境
+    function initializeMainSimulation() {
+        if (typeof privacySimulationScenarios !== 'undefined' && privacySimulationScenarios && privacySimulationScenarios.length > 0) {
+            if (simulationContentContainer) {
+                if (privacySimulationScenarios[0] && privacySimulationScenarios[0].id) {
+                    displayScenario(privacySimulationScenarios[0].id);
+                } else {
+                    simulationContentContainer.innerHTML = '<p class="error-message">無法找到起始主要模擬情境的ID。</p>';
+                }
+            } else {
+                console.error('Main simulation content container not found for initializing simulation.');
+            }
         } else {
-             simulationContentContainer.innerHTML = '<p class="error-message">沒有可用的模擬情境。</p>';
+            console.warn('privacySimulationScenarios is not defined or empty. Main simulation cannot start.');
+            if (simulationContentContainer) {
+                simulationContentContainer.innerHTML = '<p class="error-message">主要隱私模擬數據載入失敗，無法啟動。請確保 `privacy_simulation_data.js` 正確載入且 `privacySimulationScenarios` 數據可用。</p>';
+            }
         }
     }
 
-    // 初始化模擬
-    initializeSimulation();
+    if (simulationContentContainer) {
+         initializeMainSimulation();
+    } else {
+        console.warn("Element with ID 'simulation-content-container' not found at DOMContentLoaded. Main simulation will not start automatically.");
+    }
 
+    // Removed renderNeuroRights and renderTemplatesInfo function definitions as their calls were removed.
+    // If they were used elsewhere, they should be kept or managed appropriately.
 }); 

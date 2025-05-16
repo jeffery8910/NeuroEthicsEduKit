@@ -64,7 +64,192 @@
                 <h3>學習與反思</h3>
                 <p>完成模擬後，我們將提供相關的討論問題、案例分析和資源連結，幫助您深化對數據隱私和神經倫理議題的理解。</p>
                  <div id="reflection-content-container" class="dynamic-content-container">
-                    <!-- 反思內容將由 JavaScript 動態載入或在此靜態提供 -->
+                    <h4>討論問題 (點擊卡片查看參考答案)</h4>
+                    <div class="controls-container">
+                        <button id="revealAllAnswers" class="control-button">展開所有答案</button>
+                        <button id="hideAllAnswers" class="control-button">隱藏所有答案</button>
+                    </div>
+                    <div class="flip-cards-grid">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <h5>問題 1</h5>
+                                    <p>在您剛剛完成的模擬情境中，哪一個決策點讓您覺得最困難？為什麼？</p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h5>參考答案 1</h5>
+                                    <p>博士級參考：最困難的決策點往往涉及個人核心價值與潛在社會/技術效益之間的衝突。例如，在神經技術情境下，對「認知自由」或「心理完整性」的感知威脅，即便面對顯著的學習效率提升承諾，也可能引發深層次的倫理不安。困難度亦可能源於資訊不對稱、對長期影響的未知，以及缺乏清晰的倫理指引框架。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <h5>問題 2</h5>
+                                    <p>這次的模擬體驗是否改變了您對教育場域中使用神經技術與數據隱私的看法？如何改變？</p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h5>參考答案 2</h5>
+                                    <p>博士級參考：模擬體驗若能有效地呈現多方視角（如學生、開發者、管理者）的權衡與後果，常能促使參與者從單一的「使用者」或「受保護者」視角，轉向更系統性的倫理思維。這包括對數據生命週期、演算法偏見，以及「知情同意」在複雜技術面前的侷限性產生更深刻的理解。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <h5>問題 3</h5>
+                                    <p>您認為學生、教育工作者、學校管理者和 EdTech 開發者在保護學生（神經）數據隱私方面各應負擔哪些責任？</p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h5>參考答案 3</h5>
+                                    <p>博士級參考：責任分配應遵循多層次、多主體的原則。學生有權被充分告知並擁有數據自主性；教育者需具備倫理素養以引導和保護學生；學校管理者應建立完善的數據治理框架與監督機制，確保技術採購與部署的合乎倫理；EdTech開發者則負有「倫理始於設計(Ethics by Design)」的責任，將隱私保護和公平性嵌入產品核心。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <h5>問題 4</h5>
+                                    <p>您是否可以想到在現實生活中，有哪些類似的倫理困境或數據隱私問題可能會出現？</p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h5>參考答案 4</h5>
+                                    <p>博士級參考：現實生活中，類似的倫理困境體現在個性化學習平台對學生學習行為的過度追蹤、基於AI的情緒識別系統在課堂管理中的應用、乃至於大學招生中對社交媒體數據的分析。這些情境均涉及數據隱私、公平性、透明度以及潛在的歧視風險。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <h5>問題 5</h5>
+                                    <p>「匿名化」數據真的能完全保護個人隱私嗎？在模擬中或現實中，您認為有哪些潛在的風險？</p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h5>參考答案 5</h5>
+                                    <p>博士級參考：「匿名化」並非萬無一失。在神經數據等高維度、高度個人化的數據集面前，傳統匿名技術面臨嚴峻挑戰。重識別風險（re-identification）始終存在，尤其當匿名數據與其他外部數據集結合時。此外，即使個體無法被直接識別，群體層面的模式分析也可能導致對特定學生群體的標籤化或歧視。因此，需輔以差分隱私、聯邦學習等更強健的隱私增強技術（PETs）及嚴格的數據治理。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>案例分析</h4>
+                    <p>點擊各個案例標題以展開或收合詳細內容。</p>
+                    <div class="controls-container">
+                        <button id="expandAllCases" class="control-button">全部展開案例</button>
+                        <button id="collapseAllCases" class="control-button">全部收合案例</button>
+                    </div>
+                    <div class="case-studies-grid">
+                        <div class="case-study-card">
+                            <div class="case-study-card-header">
+                                <h5>案例一：神經回饋與學習輔助：ADHD/學習障礙兒童教育中的倫理考量</h5>
+                                <span class="case-study-card-toggle">+</span>
+                            </div>
+                            <div class="case-study-card-body">
+                                <p><strong>情境簡述：</strong>神經回饋是一種利用即時腦波（EEG）監測，讓個體學習調節自身腦部活動的技術。近年來，有研究與應用嘗試將神經回饋用於輔助患有注意力不足過動症（ADHD）或特定學習障礙的兒童，期望透過訓練他們「優化」腦波模式，以改善其專注力、減少過動行為或提升學習成效。這類介入可能在學校、診所或家庭環境中進行，並可能涉及特定的軟硬體設備。</p>
+                                <p><strong>倫理議題：</strong></p>
+                                <ul>
+                                    <li><strong>有效性與科學實證：</strong>神經回饋作爲一種教育介入手段，其長期效果和科學證據的充分性如何？是否存在過度宣傳或誤導的風險？</li>
+                                    <li><strong>標籤化與污名化：</strong>針對特定學生群體（如ADHD兒童）使用腦部技術，是否可能加劇他們的標籤化或自我污名化？</li>
+                                    <li><strong>公平性與可及性：</strong>神經回饋治療或訓練通常價格不菲，這是否會造成教育資源分配不均，使得只有特定社經背景的家庭能負擔？</li>
+                                    <li><strong>知情同意與自主性：</strong>兒童（尤其是年幼或有特殊需求的兒童）在多大程度上能夠理解並自主同意參與神經回饋訓練？家長、教師和醫療專業人員的角色與責任為何？</li>
+                                    <li><strong>潛在副作用與長期影響：</strong>對發展中的兒童大腦進行干預，是否存在未知的潛在副作用或長期影響？</li>
+                                    <li><strong>數據隱私與濫用：</strong>訓練過程中收集的腦波數據如何被儲存、保護和使用？是否存在被濫用或不當商業化的風險？</li>
+                                    <li><strong>常態化與「神經增強」的界線：</strong>如果神經回饋被證實對特定群體有效，這是否會推動其應用於「正常」學生以追求「認知增強」，從而引發更廣泛的倫理爭議？</li>
+                                </ul>
+                                <p><strong>討論點：</strong></p>
+                                <ul>
+                                    <li>在考慮為有特殊需求的學生引入神經回饋等神經技術時，應如何平衡潛在益處與倫理風險？</li>
+                                    <li>學校和教育者在評估和決定是否採用這類新興技術時，應遵循哪些倫理準則？</li>
+                                    <li>如何確保在使用神經回饋技術時，充分尊重兒童的自主性並保護其最大利益？</li>
+                                    <li>針對神經回饋在教育中的應用，需要哪些研究、政策或規範來指導其實踐？</li>
+                                </ul>
+                                <p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9555209/" target="_blank" rel="noopener noreferrer">深入閱讀：Opportunity Cost or Opportunity Lost: An Empirical Assessment of Ethical Concerns and Attitudes of EEG Neurofeedback Users (Neuroethics, PMC)</a></p>
+                            </div>
+                        </div>
+                        <div class="case-study-card">
+                            <div class="case-study-card-header">
+                                <h5>案例二：課堂中的「讀心術」？腦波監測技術的倫理挑戰</h5>
+                                <span class="case-study-card-toggle">+</span>
+                            </div>
+                            <div class="case-study-card-body">
+                                <p><strong>情境簡述：</strong>近年來，一些穿戴式腦波監測設備（如EEG頭帶）開始進入教育場景，宣稱可以追蹤學生的注意力水平、情緒狀態或認知負荷，以期實現「個性化教學」或「提升學習效率」。例如，教師可能根據系統回饋調整教學節奏，或學生被鼓勵使用此類設備來「優化」其學習狀態。然而，這些技術的應用引發了關於學生精神隱私、數據安全、潛在偏見以及對兒童發展自主性的深遠倫理擔憂。</p>
+                                <p><strong>倫理議題：</strong></p>
+                                <ul>
+                                    <li><strong>精神隱私 (Mental Privacy):</strong> 腦波數據是最為私密的個人資訊之一。學校是否有權收集、分析甚至儲存學生的腦波活動？這些數據如何被保護以防濫用或洩露？</li>
+                                    <li><strong>數據安全與所有權:</strong> 收集到的腦波數據將如何儲存？由誰擁有？第三方（如技術供應商）是否有權存取？如果發生數據洩露，責任誰屬？</li>
+                                    <li><strong>知情同意與自主性:</strong> 學生（特別是年幼者）及其家長是否能真正理解此類技術的運作方式及其潛在風險，從而做出「知情」的同意？持續的監測是否會 subtly coerce 學生符合某種「理想」的腦力狀態，從而影響其認知自由與自主發展？</li>
+                                    <li><strong>演算法偏見與公平性:</strong> 用於解讀腦波數據的演算法是否存在偏見（例如，基於不同文化背景、神經多樣性的個體差異）？這是否會導致對某些學生的不公平標籤化或差別待遇？</li>
+                                    <li><strong>過度診斷與正常化壓力:</strong> 持續監測是否會導致對學生注意力或情緒的過度診斷，將正常的波動視為問題？這是否會給學生帶來不必要的壓力和「被修正」的焦慮？</li>
+                                    <li><strong>長期影響未知:</strong> 長期在教育環境中使用腦波監測技術，對學生的自我認知、學習動機以及師生關係會產生哪些長遠影響，目前尚缺乏足夠研究。</li>
+                                </ul>
+                                <p><strong>討論點：</strong></p>
+                                <ul>
+                                    <li>在追求教育創新和提升學習效率的同時，我們如何界定和保護學生的「精神隱私」界線？</li>
+                                    <li>學校和教育機構在引入腦波監測等神經技術前，應進行哪些倫理風險評估？需要哪些透明的政策和監督機制？</li>
+                                    <li>如何確保學生和家長在面對此類技術時，擁有真正的知情權和選擇權？</li>
+                                    <li>開發者在設計教育用神經技術產品時，應承擔哪些倫理責任，以避免偏見和潛在傷害？</li>
+                                    <li>是否有其他侵入性較小的方法，能夠達到類似的教育目標，而無需直接監測學生的腦部活動？</li>
+                                </ul>
+                                <p><a href="https://theconversation.com/creepy-or-cool-privacy-risks-of-brain-monitoring-tech-for-kids-in-school-are-real-and-need-to-be-managed-169226" target="_blank" rel="noopener noreferrer">深入閱讀：Creepy or cool? Privacy risks of brain-monitoring tech for kids in school... (The Conversation)</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>相關資源</h4>
+                    <div class="controls-container">
+                        <button id="expandAllResources" class="control-button">全部展開</button>
+                        <button id="collapseAllResources" class="control-button">全部收合</button>
+                    </div>
+                    <div class="reflection-cards-container">
+                        <div class="reflection-card">
+                            <div class="reflection-card-header">
+                                <h5>國際神經倫理學會 (International Neuroethics Society)</h5>
+                                <span class="reflection-card-toggle">+</span>
+                            </div>
+                            <div class="reflection-card-body">
+                                <p><a href="https://www.neuroethicssociety.org/" target="_blank" rel="noopener noreferrer">訪問 INS 官方網站</a> - 探索最新的神經倫理研究、出版物和活動。</p>
+                            </div>
+                        </div>
+                        <div class="reflection-card">
+                            <div class="reflection-card-header">
+                                <h5>UNESCO - 神經技術與人權</h5>
+                                <span class="reflection-card-toggle">+</span>
+                            </div>
+                            <div class="reflection-card-body">
+                                <p><a href="https://www.unesco.org/en/artificial-intelligence/neurotechnology" target="_blank" rel="noopener noreferrer">UNESCO 神經技術專頁</a> - 了解聯合國教科文組織在神經技術倫理和人權方面的倡議與報告。</p>
+                                <p><a href="https://unesdoc.unesco.org/ark:/48223/pf0000377418" target="_blank" rel="noopener noreferrer">IBC Report on the Ethical Issues of Neurotechnology</a> - 閱讀國際生物倫理委員會關於神經技術倫理問題的報告。</p>
+                            </div>
+                        </div>
+                        <div class="reflection-card">
+                            <div class="reflection-card-header">
+                                <h5>學生數據隱私權益</h5>
+                                <span class="reflection-card-toggle">+</span>
+                            </div>
+                            <div class="reflection-card-body">
+                                <p><a href="https://studentprivacy.ed.gov/" target="_blank" rel="noopener noreferrer">Student Privacy Compass (U.S. Department of Education)</a> - 提供美國學生隱私相關的資源與指引。</p>
+                                <p><a href="https://www.privacyshield.gov/" target="_blank" rel="noopener noreferrer">Privacy Shield Framework</a> - 了解關於跨大西洋數據傳輸的隱私保護框架（儘管其狀態可能有所變化，但仍具參考價值）。</p>
+                            </div>
+                        </div>
+                        <div class="reflection-card">
+                            <div class="reflection-card-header">
+                                <h5>EdTech 倫理設計實踐</h5>
+                                <span class="reflection-card-toggle">+</span>
+                            </div>
+                            <div class="reflection-card-body">
+                                <p><a href="https://foundation.mozilla.org/en/privacynotincluded/" target="_blank" rel="noopener noreferrer">Mozilla - Privacy Not Included</a> - Mozilla基金會對連接設備（包括一些EdTech產品）的隱私評估指南。</p>
+                                <p><a href="https://www.commonsense.org/education/privacy" target="_blank" rel="noopener noreferrer">Common Sense Education - Privacy Program</a> - 為學校和教育工作者提供EdTech產品隱私評估和建議。</p>
+                            </div>
+                        </div>
+                        <div class="reflection-card">
+                            <div class="reflection-card-header">
+                                <h5>本站教育者工具包資源</h5>
+                                <span class="reflection-card-toggle">+</span>
+                            </div>
+                            <div class="reflection-card-body">
+                                <p>查閱本站「教育者工具包」中的 <a href="educator_toolkit.html#international-guidelines-section">國際指南與資源中心</a>。</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -84,6 +269,8 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/data_loader.js"></script> 
+    <script src="../js/interactive_simulations.js"></script>
     <script src="../js/data_modules/privacy_simulation_data.js"></script>
     <script src="../js/privacy_simulation_page.js"></script>
 </body>

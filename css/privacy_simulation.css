@@ -77,4 +77,275 @@
 #simulation-introduction p,
 #learning-reflection p {
     margin-bottom: 1em;
+}
+
+/* Styles for Reflection Cards */
+#reflection-content-container h4 {
+    margin-top: 30px; /* 與上方內容的間距 */
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.reflection-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 卡片之間的間距 */
+}
+
+.reflection-card {
+    background-color: #fff; /* 卡片背景色 */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.reflection-card-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* 讓標題和切換符號分開 */
+    align-items: center;
+    border-bottom: 1px solid #eee; /* 標題和內容之間的分隔線，只在未展開時或預設顯示 */
+}
+
+.reflection-card.active .reflection-card-header {
+    border-bottom: 1px solid #eee; /* 展開時也顯示分隔線 */
+}
+
+.reflection-card-header h5 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #0056b3; /* 標題顏色，與按鈕主色調呼應 */
+}
+
+.reflection-card-toggle {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.reflection-card.active .reflection-card-toggle {
+    transform: rotate(45deg); /* 將 + 旋轉成 x */
+}
+
+.reflection-card-body {
+    padding: 0 20px; /* 初始無上下內邊距 */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* 平滑展開動畫 */
+}
+
+.reflection-card.active .reflection-card-body {
+    padding: 15px 20px; /* 展開後的上下內邊距 */
+    max-height: 500px; /* 一個足夠大的值以容納內容，可以根據實際內容調整 */
+    /* 如果內容可能非常多，可以考慮用 JavaScript 計算實際高度 */
+}
+
+.reflection-card-body p {
+    margin-bottom: 10px;
+}
+
+.reflection-card-body p:last-child {
+    margin-bottom: 0;
+}
+
+.reflection-card-body a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.reflection-card-body a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for Case Study Cards - similar to reflection cards */
+.case-studies-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 卡片之間的間距 */
+    margin-top: 15px; /* 與上方控制按鈕的間距 */
+}
+
+.case-study-card {
+    background-color: #fff; /* 卡片背景色 */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.case-study-card-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* 讓標題和切換符號分開 */
+    align-items: center;
+    border-bottom: 1px solid #eee; 
+}
+
+.case-study-card.active .case-study-card-header {
+    border-bottom: 1px solid #eee; 
+}
+
+.case-study-card-header h5 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #0056b3; /* 標題顏色 */
+}
+
+.case-study-card-toggle {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.case-study-card.active .case-study-card-toggle {
+    transform: rotate(45deg); /* 將 + 旋轉成 x (減號效果) */
+}
+
+.case-study-card-body {
+    padding: 0 20px; /* 初始無上下內邊距 */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* 平滑展開動畫 */
+}
+
+.case-study-card.active .case-study-card-body {
+    padding: 20px 20px; /* 展開後的上下內邊距 */
+    max-height: 1500px; /* 增加最大高度以容納較長的案例內容 */
+}
+
+.case-study-card-body p,
+.case-study-card-body ul {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.case-study-card-body p:last-child,
+.case-study-card-body ul:last-child {
+    margin-bottom: 0;
+}
+
+.case-study-card-body ul {
+    padding-left: 20px;
+}
+
+.case-study-card-body a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.case-study-card-body a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for Flip Cards (for "討論問題") */
+#reflection-content-container h4 {
+    /* This style might be general, ensure it doesn't conflict or adjust as needed */
+    margin-top: 30px;
+    margin-bottom: 20px; /* Adjusted for closer spacing to cards */
+    color: #333;
+    font-size: 1.3em;
+}
+
+.flip-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.flip-card {
+    background-color: transparent;
+    min-height: 220px; /* Min height for cards, adjust as needed */
+    perspective: 1000px; /* For 3D effect */
+    border-radius: 8px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box; /* Ensure padding doesn't break layout */
+}
+
+.flip-card-front {
+    background-color: #f8f9fa; /* Light background for front */
+    border: 1px solid #dee2e6;
+    color: #333;
+}
+
+.flip-card-front h5 {
+    color: #007bff; /* Question title color */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.flip-card-back {
+    background-color: #007bff; /* Theme blue for back */
+    color: white;
+    border: 1px solid #0056b3;
+    transform: rotateY(180deg);
+    overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.flip-card-back h5 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.flip-card-back p {
+    font-size: 0.9em; /* Slightly smaller text for answers if needed */
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Styles for Control Buttons (Expand/Collapse All, Reveal/Hide All) */
+.controls-container {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.control-button {
+    background-color: #6c757d; /* Secondary button color */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.control-button:hover {
+    background-color: #5a6268;
 } 

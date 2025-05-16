@@ -1,0 +1,316 @@
+/* CSS for Role-Playing Simulation Section */
+
+/* Scenario Selection Area */
+.role-play-scenarios-container {
+    margin: 20px 0;
+}
+
+.scenario-selector {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.scenario-card {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 48%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.scenario-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.scenario-card.active {
+    border-color: #007bff;
+    background-color: #e6f2ff;
+}
+
+.scenario-card h5 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.scenario-card p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.scenario-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+/* Role-Play Simulation Area */
+.role-play-simulation {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.scenario-content {
+    display: none;
+}
+
+.scenario-content.active {
+    display: block;
+}
+
+.scenario-header {
+    margin-bottom: 20px;
+}
+
+.scenario-header h4 {
+    margin-top: 0;
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.scenario-description {
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Role Selection Area */
+.role-selection-container {
+    margin-bottom: 25px;
+}
+
+.role-selection-container h5 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.role-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.role-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.role-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.role-card.active {
+    border-color: #28a745;
+    background-color: #f0fff4;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.role-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.role-card h6 {
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.role-card p {
+    margin: 0;
+    font-size: 0.85em;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Role Interaction Area */
+.role-interaction-container {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.role-perspective-container {
+    margin-bottom: 20px;
+}
+
+.role-perspective-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.role-perspective-icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.role-perspective-title {
+    margin: 0;
+    font-size: 1.2em;
+    color: #0056b3;
+}
+
+.role-perspective-content {
+    line-height: 1.6;
+    color: #333;
+}
+
+.role-decision-container {
+    margin-top: 20px;
+}
+
+.role-decision-prompt {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.role-decision-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.decision-option {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.decision-option:hover {
+    background-color: #e0e0e0;
+}
+
+.decision-option.selected {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.role-feedback-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #6c757d;
+    border-radius: 4px;
+}
+
+.role-feedback-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.role-feedback-content {
+    color: #495057;
+    line-height: 1.6;
+}
+
+.role-play-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.role-play-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.role-play-button.primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.role-play-button.primary:hover {
+    background-color: #0056b3;
+}
+
+.role-play-button.secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.role-play-button.secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Role Play Info Container */
+.role-play-info-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.role-play-info-container h5 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.role-play-info-container ul {
+    padding-left: 20px;
+}
+
+.role-play-info-container li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .scenario-selector {
+        flex-direction: column;
+    }
+    
+    .scenario-card {
+        width: 100%;
+    }
+    
+    .role-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .role-cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .role-play-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .role-play-button {
+        width: 100%;
+    }
+} 
