@@ -109,4 +109,127 @@ function renderTemplatesInfo(data, container) {
         html += '<p>目前沒有可顯示的模板資訊。</p>';
     }
     container.innerHTML = html;
-} 
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof privacySimulationScenarios === 'undefined' || !privacySimulationScenarios || privacySimulationScenarios.length === 0) {
+        console.error('privacy_simulation_data.js 未載入或 privacySimulationScenarios 未定義或為空');
+        const simulationContainer = document.getElementById('simulation-content-container');
+        if (simulationContainer) {
+            simulationContainer.innerHTML = '<p class="error-message">隱私模擬數據載入失敗，請檢查控制台或稍後再試。</p>';
+        }
+        return;
+    }
+
+    const scenarioTitleElement = document.createElement('h4'); // 用於顯示情境標題
+    const scenarioRoleElement = document.createElement('p');  // 用於顯示角色
+    const scenarioDescriptionElement = document.createElement('p'); // 用於顯示情境描述
+    const choicesContainerElement = document.createElement('div'); // 用於放置選項按鈕
+    choicesContainerElement.className = 'choices-container';
+    const feedbackContainerElement = document.createElement('div'); // 用於顯示回饋
+    feedbackContainerElement.className = 'feedback-container';
+    const simulationContentContainer = document.getElementById('simulation-content-container');
+
+    let currentScenario;
+
+    function displayScenario(scenarioId) {
+        currentScenario = privacySimulationScenarios.find(s => s.id === scenarioId);
+        if (!currentScenario) {
+            console.error(`找不到 ID 為 ${scenarioId} 的情境。`);
+            simulationContentContainer.innerHTML = `<p class="error-message">載入情境 ${scenarioId} 失敗。</p>`;
+            return;
+        }
+
+        scenarioTitleElement.textContent = currentScenario.title;
+        scenarioRoleElement.innerHTML = `<strong>您的角色：</strong> ${currentScenario.role}`;
+        scenarioDescriptionElement.textContent = currentScenario.description;
+
+        choicesContainerElement.innerHTML = ''; // 清空之前的選項
+        feedbackContainerElement.innerHTML = ''; // 清空之前的回饋
+        feedbackContainerElement.style.display = 'none';
+
+        currentScenario.choices.forEach(choice => {
+            const choiceButton = document.createElement('button');
+            choiceButton.className = 'choice-button'; // 可以為按鈕添加樣式
+            choiceButton.textContent = choice.text;
+            choiceButton.addEventListener('click', () => handleChoice(choice));
+            choicesContainerElement.appendChild(choiceButton);
+        });
+
+        // 將元素添加到容器中 (如果它們還沒被添加的話)
+        if (!simulationContentContainer.contains(scenarioTitleElement)) {
+            simulationContentContainer.innerHTML = ''; // 清空初始的"載入中"訊息
+            simulationContentContainer.appendChild(scenarioTitleElement);
+            simulationContentContainer.appendChild(scenarioRoleElement);
+            simulationContentContainer.appendChild(scenarioDescriptionElement);
+            simulationContentContainer.appendChild(choicesContainerElement);
+            simulationContentContainer.appendChild(feedbackContainerElement);
+        }
+    }
+
+    function handleChoice(choice) {
+        feedbackContainerElement.innerHTML = ''; // 清空舊回饋
+
+        const feedbackText = document.createElement('p');
+        feedbackText.innerHTML = `<strong>結果：</strong> ${choice.feedback}`;
+        feedbackContainerElement.appendChild(feedbackText);
+
+        if (choice.privacyImpact) {
+            const privacyImpactText = document.createElement('p');
+            privacyImpactText.innerHTML = `<strong>隱私影響：</strong> ${choice.privacyImpact}`;
+            feedbackContainerElement.appendChild(privacyImpactText);
+        }
+        feedbackContainerElement.style.display = 'block';
+
+        // 禁用選項按鈕
+        const buttons = choicesContainerElement.querySelectorAll('.choice-button');
+        buttons.forEach(button => button.disabled = true);
+
+        if (choice.nextScenarioId) {
+            const nextButton = document.createElement('button');
+            nextButton.textContent = '繼續下一個情境';
+            nextButton.className = 'cta-button'; // 使用現有的按鈕樣式
+            nextButton.addEventListener('click', () => displayScenario(choice.nextScenarioId));
+            feedbackContainerElement.appendChild(nextButton);
+        } else if (currentScenario.defaultNextScenarioId) {
+            // 如果選項沒有指定 nextScenarioId，但情境本身有 defaultNextScenarioId
+            const nextButton = document.createElement('button');
+            nextButton.textContent = '繼續';
+            nextButton.className = 'cta-button'; 
+            nextButton.addEventListener('click', () => displayScenario(currentScenario.defaultNextScenarioId));
+            feedbackContainerElement.appendChild(nextButton);
+        } else {
+            // 模擬結束
+            const endMessage = document.createElement('p');
+            endMessage.textContent = "模擬結束。感謝您的參與！";
+            feedbackContainerElement.appendChild(endMessage);
+            // 可以添加一個重置按鈕
+            addRestartButton();
+        }
+    }
+    
+    function addRestartButton() {
+        const restartButton = document.createElement('button');
+        restartButton.textContent = '重新開始模擬';
+        restartButton.className = 'cta-button secondary'; // 使用次要按鈕樣式
+        restartButton.addEventListener('click', () => {
+            // 清理並重新開始
+            simulationContentContainer.innerHTML = '<p><em>模擬內容載入中...</em></p>'; 
+            // 延遲一點以確保innerHTML更新後再加載，避免競爭條件
+            setTimeout(() => initializeSimulation(), 50); 
+        });
+        feedbackContainerElement.appendChild(restartButton);
+    }
+
+    function initializeSimulation() {
+        if (privacySimulationScenarios.length > 0) {
+            displayScenario(privacySimulationScenarios[0].id); // 載入第一個情境
+        } else {
+             simulationContentContainer.innerHTML = '<p class="error-message">沒有可用的模擬情境。</p>';
+        }
+    }
+
+    // 初始化模擬
+    initializeSimulation();
+
+}); 

@@ -69,9 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         } else if (data.description && !data.content) {
-            // 如果只有 description 且沒有 content，則顯示 description
-            // HTML 結構中已經有 <p> 顯示 description，這裡不再重複添加
-            // 但可以根據需要調整，例如如果想用 JS 控制 description 的顯示
+            // HTML 結構中已經有 <p> 顯示 description
+            // 如果需要用JS控制，可以在此處添加邏輯
         }
     }
 
@@ -89,67 +88,3 @@ document.addEventListener('DOMContentLoaded', () => {
         populateSection('international-guidelines-container', educatorToolkitData.internationalGuidelines);
     }
 });
-
-function renderEthicalAssessmentGuides(data, container) {
-    let html = `<h2>${data.title_zh_TW || '學生評估的倫理考量'}</h2>`;
-    if (data.overall_ethical_considerations_zh_TW) {
-        html += `<h3>${data.overall_ethical_considerations_zh_TW.title_zh_TW}</h3>`;
-        html += `<p>${data.overall_ethical_considerations_zh_TW.introduction_zh_TW}</p>`;
-        html += '<ul>';
-        data.overall_ethical_considerations_zh_TW.points_zh_TW.forEach(point => {
-            html += `<li><strong>${point.point_title_zh_TW}:</strong> ${point.description_zh_TW}</li>`;
-        });
-        html += '</ul>';
-    }
-    if (data.neurotech_based_assessment_guidelines_zh_TW) {
-        html += `<h3>${data.neurotech_based_assessment_guidelines_zh_TW.title_zh_TW}</h3>`;
-        html += `<p>${data.neurotech_based_assessment_guidelines_zh_TW.introduction_zh_TW}</p>`;
-        html += '<ul>';
-        data.neurotech_based_assessment_guidelines_zh_TW.guidelines_zh_TW.forEach(guideline => {
-            html += `<li><strong>${guideline.guideline_title_zh_TW}:</strong> ${guideline.description_zh_TW}</li>`;
-        });
-        html += '</ul>';
-    }
-    container.innerHTML = html;
-}
-
-function renderNeurodiversityResources(data, container) {
-    let html = `<h2>${data.title_zh_TW || '支持神經多樣性學生的資源'}</h2>`;
-    if (data.sections_zh_TW && data.sections_zh_TW.length > 0) {
-        data.sections_zh_TW.forEach(section => {
-            html += `
-                <div class="content-card resource-card">
-                    <h3 class="card-title">${section.title_zh_TW}</h3>
-                    <p class="card-content">${section.introduction_zh_TW}</p>
-                    <ul>
-                        ${section.points_zh_TW.map(point => `<li><strong>${point.point_title_zh_TW || ''}</strong> ${point.description_zh_TW}</li>`).join('')}
-                    </ul>
-                    ${section.additional_notes_zh_TW ? `<p><em>${section.additional_notes_zh_TW}</em></p>` : ''}
-                </div>
-            `;
-        });
-    }
-    container.innerHTML = html;
-}
-
-function renderEdTechEvaluationRubrics(data, container) {
-    let html = `<h2>${data.title_zh_TW || 'EdTech 倫理評估指標'}</h2>`;
-    if (data.introduction_zh_TW) {
-        html += `<p>${data.introduction_zh_TW}</p>`;
-    }
-    if (data.evaluation_areas_zh_TW && data.evaluation_areas_zh_TW.length > 0) {
-        html += '<div class="cards-container">';
-        data.evaluation_areas_zh_TW.forEach(area => {
-            html += `
-                <div class="card rubric-card">
-                    <h3 class="card-title">${area.area_name_zh_TW}</h3>
-                    <p class="card-content"><strong>目標：</strong> ${area.goal_zh_TW}</p>
-                    <div class="criteria">
-                        <strong>關鍵評估標準：</strong>
-                        <ul>
-                            ${area.key_criteria_zh_TW.map(criterion => `<li>${criterion.criterion_zh_TW}: ${criterion.description_zh_TW}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <p class="card-content"><strong>提示性問題：</strong> ${area.prompting_questions_zh_TW.join(', ')}</p>
-                </div>
-            `

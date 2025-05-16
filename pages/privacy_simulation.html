@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NeuroEthicsEduKit 隱私模擬 - 學生神經數據與認知隱私">
+    <meta name="description" content="NeuroEthicsEduKit 隱私模擬 - 互動式學習數據隱私與神經倫理">
     <title>隱私模擬 - NeuroEthicsEduKit</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/cards.css">
+    <!-- 可能需要一個此頁面專用的CSS -->
+    <!-- <link rel="stylesheet" href="../css/privacy_simulation.css"> -->
+    <link rel="stylesheet" href="../css/privacy_simulation.css">
 </head>
 <body>
     <header class="site-header">
@@ -38,56 +41,30 @@
     <main id="main-content" class="main-content">
         <div class="container">
             <section class="page-title-section">
-                <h2>隱私模擬：學生神經數據與認知隱私</h2>
-                <p>提升對學生神經數據獨特敏感性和風險的認識與理解，並推廣保護認知隱私的做法。</p>
+                <h2>隱私模擬：互動式學習體驗</h2>
+                <p>本區塊將提供一個互動式模擬，讓使用者體驗在教育情境中，神經技術數據收集可能引發的隱私問題與倫理困境。</p>
             </section>
 
-            <section id="data-path-simulation-section" class="content-section">
-                <h3>互動式神經數據路徑模擬</h3>
-                <div id="data-path-simulation-container" class="dynamic-content-container">
-                    <div id="privacy-scenario-card" class="content-card scenario-simulation-card" style="display: none;"> <!-- Initially hidden -->
-                        <h4 id="scenario-title"></h4>
-                        <p id="scenario-role"><strong>您的角色：</strong><span id="role-text"></span></p>
-                        <p id="scenario-description"></p>
-                        <div id="scenario-choices-container" class="choices-container vertical-choices">
-                            <!-- Choices will be populated by JavaScript -->
-                        </div>
-                        <div id="scenario-feedback-container" class="outcome-container" style="display: none;">
-                            <h5>決策結果：</h5>
-                            <p id="feedback-text"></p>
-                            <p><strong>隱私影響評分：</strong><span id="privacy-score"></span></p>
-                            <button id="next-scenario-button" class="cta-button" style="display: none;">繼續下一個情境</button>
-                            <button id="restart-simulation-button" class="cta-button secondary">重新開始模擬</button>
-                        </div>
-                    </div>
-                    <div id="simulation-initial-message">
-                        <p>正在載入隱私模擬情境...</p>
-                        <button id="start-simulation-button" class="cta-button" style="display: none;">開始模擬</button>
-                    </div>
+            <section id="simulation-introduction" class="content-section">
+                <h3>模擬介紹</h3>
+                <p>在這個模擬中，您將扮演不同的角色（例如學生、教師、學校管理者或 EdTech 開發者），並在各種情境下面對數據隱私的決策。您的選擇將影響故事的發展和最終結果，從而突顯不同決策的潛在倫理影響。</p>
+                <p>準備好開始了嗎？</p>
+                <!-- 之後會在這裡加入開始模擬的按鈕或引導 -->
+            </section>
+
+            <section id="simulation-area" class="content-section dynamic-content-container">
+                <h3>互動模擬區</h3>
+                <div id="simulation-content-container">
+                    <!-- 模擬的實際內容將由 JavaScript 動態載入此處 -->
+                    <p><em>模擬內容載入中... 或點擊上方按鈕開始。</em></p>
                 </div>
             </section>
 
-            <section id="ai-data-pathway-simulation-section" class="content-section">
-                <h3>AI 學習夥伴與你的數據足跡模擬</h3>
-                <div id="ai-data-pathway-simulation-container" class="dynamic-content-container">
-                    <!-- AI Data Pathway Simulation will be loaded here by JavaScript -->
-                    <p>正在載入 AI 學習夥伴模擬...</p>
-                </div>
-            </section>
-
-            <section id="neurorights-education-section" class="content-section">
-                <h3>「神經權利」與認知自由教育</h3>
-                <div id="neuro-rights-container" class="dynamic-content-container">
-                    <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
-                    <p>提供對新興「神經權利」概念（如心理隱私、個人身份、自由意志等）和認知自由的易懂解釋，討論其在教育環境中對學生的具體影響。詳細內容即將推出。</p>
-                </div>
-            </section>
-
-            <section id="consent-templates-section" class="content-section">
-                <h3>知情同意書與 DPIA 可客製化模板</h3>
-                <div id="consent-templates-info-container" class="dynamic-content-container">
-                    <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
-                    <p>提供可下載和調整的知情同意書模板（專為收集學生神經數據設計）和數據保護影響評估 (DPIA) 模板（專為教育機構採用神經技術或 AI 系統而設）。詳細內容即將推出。</p>
+            <section id="learning-reflection" class="content-section">
+                <h3>學習與反思</h3>
+                <p>完成模擬後，我們將提供相關的討論問題、案例分析和資源連結，幫助您深化對數據隱私和神經倫理議題的理解。</p>
+                 <div id="reflection-content-container" class="dynamic-content-container">
+                    <!-- 反思內容將由 JavaScript 動態載入或在此靜態提供 -->
                 </div>
             </section>
         </div>
@@ -107,8 +84,7 @@
     </footer>
 
     <script src="../js/main.js"></script>
-    <script src="../js/data_loader.js"></script>
-    <script src="../js/interactive_simulations.js"></script>
+    <script src="../js/data_modules/privacy_simulation_data.js"></script>
     <script src="../js/privacy_simulation_page.js"></script>
 </body>
 </html> 

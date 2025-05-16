@@ -1,0 +1,80 @@
+/* CSS for Privacy Simulation Page */
+
+#simulation-area {
+    background-color: #f9f9f9; /* 淡灰色背景 */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+#simulation-content-container h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+#simulation-content-container p {
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.choices-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* 選項按鈕垂直排列 */
+    gap: 10px; /* 按鈕之間的間距 */
+}
+
+.choice-button {
+    background-color: #007bff; /* 主題藍色 */
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.choice-button:hover {
+    background-color: #0056b3; /* 滑鼠懸停時顏色變深 */
+}
+
+.choice-button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.feedback-container {
+    background-color: #e9ecef; /* 較淺的背景用於回饋 */
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.feedback-container p {
+    margin-bottom: 8px;
+}
+
+.feedback-container p:last-child {
+    margin-bottom: 0;
+}
+
+.feedback-container .cta-button, 
+.feedback-container .cta-button.secondary {
+    margin-top: 15px;
+    display: inline-block; /* 讓按鈕並排如果空間允許 */
+    margin-right: 10px;
+}
+
+/* 可以考慮針對特定元素做更細緻的調整 */
+#simulation-introduction p,
+#learning-reflection p {
+    margin-bottom: 1em;
+} 
