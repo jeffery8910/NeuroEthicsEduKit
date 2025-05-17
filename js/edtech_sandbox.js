@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化討論問題卡片的顏色對比度
     improveCardColorContrast();
+    
+    // 初始化設計模式庫
+    initializeDesignPatternsLibrary();
+    
+    // 初始化倫理權衡決策模擬器
+    initializeEthicalDecisionSimulator();
 });
 
 /**
@@ -112,6 +118,451 @@ function isColorDark(color) {
     
     // 亮度小於128視為深色
     return brightness < 128;
+}
+
+/**
+ * 初始化設計模式庫
+ */
+function initializeDesignPatternsLibrary() {
+    const designPatternsContainer = document.getElementById('design-patterns-library');
+    if (!designPatternsContainer) return;
+    
+    // 獲取分類標籤按鈕
+    const categoryTabs = designPatternsContainer.querySelectorAll('.category-tab');
+    
+    // 獲取搜尋輸入框
+    const searchInput = designPatternsContainer.querySelector('#pattern-search-input');
+    
+    // 獲取所有設計模式
+    const designPatterns = designPatternsContainer.querySelectorAll('.design-pattern');
+    
+    // 添加分類標籤點擊事件
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // 移除所有標籤的 active 狀態
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            
+            // 給當前標籤添加 active 狀態
+            this.classList.add('active');
+            
+            // 取得選擇的分類
+            const selectedCategory = this.getAttribute('data-category');
+            
+            // 過濾設計模式
+            filterDesignPatterns(selectedCategory, searchInput.value.trim().toLowerCase());
+        });
+    });
+    
+    // 添加搜尋功能
+    searchInput.addEventListener('input', function() {
+        const activeTab = designPatternsContainer.querySelector('.category-tab.active');
+        const selectedCategory = activeTab ? activeTab.getAttribute('data-category') : 'all';
+        filterDesignPatterns(selectedCategory, this.value.trim().toLowerCase());
+    });
+    
+    // 為設計模式標題添加點擊事件（展開/折疊內容）
+    designPatterns.forEach(pattern => {
+        const title = pattern.querySelector('h4');
+        const content = pattern.querySelector('.pattern-content');
+        
+        if (title && content) {
+            title.addEventListener('click', function() {
+                // 切換內容的顯示狀態
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+        }
+    });
+    
+    // 過濾設計模式的函數
+    function filterDesignPatterns(category, searchText) {
+        designPatterns.forEach(pattern => {
+            const patternCategories = pattern.getAttribute('data-categories');
+            const patternTitle = pattern.querySelector('h4').textContent.toLowerCase();
+            const patternContent = pattern.querySelector('.pattern-content').textContent.toLowerCase();
+            
+            // 判斷是否符合分類條件
+            const matchesCategory = category === 'all' || patternCategories.includes(category);
+            
+            // 判斷是否符合搜尋條件
+            const matchesSearch = searchText === '' || 
+                                patternTitle.includes(searchText) || 
+                                patternContent.includes(searchText);
+            
+            // 根據過濾結果顯示或隱藏
+            if (matchesCategory && matchesSearch) {
+                pattern.style.display = 'block';
+            } else {
+                pattern.style.display = 'none';
+            }
+        });
+    }
+}
+
+/**
+ * 初始化倫理權衡決策模擬器
+ */
+function initializeEthicalDecisionSimulator() {
+    // 獲取相關元素
+    const scenarioContainer = document.getElementById('scenario-container');
+    if (!scenarioContainer) return;
+    
+    const scenarioSelection = document.getElementById('scenario-selection');
+    const activeScenario = document.getElementById('active-scenario');
+    const scenarioTitle = document.getElementById('scenario-title');
+    const scenarioDescription = document.getElementById('scenario-description');
+    const dilemmaDescription = document.getElementById('dilemma-description');
+    const optionsContainer = document.getElementById('options-container');
+    const stakeholderImpact = document.getElementById('stakeholder-impact');
+    const impactContainer = document.getElementById('impact-container');
+    const principlesAnalysis = document.getElementById('principles-analysis');
+    const reflectionQuestion = document.getElementById('reflection-question');
+    const resetScenarioButton = document.getElementById('reset-scenario');
+    const backToScenariosButton = document.getElementById('back-to-scenarios');
+    
+    // 場景數據
+    const scenarios = {
+        "facial-recognition": {
+            title: "臉部辨識出席系統",
+            description: "您正在為一所大學開發一個使用臉部辨識技術的自動出席追蹤系統。該系統將捕捉教室中的臉部影像，自動識別學生並記錄出席情況，大大提高效率並減少手動點名的時間。",
+            dilemma: "然而，這項技術引發了一系列倫理問題。學生的臉部數據是敏感的生物特徵資訊，其收集和存儲需要嚴格的隱私保護措施。此外，有擔憂認為這種持續監控可能創造一種監視文化，影響學習環境的開放性。您需要決定如何平衡效率與隱私保護。",
+            options: [
+                {
+                    text: "全面實施臉部辨識系統，設定嚴格的數據保護措施",
+                    impacts: {
+                        students: {
+                            text: "學生失去匿名性，可能感到被持續監控，但出席記錄更準確。",
+                            type: "negative"
+                        },
+                        teachers: {
+                            text: "教師獲得顯著的時間節省和更準確的出席數據。",
+                            type: "positive"
+                        },
+                        administration: {
+                            text: "管理者獲得更多數據，但需承擔數據保護的法律責任。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "效率 vs 隱私：選擇效率優先，但嘗試通過保護措施減輕隱私影響",
+                        "資料最小化：需確保只收集必要的面部數據，並有明確的刪除政策",
+                        "知情同意：需建立明確的同意機制，告知學生數據如何被使用"
+                    ],
+                    reflection: "在追求教育效率的過程中，我們應該接受多少監控和隱私犧牲？是否有更尊重隱私的替代技術可以達到類似的目標？"
+                },
+                {
+                    text: "實施基於選擇加入的混合系統，允許學生選擇傳統點名方式",
+                    impacts: {
+                        students: {
+                            text: "學生擁有自主選擇權，但可能出現不平等或社交壓力。",
+                            type: "mixed"
+                        },
+                        teachers: {
+                            text: "教師需管理兩套出席系統，增加了複雜性。",
+                            type: "negative"
+                        },
+                        administration: {
+                            text: "管理者需處理更複雜的系統，但降低了法律和倫理風險。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "自主權：尊重學生選擇的權利，平衡個人自主權與系統效率",
+                        "公平性：需確保選擇不使用臉部辨識的學生不會受到不公平對待",
+                        "透明度：清晰說明兩種系統的優缺點，以便學生做出明智選擇"
+                    ],
+                    reflection: "給予選擇是否足以保護自主權？在同儕壓力下，選擇退出的自由是否真的存在？如何確保兩組學生得到平等對待？"
+                },
+                {
+                    text: "放棄臉部辨識，改用較不侵入性的替代技術（如ID卡掃描或QR碼）",
+                    impacts: {
+                        students: {
+                            text: "學生隱私受到更多保護，但需要記得攜帶ID或設備。",
+                            type: "positive"
+                        },
+                        teachers: {
+                            text: "教師獲得部分自動化，但仍需處理遺忘ID的情況。",
+                            type: "mixed"
+                        },
+                        administration: {
+                            text: "管理者在法律和倫理風險較低的情況下實現部分效率提升。",
+                            type: "positive"
+                        }
+                    },
+                    principles: [
+                        "隱私優先：選擇保護學生隱私高於最大效率",
+                        "技術適度：使用足以滿足需求而不過度收集數據的技術",
+                        "風險比例：採用與目標相比風險更低的解決方案"
+                    ],
+                    reflection: "在教育技術中，我們應該如何確定「足夠好」和「過度」的平衡點？效率和便利性的增益是否足以證明引入更具侵入性技術的合理性？"
+                }
+            ]
+        },
+        "predictive-analytics": {
+            title: "預測性學習分析",
+            description: "您正在設計一個使用 AI 分析學生歷史數據，預測其學業成功可能性的系統。該系統旨在識別可能需要額外支持的高風險學生，以便教師和輔導員能夠及早干預。",
+            dilemma: "這種預測模型可能有助於提高學生成功率，但也存在標籤學生和強化已有偏見的風險。預測可能成為自我實現的預言，特別是如果教師知道學生被系統標記為「高風險」。您需要決定如何平衡早期干預的益處與潛在的負面標籤效應。",
+            options: [
+                {
+                    text: "全面實施，但僅向輔導員而非教師顯示風險預測",
+                    impacts: {
+                        students: {
+                            text: "高風險學生可能獲得額外支持，但可能不知道自己被系統標記。",
+                            type: "mixed"
+                        },
+                        teachers: {
+                            text: "教師獲得干預建議，但不受預測結果偏見影響。",
+                            type: "positive"
+                        },
+                        counselors: {
+                            text: "輔導員獲得豐富工具，但需判斷預測的準確性和適當干預。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "最小化傷害：限制預測訪問以減少標籤效應",
+                        "公正公平：通過限制信息訪問來降低偏見風險",
+                        "支持自主性：保護學生不受自動預測的潛在影響"
+                    ],
+                    reflection: "誰應有權查看關於學生的預測數據？隱藏信息是否比開放透明更符合倫理？如何確保這些系統不會強化既有不平等？"
+                },
+                {
+                    text: "以透明方式實施，向所有利益相關者（包括學生本人）顯示預測及其依據",
+                    impacts: {
+                        students: {
+                            text: "學生獲得自我了解工具，但可能受到消極預測的心理影響。",
+                            type: "mixed"
+                        },
+                        teachers: {
+                            text: "教師獲得豐富信息，但需培訓以避免基於預測的偏見。",
+                            type: "mixed"
+                        },
+                        parents: {
+                            text: "家長更了解子女情況，但可能對負面預測反應過度。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "透明度：向所有人開放系統運作方式和決策依據",
+                        "賦權：為學生提供關於自己學習軌跡的信息",
+                        "責任共擔：讓所有參與者共同負責適當使用預測"
+                    ],
+                    reflection: "透明是否總是最佳政策？學生得知自己被歸類為「高風險」會如何反應？這種標籤如何影響學生的自我認知和教師的期望？"
+                },
+                {
+                    text: "實施更有限的系統，僅識別可能需要特定支持的具體學習困難領域，而非整體「風險評級」",
+                    impacts: {
+                        students: {
+                            text: "學生獲得針對性支持，避免籠統標籤的負面影響。",
+                            type: "positive"
+                        },
+                        teachers: {
+                            text: "教師獲得實用的干預指南，而非籠統預測。",
+                            type: "positive"
+                        },
+                        administration: {
+                            text: "管理者獲得更精確的資源分配工具，但系統複雜性提高。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "精確性：避免籠統標籤，專注於具體、可行的干預點",
+                        "有目的性：限制系統範圍以匹配明確的教育目標",
+                        "尊重：避免將學生簡化為單一風險分數"
+                    ],
+                    reflection: "AI 預測在教育中應如何發揮最佳作用？如何衡量預測系統潛在好處與傷害的平衡點？技術複雜度與實用性之間的適當平衡是什麼？"
+                }
+            ]
+        },
+        "emotional-analysis": {
+            title: "學生情緒分析工具",
+            description: "您正在開發一個分析學生在線學習參與度和情緒狀態的工具。該系統能夠通過分析用戶在學習平台上的互動模式、文字輸入和（可選）網絡攝像頭捕捉的面部表情，評估學生的注意力、困惑或挫折等情緒狀態。",
+            dilemma: "這個工具可以幫助教師提供更具針對性的情感支持和指導，特別是在遠程學習環境中。然而，它涉及收集和分析高度敏感的心理和行為數據，引發重大隱私和自主權問題。您需要決定如何平衡教育支持與情感監控的倫理界限。",
+            options: [
+                {
+                    text: "實施完整系統，包括基於文字和可選的面部分析，但需明確選擇加入",
+                    impacts: {
+                        students: {
+                            text: "學生可能獲得更好的情感支持，但面臨隱私和自我表達自由的顧慮。",
+                            type: "mixed"
+                        },
+                        teachers: {
+                            text: "教師獲得新的學生困難洞察，但需謹慎解釋情緒數據。",
+                            type: "mixed"
+                        },
+                        parents: {
+                            text: "家長可能獲得子女情緒參與度的新洞察，但可能過度監控。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "選擇權：尊重學生選擇參與程度的自主權",
+                        "資料審慎：收集情緒數據時採取最高隱私保護標準",
+                        "明確目的：確保情緒數據僅用於支持教育目標"
+                    ],
+                    reflection: "情感監控在教育中的道德界限在哪裡？選擇加入模式在權力不平等的師生關係中是否有效？如何確保情感數據不被濫用？"
+                },
+                {
+                    text: "僅實施基於文字和學習互動的分析，完全排除面部或音頻分析",
+                    impacts: {
+                        students: {
+                            text: "學生隱私得到更好保護，減少感知的監控感。",
+                            type: "positive"
+                        },
+                        teachers: {
+                            text: "教師仍獲得部分洞察，但缺乏面部表情等重要情感線索。",
+                            type: "mixed"
+                        },
+                        developers: {
+                            text: "開發團隊需面對技術挑戰，但減輕倫理和法律風險。",
+                            type: "mixed"
+                        }
+                    },
+                    principles: [
+                        "比例性：選擇侵入性較低但仍有用的監控水平",
+                        "理性限制：設置清晰的數據收集界限",
+                        "透明度：清晰說明如何從行為和文字推斷情緒"
+                    ],
+                    reflection: "我們可以從數字足跡中推斷出多少關於學生內在狀態的信息是適當的？情感分析技術的準確性和文化偏見如何影響其教育價值？"
+                },
+                {
+                    text: "徹底重新設計為一個以學生為主導的反思工具，而非教師監控工具",
+                    impacts: {
+                        students: {
+                            text: "學生獲得自我反思工具，保持情緒數據的完全控制權。",
+                            type: "positive"
+                        },
+                        teachers: {
+                            text: "教師失去直接洞察，但培養學生自我調節能力。",
+                            type: "mixed"
+                        },
+                        institutions: {
+                            text: "機構推動更以學生為中心的方法，減輕法律風險。",
+                            type: "positive"
+                        }
+                    },
+                    principles: [
+                        "賦能而非監控：改變工具基本目的",
+                        "自主權：將控制權交給學生自己",
+                        "教育目的：將情緒認識整合為學習目標本身"
+                    ],
+                    reflection: "情緒智能技術最好作為監控工具還是自我反思工具？如何設計技術增強而非取代情感理解的人際互動？誰應該擁有學生情緒數據？"
+                }
+            ]
+        }
+    };
+    
+    // 為每個場景卡添加點擊事件
+    const scenarioCards = scenarioSelection.querySelectorAll('.scenario-card');
+    scenarioCards.forEach(card => {
+        const selectButton = card.querySelector('.scenario-select-btn');
+        if (selectButton) {
+            selectButton.addEventListener('click', function() {
+                const scenarioId = card.getAttribute('data-scenario');
+                if (scenarios[scenarioId]) {
+                    showScenario(scenarioId);
+                }
+            });
+        }
+    });
+    
+    // 點擊「返回情境列表」按鈕
+    if (backToScenariosButton) {
+        backToScenariosButton.addEventListener('click', function() {
+            scenarioSelection.style.display = 'block';
+            activeScenario.style.display = 'none';
+            stakeholderImpact.style.display = 'none';
+        });
+    }
+    
+    // 點擊「嘗試不同決策」按鈕
+    if (resetScenarioButton) {
+        resetScenarioButton.addEventListener('click', function() {
+            const currentScenarioId = activeScenario.getAttribute('data-current-scenario');
+            if (currentScenarioId && scenarios[currentScenarioId]) {
+                showScenario(currentScenarioId);
+            }
+        });
+    }
+    
+    // 顯示特定場景
+    function showScenario(scenarioId) {
+        const scenario = scenarios[scenarioId];
+        if (!scenario) return;
+        
+        // 設置當前場景ID（用於重置按鈕）
+        activeScenario.setAttribute('data-current-scenario', scenarioId);
+        
+        // 更新場景標題和描述
+        scenarioTitle.textContent = scenario.title;
+        scenarioDescription.textContent = scenario.description;
+        dilemmaDescription.textContent = scenario.dilemma;
+        
+        // 生成決策選項
+        optionsContainer.innerHTML = '';
+        scenario.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.textContent = option.text;
+            button.classList.add('decision-btn');
+            button.addEventListener('click', function() {
+                showImpact(scenarioId, index);
+            });
+            optionsContainer.appendChild(button);
+        });
+        
+        // 隱藏利益相關者影響區域，顯示活動場景
+        stakeholderImpact.style.display = 'none';
+        scenarioSelection.style.display = 'none';
+        activeScenario.style.display = 'block';
+    }
+    
+    // 顯示決策影響
+    function showImpact(scenarioId, optionIndex) {
+        const scenario = scenarios[scenarioId];
+        if (!scenario || !scenario.options[optionIndex]) return;
+        
+        const option = scenario.options[optionIndex];
+        
+        // 生成利益相關者影響HTML
+        impactContainer.innerHTML = '';
+        Object.keys(option.impacts).forEach(stakeholder => {
+            const impact = option.impacts[stakeholder];
+            const div = document.createElement('div');
+            div.classList.add('stakeholder-group', `${impact.type}-impact`);
+            div.innerHTML = `
+                <h6>${capitalizeFirstLetter(stakeholder)}</h6>
+                <p>${impact.text}</p>
+            `;
+            impactContainer.appendChild(div);
+        });
+        
+        // 生成倫理原則分析HTML
+        principlesAnalysis.innerHTML = '';
+        option.principles.forEach(principle => {
+            const div = document.createElement('div');
+            div.classList.add('principle-item');
+            div.innerHTML = `<p>${principle}</p>`;
+            principlesAnalysis.appendChild(div);
+        });
+        
+        // 設置反思問題
+        reflectionQuestion.textContent = option.reflection;
+        
+        // 顯示影響區域，禁用決策按鈕
+        stakeholderImpact.style.display = 'block';
+        const decisionButtons = optionsContainer.querySelectorAll('.decision-btn');
+        decisionButtons.forEach(btn => {
+            btn.disabled = true;
+        });
+    }
+    
+    // 輔助函數：首字母大寫
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 }
 
 /**
@@ -306,6 +757,16 @@ function initializeEthicalAssessmentTool() {
         html += `</div>`;
         
         questionContainer.innerHTML = html;
+        
+        // 確保點擊整個選項區域都能選中單選按鈕
+        document.querySelectorAll('.option-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.checked = true;
+                }
+            });
+        });
     }
     
     // 保存目前問題的回答
