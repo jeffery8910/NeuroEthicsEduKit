@@ -4,37 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>互動式角色扮演</title>
-    <style>
-        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
-        .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1, h2, h3, h4 { color: #333; }
-        .scenario-card, .role-selection-button, .interaction-option-button, #back-to-scenario-selection {
-            display: block;
-            width: calc(100% - 22px); /* Adjust for padding/border */
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            background-color: #e9ecef;
-            color: #007bff;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .scenario-card:hover, .role-selection-button:hover, .interaction-option-button:hover, #back-to-scenario-selection:hover {
-            background-color: #007bff;
-            color: white;
-        }
-        #role-selection-area button, #interaction-options-list button {
-            width: auto; /* Override block for inline-block like behavior */
-            min-width: 150px;
-            margin-right: 10px;
-        }
-        #interaction-options-list { list-style: none; padding: 0; }
-        #interaction-options-list li { margin-bottom: 5px; }
-        .section { margin-top: 20px; padding: 15px; border: 1px dashed #ccc; border-radius: 4px; background-color: #f9f9f9;}
-        .hidden { display: none; }
-    </style>
+    <link rel="stylesheet" href="css/role_play.css">
 </head>
 <body>
 
@@ -42,24 +12,26 @@
 
     <div id="scenario-selection-view" class="container">
         <h2>選擇一個場景：</h2>
-        <div class="scenario-card" data-scenario-id="scenario1">
-            <h3>AI 智慧助理的隱私困境</h3>
-            <p>探索 AI 個人助理在數據收集與用戶隱私之間的平衡。</p>
-        </div>
-        <div class="scenario-card" data-scenario-id="scenario2">
-            <h3>自動駕駛汽車的道德選擇</h3>
-            <p>面對自動駕駛汽車在事故中不可避免的道德決策。</p>
+        <div class="scenario-selector">
+            <div class="scenario-card" data-scenario-id="crossroads">
+                <h3>教育的十字路口</h3>
+                <p>面對學生心理健康問題增多、學業競爭壓力加劇的現狀，市教育局召開研討會，討論未來的教育發展方向。</p>
+            </div>
+            <div class="scenario-card" data-scenario-id="guardians">
+                <h3>未來教室的「神經守護者」</h3>
+                <p>學校計劃引入一系列涉及收集和使用學生（神經）數據的技術。倫理委員會需要制定一套《學生神經數據使用倫理守則》。</p>
+            </div>
         </div>
     </div>
 
     <div id="scenario-details-view" class="container hidden">
-        <button id="back-to-scenario-selection">&laquo; 返回場景選擇</button>
+        <button id="back-to-scenario-selection" class="back-to-scenario-selection">返回場景選擇</button>
         <h2 id="scenario-title"></h2>
         <p id="scenario-description"></p>
         
         <div class="section">
             <h3>選擇你的角色：</h3>
-            <div id="role-selection-area">
+            <div id="role-selection-area" class="role-cards-grid">
                 <!-- 角色選擇按鈕將由 JavaScript 動態生成於此 -->
             </div>
         </div>
@@ -84,5 +56,64 @@
     </div>
 
     <script src="js/role_play.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化場景選擇
+            const scenarioCards = document.querySelectorAll('.scenario-card');
+            scenarioCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // 移除其他卡片的活躍狀態
+                    scenarioCards.forEach(c => c.classList.remove('active'));
+                    // 添加當前卡片的活躍狀態
+                    this.classList.add('active');
+                    
+                    // 顯示場景詳情
+                    const scenarioId = this.dataset.scenarioId;
+                    const scenario = scenarios[scenarioId];
+                    
+                    document.getElementById('scenario-selection-view').classList.add('hidden');
+                    document.getElementById('scenario-details-view').classList.remove('hidden');
+                    
+                    document.getElementById('scenario-title').textContent = scenario.title;
+                    document.getElementById('scenario-description').textContent = scenario.description;
+                    
+                    // 生成角色卡片
+                    const roleSelectionArea = document.getElementById('role-selection-area');
+                    roleSelectionArea.innerHTML = '';
+                    
+                    scenario.roles.forEach(role => {
+                        const roleCard = document.createElement('div');
+                        roleCard.className = 'role-card';
+                        roleCard.dataset.role = role.id;
+                        
+                        roleCard.innerHTML = `
+                            <div class="role-icon">${role.icon}</div>
+                            <h6>${role.name}</h6>
+                            <p>${role.perspective.substring(0, 60)}${role.perspective.length > 60 ? '...' : ''}</p>
+                        `;
+                        
+                        roleCard.addEventListener('click', function(event) {
+                            // 添加波紋效果
+                            createRippleEffect(event, this);
+                            selectRole(scenarioId, role.id, this);
+                        });
+                        
+                        roleSelectionArea.appendChild(roleCard);
+                    });
+                });
+            });
+            
+            // 返回場景選擇的按鈕
+            document.getElementById('back-to-scenario-selection').addEventListener('click', function(event) {
+                // 添加波紋效果
+                createRippleEffect(event, this);
+                
+                document.getElementById('scenario-selection-view').classList.remove('hidden');
+                document.getElementById('scenario-details-view').classList.add('hidden');
+                document.getElementById('role-details-view').classList.add('hidden');
+                document.getElementById('interaction-outcome-view').classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html> 

@@ -1,5 +1,37 @@
 /* CSS for Role-Playing Simulation Section */
 
+/* 基本樣式 */
+body { 
+    font-family: sans-serif; 
+    margin: 20px; 
+    background-color: #f4f4f4; 
+    color: #333; 
+}
+
+h1, h2, h3, h4 { 
+    color: #333; 
+}
+
+.container { 
+    background-color: #fff; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.hidden { 
+    display: none; 
+}
+
+.section { 
+    margin-top: 20px; 
+    padding: 15px; 
+    border: 1px dashed #ccc; 
+    border-radius: 4px; 
+    background-color: #f9f9f9;
+}
+
 /* Scenario Selection Area */
 .role-play-scenarios-container {
     margin: 20px 0;
@@ -29,8 +61,9 @@
 }
 
 .scenario-card.active {
-    border-color: #007bff;
-    background-color: #e6f2ff;
+    border-color: #28a745;
+    background-color: #e6f7ef;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
 }
 
 .scenario-card h5 {
@@ -49,11 +82,12 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #007bff;
-    color: white;
+    background-color: #e9ecef;
+    color: #333;
     padding: 3px 8px;
     border-radius: 12px;
     font-size: 0.8em;
+    border: 1px solid #ced4da;
 }
 
 /* Role-Play Simulation Area */
@@ -112,6 +146,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .role-card:hover {
@@ -119,7 +155,7 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.role-card.active {
+.role-card.active, .role-card.selected {
     border-color: #28a745;
     background-color: #f0fff4;
     box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
@@ -199,6 +235,8 @@
     padding: 12px 15px;
     cursor: pointer;
     transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .decision-option:hover {
@@ -235,21 +273,23 @@
     justify-content: space-between;
 }
 
-.role-play-button {
-    padding: 8px 16px;
+/* 優化按鈕樣式 */
+.role-play-button, .option-button, .back-to-role-selection, .back-to-scenario-selection {
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.role-play-button.primary {
-    background-color: #007bff;
+.role-play-button.primary, .option-button {
+    background-color: #28a745;
     color: white;
-}
-
-.role-play-button.primary:hover {
-    background-color: #0056b3;
 }
 
 .role-play-button.secondary {
@@ -257,23 +297,61 @@
     color: white;
 }
 
+.role-play-button:hover, .option-button:hover, .back-to-role-selection:hover, .back-to-scenario-selection:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.role-play-button.primary:hover, .option-button:hover {
+    background-color: #218838;
+}
+
 .role-play-button.secondary:hover {
     background-color: #5a6268;
 }
 
-/* Role Play Info Container */
+.role-play-button:active, .option-button:active, .back-to-role-selection:active, .back-to-scenario-selection:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.role-play-button.primary:active, .option-button:active {
+    background-color: #1e7e34;
+}
+
+.role-play-button.secondary:active {
+    background-color: #545b62;
+}
+
+/* 波紋效果 */
+.ripple {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
 .role-play-info-container {
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 20px;
+    padding: 15px;
     background-color: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    border-left: 4px solid #17a2b8;
 }
 
 .role-play-info-container h5 {
     margin-top: 0;
-    margin-bottom: 15px;
-    color: #333;
+    margin-bottom: 10px;
+    color: #17a2b8;
 }
 
 .role-play-info-container ul {
@@ -281,11 +359,82 @@
 }
 
 .role-play-info-container li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     line-height: 1.5;
 }
 
-/* Responsive Adjustments */
+/* 返回按鈕樣式 */
+.back-to-role-selection, .back-to-scenario-selection {
+    background-color: #f0f0f0;
+    color: #555;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.back-to-role-selection:before, .back-to-scenario-selection:before {
+    content: "←";
+    margin-right: 5px;
+}
+
+/* 互動結果樣式 */
+.interaction-outcome {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #6f42c1;
+}
+
+.outcome-details > div {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.outcome-details > div:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.outcome-quote {
+    border-left: 3px solid #fd7e14;
+    background-color: #fff9f0;
+}
+
+.outcome-news {
+    border-left: 3px solid #0dcaf0;
+    background-color: #f0fdff;
+}
+
+.outcome-impact {
+    border-left: 3px solid #6f42c1;
+    background-color: #f8f5ff;
+}
+
+.outcome-reflection {
+    border-left: 3px solid #2ecc71;
+    background-color: #f0fff9;
+    font-style: italic;
+}
+
+.role-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.outcome-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
 @media (max-width: 768px) {
     .scenario-selector {
         flex-direction: column;
@@ -313,4 +462,104 @@
     .role-play-button {
         width: 100%;
     }
+}
+
+/* Styles for outcome details in role-play */
+.outcome-details-list {
+    margin-top: 15px;
+    padding-left: 10px;
+    border-left: 3px solid #eee;
+}
+
+.outcome-detail-item {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.outcome-detail-item strong {
+    color: #333; /* Ensure strong tags are dark */
+}
+
+.outcome-quote {
+    border-left: 3px solid #3498db; /* Blue for quotes */
+}
+
+.outcome-news {
+    border-left: 3px solid #f1c40f; /* Yellow for news */
+}
+
+.outcome-impact {
+    border-left: 3px solid #e74c3c; /* Red for impact */
+}
+
+.outcome-reflection {
+    border-left: 3px solid #2ecc71; /* Green for reflection */
+    font-style: italic;
+}
+
+/* Styling for the Back to Roles Button */
+#back-to-roles-button {
+    background-color: #f8f9fa; /* Very light grey, almost white */
+    color: #495057; /* Dark grey text */
+    border: 1px solid #dee2e6; /* Light border */
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex; /* To align icon and text if an icon is used */
+    align-items: center;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+#back-to-roles-button:hover {
+    background-color: #e9ecef; /* Slightly darker on hover */
+    border-color: #ced4da;
+    color: #343a40;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+}
+
+#back-to-roles-button:active {
+    background-color: #dee2e6; /* Even darker on active/click */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    transform: translateY(1px);
+}
+
+#back-to-roles-button::before {
+    content: "\2190"; /* Unicode 左箭頭 */
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+/* Added modern styles for interaction option buttons */
+.role-action-button {
+    background-color: #4A90E2; /* Modern blue */
+    color: white;
+    border: none; /* Flatter look */
+    padding: 12px 20px; /* Adjusted padding */
+    border-radius: 6px; /* Rounded corners */
+    font-size: 0.95em;
+    font-weight: 500; /* Medium font weight */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease, box-shadow 0.2s ease-in-out;
+    margin: 5px; /* Spacing between buttons */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.role-action-button:hover {
+    background-color: #357ABD; /* Darker on hover */
+    transform: translateY(-1px); /* Slight upward movement */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.role-action-button:active {
+    background-color: #2a6496; /* Even darker on click */
+    transform: translateY(0px); /* Reset position */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 } 

@@ -82,6 +82,27 @@
 
                         <!-- 角色扮演區域 -->
                         <div id="role-play-simulation-area" class="role-play-simulation">
+                            <!-- ADDED: Hidden template for role details -->
+                            <div id="role-details-view" style="display: none;">
+                                <h5 id="role-name-display" class="role-title"></h5>
+                                <p id="role-description-display" class="role-meta"></p>
+                                <div class="role-content-panel">
+                                    <h6>角色觀點與任務：</h6>
+                                    <div id="role-perspective-display" class="role-text-block"></div>
+                                </div>
+                                <div class="role-content-panel">
+                                    <h6>互動選項：</h6>
+                                    <div id="role-interaction-options" class="interaction-options-grid">
+                                        <!-- Interaction buttons will be dynamically added here -->
+                                    </div>
+                                </div>
+                                <div class="role-content-panel" id="interaction-result-display" style="display: none;">
+                                    <h6 class="result-title">互動結果：</h6>
+                                    <div class="result-text-block"></div>
+                                </div>
+                                <button id="back-to-roles-button" class="btn btn-secondary btn-sm role-action-button">返回角色選擇</button>
+                            </div>
+
                             <!-- 場景1: 教育的十字路口 -->
                             <div id="crossroads-scenario" class="scenario-content active">
                                 <div class="scenario-header">
@@ -247,5 +268,97 @@
     <script src="../js/learning_hub_page.js"></script>
     <script src="../js/interactive_scenarios.js"></script>
     <script src="../js/role_play.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scenarioSelectorCards = document.querySelectorAll('.scenario-selector .scenario-card');
+            const scenarioContents = document.querySelectorAll('.role-play-simulation .scenario-content');
+            const rolePlaySimulationArea = document.getElementById('role-play-simulation-area');
+
+            // 初始化：確保只有第一個場景的內容是可見的
+            scenarioContents.forEach((content, index) => {
+                if (index === 0) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            // 同步場景選擇器的 active 狀態
+            scenarioSelectorCards.forEach((selectorCard, index) => {
+                 if (index === 0) {
+                    selectorCard.classList.add('active');
+                } else {
+                    selectorCard.classList.remove('active');
+                }
+            });
+
+            // 為場景選擇卡片添加事件監聽器
+            scenarioSelectorCards.forEach(selectorCard => {
+                selectorCard.addEventListener('click', function() {
+                    // 更新場景選擇器的 active 狀態
+                    scenarioSelectorCards.forEach(sc => sc.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const targetScenarioId = this.dataset.scenario;
+
+                    // 顯示對應的場景內容，隱藏其他
+                    scenarioContents.forEach(content => {
+                        if (content.id === `${targetScenarioId}-scenario`) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+
+                    // 清理可能存在的舊的角色詳情和結果
+                    document.querySelectorAll('.role-interaction-container').forEach(ric => {
+                        ric.innerHTML = '<div class="role-perspective-container"><p>請選擇一個角色開始模擬。</p></div>';
+                    });
+                    document.querySelectorAll('.role-card').forEach(rc => rc.classList.remove('active', 'selected'));
+
+                    // 為當前激活場景中的角色卡片綁定事件
+                    const activeScenarioContent = document.getElementById(`${targetScenarioId}-scenario`);
+                    if (activeScenarioContent) {
+                        const roleCardsInActiveScenario = activeScenarioContent.querySelectorAll('.role-card');
+                        roleCardsInActiveScenario.forEach(roleCard => {
+                            // 移除舊的事件監聽器 (如果有的話，以防重複綁定 - 簡單的 cloneNode 技巧)
+                            const newRoleCard = roleCard.cloneNode(true);
+                            roleCard.parentNode.replaceChild(newRoleCard, roleCard);
+
+                            newRoleCard.addEventListener('click', function(event) {
+                                if (typeof createRippleEffect === 'function') {
+                                    createRippleEffect(event, this);
+                                }
+                                if (typeof selectRole === 'function') {
+                                    // 從父級 .scenario-content 獲取 scenarioId
+                                    const currentScenarioElement = this.closest('.scenario-content');
+                                    let scenarioIdForRole = currentScenarioElement ? currentScenarioElement.id.replace('-scenario', '') : null;
+                                    
+                                    // 如果無法從 .scenario-content 直接獲取，則從 .scenario-selector 的 active 卡片獲取
+                                    if (!scenarioIdForRole) {
+                                        const activeSelectorCard = document.querySelector('.scenario-selector .scenario-card.active');
+                                        if (activeSelectorCard) {
+                                            scenarioIdForRole = activeSelectorCard.dataset.scenario;
+                                        }
+                                    }
+
+                                    const roleId = this.dataset.role;
+                                    console.log(`[learning_hub.html] Role card clicked. Scenario: ${scenarioIdForRole}, Role: ${roleId}`);
+                                    selectRole(scenarioIdForRole, roleId, this);
+                                } else {
+                                    console.error('selectRole function is not defined. Make sure js/role_play.js is loaded.');
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+
+            // 初始化時，觸發一次第一個場景選擇器的點擊，以確保其角色卡片事件被綁定
+            if (scenarioSelectorCards.length > 0) {
+                scenarioSelectorCards[0].click();
+            }
+        });
+    </script>
 </body>
 </html> 

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 輔助函數：檢查容器是否存在並記錄警告
   function checkContainer(container, id) {
     if (!container) {
-      console.warn(`Warning: Container with ID '${id}' not found in learning_hub.html.`);
+      // console.warn(`Warning: Container with ID '${id}' not found in learning_hub.html.`); // 已由使用者報告，此處可暫時移除或保留用於其他容器的警告
       return false;
     }
     return true;
@@ -82,18 +82,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // 渲染互動式角色扮演 (從 learningHubData) - 新增
-  if (checkContainer(rolePlayContainer, rolePlayContainerId)) {
+  // --- MODIFICATION START ---
+  // 檢查 learning_hub.html 是否有其自訂的角色扮演區域
+  const customRolePlayArea = document.getElementById('role-play-simulation-area'); 
+  
+  if (customRolePlayArea) {
+    console.log('[learning_hub_page.js] Detected custom role-play area in learning_hub.html. Skipping dynamic loading of role-play scenarios by learning_hub_page.js.');
+  } else if (checkContainer(rolePlayContainer, rolePlayContainerId)) { 
+    // 只有在 customRolePlayArea 不存在，且 rolePlayContainer (舊ID) 存在時才執行
+    // 這段代碼實際上因為 rolePlayContainerId 指向的元素不存在，所以 checkContainer(rolePlayContainer, rolePlayContainerId) 會是 false
+    // 但保留這個結構以防未來需要這個舊邏輯
     try {
       if (learningHubData.rolePlayScenarios) {
         renderRolePlayScenarios(learningHubData.rolePlayScenarios, rolePlayContainer);
       } else {
-        rolePlayContainer.innerHTML = '<p class="error-message">無法從本地資料中找到互動式角色扮演數據。</p>';
+        if(rolePlayContainer) rolePlayContainer.innerHTML = '<p class="error-message">無法從本地資料中找到互動式角色扮演數據。</p>';
       }
     } catch (error) {
       console.error('Error processing role-play scenarios from local data:', error);
-      rolePlayContainer.innerHTML = '<p class="error-message">處理互動式角色扮演內容時發生錯誤。</p>';
+      if(rolePlayContainer) rolePlayContainer.innerHTML = '<p class="error-message">處理互動式角色扮演內容時發生錯誤。</p>';
     }
   }
+  // --- MODIFICATION END ---
   
   // 載入並渲染資源庫 (從 learningHubData)
   if (checkContainer(resourceLibraryContainer, resourceLibraryContainerId)) {

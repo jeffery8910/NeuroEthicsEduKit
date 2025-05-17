@@ -3,11 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NeuroEthicsEduKit EdTech 沙盒 - 倫理教育科技設計概念框架">
+    <meta name="description" content="NeuroEthicsEduKit EdTech 沙盒 - 倫理教育科技設計工具與框架">
     <title>EdTech 沙盒 - NeuroEthicsEduKit</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/cards.css">
+    <!-- 添加自定義樣式以提高顏色對比度 -->
+    <style>
+        /* 藍色背景卡片文字顏色修正 */
+        .scenario-card, .card-front, .card-back, 
+        div[style*="background-color: #0056b3"],
+        div[style*="background-color: #2196F3"],
+        div[style*="background-color: #3498db"] {
+            color: #ffffff !important; /* 白色文字，高優先級 */
+        }
+        
+        /* 確保所有淺色背景用深色文字 */
+        .card, .question-container, .scenario-description,
+        div[style*="background-color: #f8f9fa"],
+        div[style*="background-color: #ffffff"],
+        div[style*="background-color: #f5f5f5"] {
+            color: #333333 !important; /* 深色文字，高優先級 */
+        }
+        
+        /* 特別處理討論問題卡片 */
+        .scenario-interactive-content {
+            background-color: #f0f5ff; /* 淺藍背景 */
+            color: #333333 !important; /* 深色文字 */
+        }
+        
+        /* 風險級別顏色 */
+        .risk-high {
+            color: #ffffff !important;
+            background-color: #e74c3c !important;
+        }
+        
+        .risk-medium {
+            color: #333333 !important;
+            background-color: #f39c12 !important;
+        }
+        
+        .risk-low {
+            color: #ffffff !important;
+            background-color: #2ecc71 !important;
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
@@ -38,23 +78,543 @@
     <main id="main-content" class="main-content">
         <div class="container">
             <section class="page-title-section">
-                <h2>EdTech 沙盒：倫理教育科技設計概念框架</h2>
-                <p>提供概念框架與未來發展的工具，協助開發者和教育工作者在設計階段主動考慮並減輕倫理風險。</p>
-                <p><strong>請注意：此模組目前處於概念與未來發展階段。</strong></p>
+                <h2>倫理教育科技設計沙盒</h2>
+                <p>探索創建負責任教育科技的框架、工具和最佳實踐，協助開發者和教育工作者在設計階段就考慮並減輕倫理風險。</p>
             </section>
 
-            <section id="risk-identification-toolkit-section" class="content-section">
-                <h3>EdTech 原型倫理風險識別工具包</h3>
-                <div id="ethical-risk-assessment-toolkit-container" class="dynamic-content-container">
-                    <p>正在載入倫理風險評估工具包...</p>
+            <section id="introduction-section" class="content-section">
+                <h3>關於 EdTech 沙盒</h3>
+                <div class="section-content">
+                    <p>隨著教育科技（EdTech）的快速發展，尤其是結合神經科學和人工智能的應用越來越多，重要的是我們不僅要在技術部署後應對倫理挑戰，更要在設計階段就主動考慮潛在的倫理風險和責任。</p>
+                    <p>EdTech 沙盒提供了一系列概念框架、評估工具和交互式模擬，旨在幫助：</p>
+                    <ul>
+                        <li><strong>EdTech 開發團隊</strong>：在產品設計和開發過程中考慮神經倫理問題</li>
+                        <li><strong>教育工作者和管理者</strong>：在選擇和採購科技工具時評估其倫理設計</li>
+                        <li><strong>政策制定者</strong>：制定促進負責任 EdTech 創新的標準和準則</li>
+                        <li><strong>學生和家長</strong>：了解如何評估 EdTech 工具的倫理質量</li>
+                    </ul>
+                    <div class="info-callout">
+                        <p><strong>注意</strong>：本模塊處於持續開發中，我們將逐步添加更多工具和功能。歡迎提供反饋和建議！</p>
+                    </div>
                 </div>
             </section>
 
-            <section id="ethical-tradeoffs-simulation-section" class="content-section">
-                <h3>EdTech 設計中倫理權衡模擬 (未來目標)</h3>
-                <div id="ethical-tradeoffs-simulation-container" class="dynamic-content-container">
-                    <!-- 內容將由 JavaScript 載入或在此處靜態提供 -->
-                    <p>未來將開發一個更進階的互動模擬，使用者可以為假設的 EdTech 工具做出設計選擇，並看到潛在的倫理後果和權衡。例如，選擇一個準確性較低但更保護隱私的演算法，而不是一個更準確但數據密集型的演算法。此功能有助於具體理解設計中的倫理權衡。敬請期待。</p>
+            <section id="risk-assessment-section" class="content-section">
+                <h3>倫理風險識別與評估框架</h3>
+                <div id="risk-assessment-container" class="dynamic-content-container">
+                    <div class="toolkit-intro">
+                        <p>本框架提供了一個系統化的方法，用於識別、評估和緩解 EdTech 工具（尤其是涉及神經技術或 AI 的工具）可能帶來的倫理風險。無論您是開發者還是打算採用這些技術的教育者，這一框架都能幫助您確保教育科技服務於教育目標，同時保護學生的權利與福祉。</p>
+                    </div>
+
+                    <div class="toolkit-framework">
+                        <div class="framework-stage">
+                            <h4>第一階段：情境理解與利益相關者分析</h4>
+                            <p>在評估具體的 EdTech 工具之前，首先需要清晰地理解其預期應用的教育情境、目標用戶群體（學生、教師、管理者等）以及其他可能受影響的利益相關者（家長、社群等）。</p>
+                            <div class="question-list">
+                                <h5>關鍵問題：</h5>
+                                <ul>
+                                    <li>該 EdTech 工具旨在解決什麼教育問題或達到什麼目標？</li>
+                                    <li>主要用戶是誰？他們的年齡、背景、需求和脆弱性如何？</li>
+                                    <li>除了主要用戶，還有哪些間接受影響的利益相關者？他們的關切可能包括哪些方面？</li>
+                                    <li>技術將在何種教育環境下使用（例如，課堂、家庭、特殊教育）？該環境有何特殊性？</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="framework-stage">
+                            <h4>第二階段：倫理風險領域識別</h4>
+                            <p>基於對 EdTech 工具功能和數據處理方式的理解，系統性地審視可能出現倫理風險的關鍵領域。</p>
+                            
+                            <div class="risk-domains">
+                                <div class="risk-domain-card">
+                                    <h5>數據隱私與安全</h5>
+                                    <p>考慮數據收集、使用、儲存、共享和銷毀的全生命週期。是否存在未經授權存取、數據洩露、過度收集、二次利用或缺乏透明度的風險？對於敏感神經數據，有何特殊考量？</p>
+                                </div>
+                                <div class="risk-domain-card">
+                                    <h5>公平性、偏見與歧視</h5>
+                                    <p>演算法或數據集是否可能帶有偏見，導致對特定學生群體（基於種族、性別、社經地位、神經特質等）的不公平對待或歧視？是否可能加劇現有的教育不平等？</p>
+                                </div>
+                                <div class="risk-domain-card">
+                                    <h5>自主性與操控</h5>
+                                    <p>技術是否過度影響學生的自主選擇和決策？是否存在利用認知偏誤或不透明機制來操縱學生行為或思想的風險？學生是否有足夠的控制權和退出選項？</p>
+                                </div>
+                                <div class="risk-domain-card">
+                                    <h5>心理健康與福祉</h5>
+                                    <p>技術的使用是否可能導致學生焦慮、壓力增加、社交孤立、自我認同混淆或過度依賴？對學生的認知發展和心理健康有何潛在的長期影響？</p>
+                                </div>
+                                <div class="risk-domain-card">
+                                    <h5>透明度與可解釋性</h5>
+                                    <p>技術（尤其是 AI 系統）的運作邏輯和決策依據是否對用戶和管理者足夠透明？當出現問題或非預期結果時，是否能夠解釋原因？</p>
+                                </div>
+                                <div class="risk-domain-card">
+                                    <h5>問責性與補救措施</h5>
+                                    <p>如果技術造成傷害或產生負面影響，責任歸屬是否清晰？是否有有效的申訴、審查和補救機制？</p>
+                                </div>
+                                <div class="risk-domain-card">
+                                    <h5>教學有效性與教育價值</h5>
+                                    <p>技術是否真正提升了教學效果和學習體驗，還是僅僅是「科技噱頭」？其宣稱的教育效益是否有可靠證據支持？是否符合教育倫理和專業標準？</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="framework-stage">
+                            <h4>第三階段：風險評估與優先級排序</h4>
+                            <p>對已識別的每個潛在風險，評估其發生的可能性以及一旦發生可能造成的影響嚴重程度。綜合考量這兩個維度，對風險進行優先級排序，以便集中資源處理最關鍵的風險。</p>
+                            <div class="assessment-criteria">
+                                <h5>評估標準：</h5>
+                                <ul>
+                                    <li>風險發生概率（高、中、低）</li>
+                                    <li>影響範圍（廣泛、局部）</li>
+                                    <li>影響嚴重性（嚴重、中等、輕微）</li>
+                                    <li>對弱勢群體的潛在不成比例影響</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="framework-stage">
+                            <h4>第四階段：制定與實施緩解措施</h4>
+                            <p>針對高優先級的風險，設計並實施具體的緩解策略。這些策略可能包括技術調整、政策制定、用戶培訓、透明度提升、倫理監督機制等。</p>
+                            <div class="mitigation-categories">
+                                <div class="mitigation-category">
+                                    <h5>技術性措施</h5>
+                                    <p>如數據加密、演算法審計、隱私增強技術</p>
+                                </div>
+                                <div class="mitigation-category">
+                                    <h5>組織性措施</h5>
+                                    <p>如制定數據治理政策、設立倫理審查委員會、員工培訓</p>
+                                </div>
+                                <div class="mitigation-category">
+                                    <h5>程序性措施</h5>
+                                    <p>如知情同意流程、數據最小化實踐、定期風險評估</p>
+                                </div>
+                                <div class="mitigation-category">
+                                    <h5>溝通與透明度措施</h5>
+                                    <p>如公開隱私政策、解釋演算法決策</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="framework-stage">
+                            <h4>第五階段：監測、審查與迭代</h4>
+                            <p>倫理風險評估不是一次性的活動，而是一個持續的過程。應定期監測已實施緩解措施的有效性，審查是否有新的風險出現，並根據反饋和情境變化對風險管理框架進行迭代更新。</p>
+                            <div class="key-activities">
+                                <h5>關鍵活動：</h5>
+                                <ul>
+                                    <li>建立風險監測指標</li>
+                                    <li>定期進行倫理審計</li>
+                                    <li>收集用戶和利益相關者反饋</li>
+                                    <li>根據技術發展和應用變化更新風險評估</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="framework-note">
+                        <p>此框架提供了一個通用的指導，使用者應根據具體的 EdTech 工具特性和應用場景進行調整和細化。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="case-examples-section" class="content-section">
+                <h3>案例示例</h3>
+                <div class="case-examples-container">
+                    <div class="case-example-card">
+                        <h4>情緒識別系統在課堂的倫理評估</h4>
+                        <div class="case-scenario">
+                            <p><strong>情境：</strong>某教育科技公司開發了一種使用攝像頭的AI系統，聲稱能夠在課堂上實時識別學生的情緒狀態，幫助教師了解學生的參與度和學習難點。</p>
+                        </div>
+                        <div class="case-assessment">
+                            <h5>風險領域分析：</h5>
+                            <ul>
+                                <li><strong>隱私與數據安全：</strong>持續收集學生面部數據引發嚴重隱私問題</li>
+                                <li><strong>自主性：</strong>學生無法選擇不被情緒掃描，缺乏真正的同意</li>
+                                <li><strong>偏見與歧視：</strong>情緒識別算法可能對不同文化背景或神經多樣性學生存在偏見</li>
+                                <li><strong>心理健康影響：</strong>學生意識到被持續監控可能增加焦慮和壓力</li>
+                                <li><strong>有效性質疑：</strong>情緒與表情之間的關係複雜，系統的科學基礎存疑</li>
+                            </ul>
+                        </div>
+                        <div class="case-recommendations">
+                            <h5>緩解建議：</h5>
+                            <p>此類技術應在部署前重新考慮其教育必要性；若決定使用，應實施嚴格的數據保護措施，確保學生和家長有真正的選擇權，要求演算法接受偏見審計，並維持持續的倫理監督。</p>
+                        </div>
+                    </div>
+
+                    <div class="case-example-card">
+                        <h4>個性化學習平台倫理設計</h4>
+                        <div class="case-scenario">
+                            <p><strong>情境：</strong>一所學校計劃引入使用人工智能的個性化學習平台，該平台根據學生的學習進度、強項和弱點，為每個學生提供定制的學習內容和路徑。</p>
+                        </div>
+                        <div class="case-assessment">
+                            <h5>風險領域與緩解措施：</h5>
+                            <ul>
+                                <li><strong>數據隱私：</strong>限制收集到必要數據，實施強有力的加密和匿名處理</li>
+                                <li><strong>算法透明度：</strong>讓教師和學生了解個性化推薦的基本原理</li>
+                                <li><strong>潛在偏見：</strong>進行偏見測試，確保不會將學生限制在特定學習路徑</li>
+                                <li><strong>人類監督：</strong>維持教師對推薦的最終決定權和對算法的監督</li>
+                                <li><strong>選擇權：</strong>允許學生選擇是否使用平台的個性化功能</li>
+                            </ul>
+                        </div>
+                        <div class="case-recommendations">
+                            <h5>倫理設計提示：</h5>
+                            <p>此案例展示了通過在設計階段就考慮倫理因素，可以創建既尊重學生權利又有效改善學習體驗的技術。重點在於賦能而非替代教師，增強而非限制學生自主權。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="interactive-tools-section" class="content-section">
+                <h3>互動式設計工具</h3>
+                <div class="tools-container">
+                    <div id="ethical-assessment-tool" class="interactive-tool-container">
+                        <h4>教育科技倫理評估檢查清單</h4>
+                        <p>通過回答以下問題，評估您的 EdTech 產品或解決方案的倫理設計。完成後將生成定制化的風險報告和改進建議。</p>
+                        
+                        <div id="assessment-form" class="assessment-form">
+                            <div id="question-container" class="question-container">
+                                <!-- 問題將由 JavaScript 動態加載 -->
+                                <p class="loading-message">載入評估問題中...</p>
+                            </div>
+                            
+                            <div class="form-controls">
+                                <button id="prevQuestion" class="tool-button secondary" disabled>上一題</button>
+                                <button id="nextQuestion" class="tool-button primary">下一題</button>
+                                <button id="generateReport" class="tool-button primary" style="display: none;">生成報告</button>
+                            </div>
+                        </div>
+                        
+                        <div id="assessment-results" class="assessment-results" style="display: none;">
+                            <h4>倫理評估報告</h4>
+                            <div id="report-content">
+                                <!-- 報告內容將由 JavaScript 動態生成 -->
+                            </div>
+                            <button id="restartAssessment" class="tool-button secondary">重新評估</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="decision-simulator-section" class="content-section">
+                <h3>倫理權衡決策模擬器</h3>
+                <div class="single-column-container">
+                    <div id="ethical-dilemma-simulator" class="interactive-tool-container full-width">
+                        <p>通過實際案例情境，體驗在 EdTech 設計中的複雜倫理決策。每個決策都會展示其對不同利益相關者的潛在影響，幫助您理解倫理設計中的各種考量和權衡。</p>
+                        
+                        <div id="scenario-container" class="scenario-container">
+                            <div id="scenario-selection" class="scenario-selection">
+                                <h4>選擇一個案例情境</h4>
+                                <div class="scenario-cards">
+                                    <div class="scenario-card" data-scenario="facial-recognition">
+                                        <h5>臉部辨識出席系統</h5>
+                                        <p>您正在為一所大學開發一個使用臉部辨識技術的自動出席追蹤系統。該系統可以提高效率，但引發了隱私和監控問題。</p>
+                                        <button class="tool-button primary scenario-select-btn">選擇此情境</button>
+                                    </div>
+                                    <div class="scenario-card" data-scenario="predictive-analytics">
+                                        <h5>預測性學習分析</h5>
+                                        <p>您正在設計一個使用 AI 預測學生學業成功可能性的系統。該系統有助於及早干預，但可能導致負面標籤和偏見。</p>
+                                        <button class="tool-button primary scenario-select-btn">選擇此情境</button>
+                                    </div>
+                                    <div class="scenario-card" data-scenario="emotional-analysis">
+                                        <h5>學生情緒分析工具</h5>
+                                        <p>您正在開發一個分析學生在線學習參與度和情緒狀態的工具。它可以幫助教師提供情感支持，但涉及高度敏感的心理數據。</p>
+                                        <button class="tool-button primary scenario-select-btn">選擇此情境</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="active-scenario" class="active-scenario" style="display: none;">
+                                <div class="scenario-header">
+                                    <h4 id="scenario-title"></h4>
+                                    <button id="back-to-scenarios" class="tool-button secondary small">返回情境列表</button>
+                                </div>
+                                <div id="scenario-description" class="scenario-description"></div>
+                                
+                                <div id="dilemma-container" class="dilemma-container">
+                                    <h5>您面臨的倫理困境</h5>
+                                    <div id="dilemma-description" class="dilemma-description"></div>
+                                    
+                                    <div id="decision-options" class="decision-options">
+                                        <h5>可能的決策選項</h5>
+                                        <div id="options-container" class="options-container"></div>
+                                    </div>
+                                </div>
+                                
+                                <div id="stakeholder-impact" class="stakeholder-impact" style="display: none;">
+                                    <h5>您的決策對利益相關者的影響</h5>
+                                    <div id="impact-container" class="impact-container"></div>
+                                    
+                                    <div class="ethical-principles">
+                                        <h5>相關倫理原則分析</h5>
+                                        <div id="principles-analysis" class="principles-analysis"></div>
+                                    </div>
+                                    
+                                    <div class="reflection-prompt">
+                                        <h5>反思問題</h5>
+                                        <p id="reflection-question"></p>
+                                    </div>
+                                    
+                                    <button id="reset-scenario" class="tool-button primary">嘗試不同決策</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="design-patterns-section" class="content-section">
+                <h3>負責任設計模式庫</h3>
+                <div class="single-column-container">
+                    <div id="design-patterns-library" class="interactive-tool-container full-width">
+                        <p>瀏覽針對常見 EdTech 功能的負責任設計模式集合。每個模式都包括實施指南、示例代碼和最佳實踐，幫助開發者在設計階段就考慮倫理因素。</p>
+                        
+                        <div class="pattern-categories">
+                            <div class="category-tabs">
+                                <button class="category-tab active" data-category="all">所有模式</button>
+                                <button class="category-tab" data-category="privacy">隱私保護</button>
+                                <button class="category-tab" data-category="transparency">透明度</button>
+                                <button class="category-tab" data-category="fairness">公平性</button>
+                                <button class="category-tab" data-category="autonomy">自主性</button>
+                            </div>
+                            
+                            <div class="pattern-search">
+                                <input type="text" id="pattern-search-input" placeholder="搜尋設計模式..." class="search-input">
+                            </div>
+                        </div>
+                        
+                        <div id="patterns-container" class="patterns-container">
+                            <div class="design-pattern" data-categories="privacy transparency">
+                                <h4>數據最小化模式</h4>
+                                <div class="pattern-content">
+                                    <div class="pattern-description">
+                                        <p><strong>問題：</strong>EdTech 應用程序經常收集過多的學生數據，造成隱私風險。</p>
+                                        <p><strong>解決方案：</strong>僅收集實現教育目標所必需的數據，並清晰說明每項數據的用途。</p>
+                                    </div>
+                                    
+                                    <div class="implementation-guidelines">
+                                        <h5>實施指南</h5>
+                                        <ul>
+                                            <li>進行數據審計，識別並移除非必要的數據收集</li>
+                                            <li>為每項收集的數據建立明確的教育目的關聯</li>
+                                            <li>實施自動數據老化和刪除機制</li>
+                                            <li>提供學生和教師選擇不同級別數據共享的選項</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="code-example">
+                                        <h5>示例實現</h5>
+                                        <pre><code>// 數據收集策略示例
+function collectUserData(userData) {
+  // 只收集必要的數據，忽略非必要字段
+  const essentialData = {
+    studentId: userData.studentId,  // 用於識別學生
+    activityType: userData.activityType,  // 用於分類學習活動
+    completionStatus: userData.completionStatus,  // 用於跟踪進度
+    // 注意：不收集設備信息、精確位置、人口統計學數據等
+  };
+  
+  // 記錄數據收集目的，增加透明度
+  logDataCollectionPurpose(essentialData);
+  
+  // 設置數據保留期限
+  setDataRetentionPeriod(essentialData, '90days');
+  
+  return storeData(essentialData);
+}</code></pre>
+                                    </div>
+                                    
+                                    <div class="best-practices">
+                                        <h5>最佳實踐</h5>
+                                        <ul>
+                                            <li>定期對數據收集進行審查和更新</li>
+                                            <li>使用匿名化技術降低數據敏感性</li>
+                                            <li>在設計階段就考慮隱私，而不是事後添加</li>
+                                            <li>提供明確、簡單的數據收集說明</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="design-pattern" data-categories="transparency fairness">
+                                <h4>演算法透明度模式</h4>
+                                <div class="pattern-content">
+                                    <div class="pattern-description">
+                                        <p><strong>問題：</strong>AI 驅動的教育系統的決策過程常常是不透明的「黑盒子」，讓學生和教師無法理解或質疑推薦或評分。</p>
+                                        <p><strong>解決方案：</strong>設計透明的 AI 系統，提供決策解釋並允許用戶理解和需要時進行干預。</p>
+                                    </div>
+                                    
+                                    <div class="implementation-guidelines">
+                                        <h5>實施指南</h5>
+                                        <ul>
+                                            <li>使用可解釋的 AI 模型而非完全黑盒模型</li>
+                                            <li>為每個算法決策提供用戶友好的解釋</li>
+                                            <li>顯示影響結果的主要因素</li>
+                                            <li>允許教師理解並在必要時覆蓋系統決策</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="code-example">
+                                        <h5>示例實現</h5>
+                                        <pre><code>// 可解釋推薦系統示例
+function generateRecommendation(studentId, currentTopic) {
+  // 獲取推薦和影響因素
+  const { recommendation, factors } = recommendationEngine.predict(studentId, currentTopic);
+  
+  // 構建用戶友好的解釋
+  const explanation = {
+    recommendation: recommendation,
+    mainReasons: factors.slice(0, 3).map(factor => {
+      return {
+        factor: factor.name,
+        importance: factor.weight,
+        description: getFactorDescription(factor.name)
+      };
+    }),
+    confidenceLevel: calculateConfidence(factors),
+    alternativeOptions: getAlternatives(studentId, currentTopic)
+  };
+  
+  // 記錄決策過程以供審計
+  logDecisionProcess(studentId, explanation);
+  
+  return explanation;
+}</code></pre>
+                                    </div>
+                                    
+                                    <div class="best-practices">
+                                        <h5>最佳實踐</h5>
+                                        <ul>
+                                            <li>使用分層解釋，提供基本和詳細解釋選項</li>
+                                            <li>避免技術行話，使解釋易於理解</li>
+                                            <li>提供視覺化展示決策因素</li>
+                                            <li>定期進行用戶測試，確保解釋確實有幫助</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="design-pattern" data-categories="autonomy fairness">
+                                <h4>學習者控制模式</h4>
+                                <div class="pattern-content">
+                                    <div class="pattern-description">
+                                        <p><strong>問題：</strong>自適應學習系統可能限制學生的自主性，將他們鎖定在系統認為最佳的固定路徑中。</p>
+                                        <p><strong>解決方案：</strong>結合個性化建議與學習者選擇，保持學習者控制和系統指導之間的平衡。</p>
+                                    </div>
+                                    
+                                    <div class="implementation-guidelines">
+                                        <h5>實施指南</h5>
+                                        <ul>
+                                            <li>除了推薦路徑外，提供替代學習路徑</li>
+                                            <li>允許學生調整系統如何為他們個性化</li>
+                                            <li>讓學生能夠探索非系統推薦的內容</li>
+                                            <li>為學習者提供對其數據和歷史的明確視圖</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="code-example">
+                                        <h5>示例實現</h5>
+                                        <pre><code>// 學習者控制界面示例
+class LearnerControlPanel extends Component {
+  render() {
+    return (
+      &lt;div className="learner-control-panel"&gt;
+        &lt;section className="recommended-path"&gt;
+          &lt;h3&gt;推薦學習路徑&lt;/h3&gt;
+          &lt;PathVisualizer path={this.props.recommendedPath} /&gt;
+          &lt;button onClick={this.props.followRecommendedPath}&gt;
+            按推薦學習
+          &lt;/button&gt;
+        &lt;/section&gt;
+        
+        &lt;section className="alternative-paths"&gt;
+          &lt;h3&gt;替代路徑選項&lt;/h3&gt;
+          {this.props.alternativePaths.map(path =&gt; (
+            &lt;PathOption 
+              key={path.id}
+              path={path}
+              onSelect={this.props.selectAlternativePath}
+            /&gt;
+          ))}
+        &lt;/section&gt;
+        
+        &lt;section className="customization-options"&gt;
+          &lt;h3&gt;個性化設置&lt;/h3&gt;
+          &lt;LearningPreferences 
+            preferences={this.props.preferences}
+            onUpdate={this.props.updatePreferences}
+          /&gt;
+          &lt;button onClick={this.props.resetAlgorithm}&gt;
+            重置推薦算法
+          &lt;/button&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre>
+                                    </div>
+                                    
+                                    <div class="best-practices">
+                                        <h5>最佳實踐</h5>
+                                        <ul>
+                                            <li>避免過度引導或使用技巧引導學生做出特定選擇</li>
+                                            <li>清晰說明默認路徑的基本原理</li>
+                                            <li>允許學生根據他們的節奏和偏好進行學習</li>
+                                            <li>提供可視化工具，顯示學習選擇對進度的影響</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resources-section" class="content-section">
+                <h3>資源與參考</h3>
+                <div class="resources-container">
+                    <div class="resource-category">
+                        <h4>外部資源</h4>
+                        <ul class="resource-list">
+                            <li class="resource-item">
+                                <h5>IEEE Ethics in Action - 7010-2020 標準</h5>
+                                <p class="resource-description">為自動化和智能系統對人類福祉的影響評估提供框架。</p>
+                                <a href="https://ethicsinaction.ieee.org/" target="_blank" rel="noopener noreferrer" class="resource-link">瀏覽資源</a>
+                            </li>
+                            <li class="resource-item">
+                                <h5>歐盟人工智能倫理指南</h5>
+                                <p class="resource-description">歐盟發布的關於可信賴人工智能的指南，包含教育應用相關參考。</p>
+                                <a href="https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai" target="_blank" rel="noopener noreferrer" class="resource-link">瀏覽資源</a>
+                            </li>
+                            <li class="resource-item">
+                                <h5>Future of Privacy Forum - EdTech 隱私資源</h5>
+                                <p class="resource-description">針對教育科技的隱私保護資源和最佳實踐指南。</p>
+                                <a href="https://fpf.org/education-privacy/" target="_blank" rel="noopener noreferrer" class="resource-link">瀏覽資源</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="resource-category">
+                        <h4>相關模組</h4>
+                        <ul class="resource-list">
+                            <li class="resource-item">
+                                <h5><a href="privacy_simulation.html">學生神經數據與認知隱私模擬</a></h5>
+                                <p class="resource-description">深入了解學生數據隱私保護的重要性和最佳實踐。</p>
+                            </li>
+                            <li class="resource-item">
+                                <h5><a href="educator_toolkit.html">教育工作者與管理者倫理實踐工具包</a></h5>
+                                <p class="resource-description">探索適用於教育工作者的技術評估框架。</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="resource-category">
+                        <h4>參與貢獻</h4>
+                        <p>EdTech 沙盒是一個不斷發展的資源，我們歡迎社群貢獻。如果您有意見、建議或願意參與開發更多工具，請：</p>
+                        <ul class="resource-list">
+                            <li class="resource-item">
+                                <a href="https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/issues" target="_blank" rel="noopener noreferrer" class="cta-button secondary">在 GitHub 上提交建議</a>
+                            </li>
+                            <li class="resource-item">
+                                <a href="https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="resource-link">查看貢獻指南</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </div>
@@ -68,13 +628,13 @@
                     <a href="../LICENSE">授權條款</a> |
                     <a href="https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/issues" target="_blank" rel="noopener noreferrer">問題回報</a>
                 </div>
-                <p>© <span id="currentYear"></span> NeuroEthicsEduKit 專案貢獻者。</p>
+                <p>© <span id="currentYear"></span> NeuroEthicsEduKit 專案貢獻者。本專案為開源專案。</p>
+                <p>內容僅供教育和資訊目的，不構成專業法律或倫理建議。</p>
             </div>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
-    <script src="../js/data_loader.js"></script>
-    <script src="../js/edtech_sandbox_page.js"></script>
+    <script src="../js/edtech_sandbox.js"></script>
 </body>
 </html> 
