@@ -54,8 +54,7 @@ NeuroEthicsEduKit 包含以下核心模組：
 4.  **倫理教育科技設計沙盒 (EdTech Sandbox - 概念框架與未來發展)**:
     *   EdTech 原型倫理風險識別工具包
     *   EdTech 設計中倫理權衡模擬 (未來目標)
-
-您可以在 [這裡](LINK_TO_YOUR_PROJECT_WEBSITE_OR_DEMO) 預覽或使用 NeuroEthicsEduKit。
+使用 NeuroEthicsEduKit。
 <!-- 建議在此處放上專案的線上連結 -->
 
 ## 🚀 開始使用
@@ -151,8 +150,6 @@ NeuroEthicsEduKit 包含以下核心模組：
     *   多語言支持
     *   LMS 整合潛力探索
 
-詳細的路線圖請參考 [這裡](LINK_TO_YOUR_ROADMAP_DOCUMENT_IN_DOCS)。
-
 ## ⚖️ 授權條款 (License)
 
 本專案採用 [MIT License](./LICENSE) 授權。這意味著您可以自由地使用、複製、修改、合併、發布、分發、再授權和/或銷售本軟體的副本，但前提是包含原始的版權聲明和此許可聲明。
@@ -172,7 +169,6 @@ NeuroEthicsEduKit 的開發遵循以下核心原則：
 *   回應性
 *   不傷害 (Non-Maleficence)
 
-詳細的倫理治理框架請參考 [這裡](LINK_TO_YOUR_ETHICS_GOVERNANCE_DOCUMENT_IN_DOCS)。
 
 ## 🙏 致謝 (Acknowledgements)
 
