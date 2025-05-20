@@ -1,9 +1,9 @@
 # NeuroEthicsEduKit - 神經倫理教育工具包
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/issues)
-[![GitHub forks](https://img.shields.io/github/forks/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/network)
-[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/YOUR_USERNAME/NeuroEthicsEduKit/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/jeffery8910/NeuroEthicsEduKit/issues)
+[![GitHub forks](https://img.shields.io/github/forks/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/jeffery8910/NeuroEthicsEduKit/network)
+[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/NeuroEthicsEduKit)](https://github.com/jeffery8910/NeuroEthicsEduKit/stargazers)
 <!-- 請將 YOUR_USERNAME 替換為您的 GitHub 使用者名稱或組織名稱 -->
 
 **NeuroEthicsEduKit** 是一個開源計畫，旨在開發、策劃和傳播一系列多語言、易於獲取、文化敏感且基於證據的教育資源，以促進在 K-12 教育、高等教育、非正規學習環境以及個人終身學習中，對神經科學與教育交叉領域的倫理考量進行負責任的創新和知情應用。
